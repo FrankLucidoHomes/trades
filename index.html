@@ -135,6 +135,27 @@ footer div{flex:1 1 260px;min-width:0}
 form.editor .check{flex-direction:row;align-items:center;gap:8px;text-transform:none;letter-spacing:0;font-size:15px;color:var(--ink)}
 form.editor .check input{width:auto}
 @media (max-width:560px){h1{font-size:25px}}
+.band{display:grid;grid-template-columns:1fr auto 1fr;grid-template-areas:"logo photo stars" "who who who";align-items:center;justify-items:center;gap:16px 12px;padding:24px 18px;text-align:center}
+.band .logo{grid-area:logo;justify-self:end}
+.band .head{grid-area:photo;width:132px;height:132px;border-width:4px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.band .top5{grid-area:stars;justify-self:start}
+.band .who{grid-area:who;align-items:center;gap:6px;max-width:640px}
+.band .eyebrow{font-size:12.5px}
+.band h1{font-size:38px}
+.band .tagline{margin:4px 0 2px;font-size:17px;line-height:1.45;color:#e8eefb;max-width:34em;text-wrap:pretty}
+.band .meta{font-size:15.5px}
+.band .who>span[style]{align-self:stretch!important;text-align:center;font-size:16px!important}
+.band .who>span[style] span[style*="flex-wrap"]{justify-content:center}
+.band .who>span[style] a{font-size:15px!important}
+.hdr-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.hdr-actions a,.hdr-actions button{font:inherit;font-size:15px;font-weight:700;text-decoration:none;border-radius:999px;padding:10px 16px;cursor:pointer;border:2px solid #fff}
+.hdr-actions .fill{background:#f6e7b4;border-color:#f6e7b4;color:#0b2a5b}
+.hdr-actions .outline{background:transparent;color:#fff}
+.helpbuild{background:var(--accent-soft);border-radius:10px;padding:12px 14px;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;font-size:15px}
+.helpbuild a{font-weight:700;color:var(--surface);background:var(--accent);text-decoration:none;border-radius:999px;padding:8px 14px;white-space:nowrap}
+.intro p:first-child{font-size:17px}
+@media (max-width:560px){.band .head{width:112px;height:112px}.band h1{font-size:31px}.band .tagline{font-size:16px}.band .logo img{width:46px}.band .stars img{width:68px}}
+
 
 body{margin:0}[hidden]{display:none!important}img{max-width:100%}
 .line button.act{font:inherit;font-size:14px;font-weight:700;padding:6px 16px;border-radius:999px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}
@@ -144,12 +165,13 @@ body{margin:0}[hidden]{display:none!important}img{max-width:100%}
 <div class="wrap">
   <header class="band">
     <div class="tile logo"><img src="img/lucido-logo.png" alt="Lucido Sales logo" width="52"></div>
-    <img class="head" src="img/frank.jpg" alt="Frank Lucido" width="68" height="68">
+    <img class="head" src="img/frank.jpg" alt="Frank Lucido" width="132" height="132">
     <div class="who">
-      <span class="eyebrow">Lucido Local Trades · Grosse Pointe &amp; St. Clair Shores</span>
-      <h1>Who to call when the house acts up</h1>
+      <span class="eyebrow">Grosse Pointe &amp; the East Side</span>
+      <h1>Lucido Local Trades</h1>
+      <p class="tagline">I&rsquo;ve put this list together to make life easier for you: trusted local pros for anything around the house, your city&rsquo;s info, and help when something breaks. Save it, share it, and call me anytime.</p>
       <span class="meta">Frank Lucido, REALTOR® · Sine &amp; Monaghan · 586-419-7607</span>
-      <span style="margin-top:8px;display:grid;gap:8px;align-self:flex-start;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);border-radius:10px;padding:10px 12px;font-size:15px;line-height:1.35;color:var(--band-ink)"><span><b>Thinking of selling or buying?</b> Tap a button and I&rsquo;ll reach out to you personally. Or call <b style="white-space:nowrap;font-variant-numeric:tabular-nums">586-419-7607</b>.</span><span style="display:flex;flex-wrap:wrap;gap:6px"><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%27m%20thinking%20about%20selling%20my%20home%20and%20would%20like%20to%20talk.%20My%20address%20is%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">I&rsquo;m thinking of selling</a><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%27m%20thinking%20about%20buying%20a%20home%20and%20would%20like%20to%20talk.%20I%27m%20looking%20for%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">I&rsquo;m thinking of buying</a><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%27d%20like%20a%20free%20home%20value%20for%20when%20the%20time%20comes.%20My%20address%20is%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">What&rsquo;s my home worth?</a><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%20have%20a%20real%20estate%20question%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">Real estate questions of any kind</a></span><span id="sig-help" style="font-size:13px;opacity:.85">These buttons open a text on your phone, or an email on your computer, to let Frank know you&rsquo;d like him to reach out. Just add your address and hit send.</span></span>
+      <span style="margin-top:8px;display:grid;gap:8px;align-self:flex-start;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);border-radius:10px;padding:10px 12px;font-size:15px;line-height:1.35;color:var(--band-ink)"><span><b>Thinking of selling or buying?</b> Tap a button and I&rsquo;ll reach out to you personally. Or call <b style="white-space:nowrap;font-variant-numeric:tabular-nums">586-419-7607</b>.</span><span style="display:flex;flex-wrap:wrap;gap:6px"><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%27m%20thinking%20about%20selling%20my%20home%20and%20would%20like%20to%20talk.%20My%20address%20is%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">I&rsquo;m thinking of selling</a><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%27m%20thinking%20about%20buying%20a%20home%20and%20would%20like%20to%20talk.%20I%27m%20looking%20for%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">I&rsquo;m thinking of buying</a><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%27d%20like%20a%20free%20home%20value%20for%20when%20the%20time%20comes.%20My%20address%20is%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">What&rsquo;s my home worth?</a><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%20have%20a%20real%20estate%20question%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">Real estate questions of any kind</a></span><span id="sig-help" style="font-size:13px;opacity:.85">These buttons open a text on your phone, or an email on your computer, to let Frank know you&rsquo;d like him to reach out. Just add your address and hit send.</span><span class="hdr-actions"><a class="fill" href="#lookfor" data-jump="lookfor">Start my home search</a><button class="outline" type="button" data-share>Share this app</button></span></span>
     </div>
     <div class="top5"><div class="tile stars"><img src="img/all-stars.png" alt="Hour Media Real Estate All-Stars" width="80"></div>Top 5%</div>
   </header>
@@ -185,6 +207,7 @@ body{margin:0}[hidden]{display:none!important}img{max-width:100%}
   <section class="intro">
     <p>These are local pros I&rsquo;ve gathered from friends and colleagues who can help with whatever you need around the house. Call them directly and tell them Frank sent you.</p>
     <p class="note"><b>Keep this on your phone:</b> iPhone, tap Share then &ldquo;Add to Home Screen.&rdquo; Android, tap &#8942; then &ldquo;Add to Home screen.&rdquo; It updates on its own whenever I add a pro. Tap &ldquo;Save contact&rdquo; on any pro to put them in your phone.</p>
+    <div class="helpbuild" id="helpbuild"></div>
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px"><button class="btn" type="button" id="shareBtn">Share this list</button><span id="shareMsg" style="font-size:13.5px;color:var(--muted)">Send it to a friend or neighbor by text or email.</span></div>
     <div class="jump" style="display:flex;flex-wrap:wrap;gap:6px;font-size:14px"><span style="color:var(--muted);font-weight:600">Jump to:</span><a href="#lookfor" data-jump="lookfor">Home search</a><a href="#season" data-jump="season">Seasonal checklist</a><a href="#city" data-jump="city">Your city info</a><a href="#tips" data-jump="tips">Before you hire</a><a href="#more" data-jump="more">Recommend a pro</a></div>
     <input id="q-search" type="search" autocomplete="off" placeholder="Search: roof, sewer, painter, a name or a number" aria-label="Search trades" style="font:inherit;font-size:16px;width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)">
@@ -289,15 +312,16 @@ body{margin:0}[hidden]{display:none!important}img{max-width:100%}
 
   const SHARE_URL="https://sebilucido.github.io/trades/";
   const SHARE_TEXT="Here's Frank Lucido's list of local trades: plumbers, roofers, painters and more, all in one place. Save it to your home screen and it updates on its own:";
-  const shBtn=$('shareBtn');
-  if(shBtn) shBtn.addEventListener('click',async()=>{
+  async function doShare(btn){
     const msg=$('shareMsg');
     try{ if(navigator.share){ await navigator.share({title:"Lucido Local Trades",text:SHARE_TEXT,url:SHARE_URL}); return; } }
     catch(e){ if(e&&e.name==="AbortError") return; }
     const full=SHARE_TEXT+" "+SHARE_URL;
-    try{ await navigator.clipboard.writeText(full); msg.textContent="Copied. Paste it into a text or email."; }
+    try{ await navigator.clipboard.writeText(full); if(msg) msg.textContent="Copied. Paste it into a text or email."; }
     catch(_){ window.prompt("Copy this and paste it into a text or email:",full); }
-  });
+    if(btn&&btn!==$('shareBtn')){const t=btn.textContent;btn.textContent="Link copied";setTimeout(()=>btn.textContent=t,1800);}
+  }
+  document.addEventListener('click',e=>{const b=e.target.closest('#shareBtn,[data-share]');if(b){e.preventDefault();doShare(b);}});
   document.addEventListener('click',e=>{const j=e.target.closest('[data-jump]');if(!j)return;e.preventDefault();const t=$(j.dataset.jump);if(j.dataset.jump==='lookfor'&&$('lkd'))$('lkd').open=true;if(t)t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});});
   function vcardFor(t){
     const clean=x=>String(x||"").replace(/[\\,;]/g,m=>"\\"+m).replace(/\n/g," ");
@@ -423,6 +447,11 @@ body{margin:0}[hidden]{display:none!important}img{max-width:100%}
       });
       lk.addEventListener('click',e=>{if(e.target.closest('[data-jump]'))return;});
     }
+    const hb=$('helpbuild');
+    if(hb&&!hb.dataset.done){hb.dataset.done=1;
+      const rec=msgLink(FRANK_SMS,"Recommend a pro for your list","Hi Frank, I'd like to recommend a pro for your local trades list.\nName: \nTrade: \nPhone: \nWhy I like them: ");
+      hb.innerHTML='<span><b>Help me build this list.</b> If you know someone exceptional and would like them added, send them along and I&rsquo;ll add them.</span><a href="'+esc(rec)+'">Recommend a pro</a>';
+    }
     const tp=$('tips');
     if(tp&&!tp.dataset.done){tp.dataset.done=1;
       tp.innerHTML='<h2>Before you hire anyone</h2><ul>'+
@@ -436,7 +465,7 @@ body{margin:0}[hidden]{display:none!important}img{max-width:100%}
     if(mr&&!mr.dataset.done){mr.dataset.done=1;
       const rec=msgLink(FRANK_SMS,"Recommend a pro for your list","Hi Frank, I'd like to recommend a pro for your local trades list.\nName: \nTrade: \nPhone: \nWhy I like them: ");
       const val=msgLink(FRANK_SMS,"Free home value request","Hi Frank, I found you on Lucido Local Trades. I'd like a free home value. My address is: ");
-      mr.innerHTML='<h2>Know a great pro?</h2><p>Send me your favorite plumber, painter or handyman. I&rsquo;ll check them out and add them so your neighbors can use them too.</p>'+
+      mr.innerHTML='<h2>Help me build this list</h2><p>If you know someone exceptional and would like them added, send them along and I&rsquo;ll add them so your neighbors can use them too.</p>'+
         `<div class="links"><a href="${esc(rec)}">Recommend a pro</a></div>`+
         '<h2 style="margin-top:8px">More from Frank</h2>'+
         `<div class="links"><a href="https://sebastian.mihomesnow.com" target="_blank" rel="noopener">Search homes for sale</a><a href="${esc(val)}">What&rsquo;s my home worth?</a><a href="tel:5864197607">Call Frank</a></div>`;
