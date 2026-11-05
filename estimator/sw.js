@@ -1,4 +1,4 @@
-const C='est-v1';
+const C='est-v2';
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(C).then(c=>c.addAll(['./','index.html','img/frank.jpg','img/lucido-logo.png','img/all-stars.png']).catch(()=>{})));});
 self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));
 self.addEventListener('fetch',e=>{if(e.request.method!=='GET'||new URL(e.request.url).origin!==location.origin)return;

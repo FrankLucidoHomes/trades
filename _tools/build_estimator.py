@@ -23,7 +23,7 @@ HEAD = f"""<!doctype html>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Frank Lucido's Buyer Cost Estimator: monthly payment, property taxes by city, closing costs and cash to close for any home in Metro Detroit.">
 <meta name="theme-color" content="#0f2d5c">
-<meta name="apple-mobile-web-app-title" content="Call Frank">
+<meta name="apple-mobile-web-app-title" content="Lucido Homes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
