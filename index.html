@@ -213,12 +213,12 @@ body{margin:0}[hidden]{display:none!important}img{max-width:100%}
     <p class="note"><b>Keep this on your phone:</b> iPhone, tap Share then &ldquo;Add to Home Screen.&rdquo; Android, tap &#8942; then &ldquo;Add to Home screen.&rdquo; It updates on its own whenever I add a pro. Tap &ldquo;Save contact&rdquo; on any pro to put them in your phone.</p>
     <div class="helpbuild" id="helpbuild"></div>
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px"><button class="btn" type="button" id="shareBtn">Share this list</button><span id="shareMsg" style="font-size:13.5px;color:var(--muted)">Send it to a friend or neighbor by text or email.</span></div>
-    <div class="jump" style="display:flex;flex-wrap:wrap;gap:6px;font-size:14px"><span style="color:var(--muted);font-weight:600">Jump to:</span><a href="#lookfor" data-jump="lookfor">Home search</a><a href="#season" data-jump="season">Seasonal checklist</a><a href="#city" data-jump="city">Your city info</a><a href="#tips" data-jump="tips">Before you hire</a><a href="#more" data-jump="more">Recommend a pro</a></div>
+    <div class="jump" style="display:flex;flex-wrap:wrap;gap:6px;font-size:14px"><span style="color:var(--muted);font-weight:600">Jump to:</span><a href="#season" data-jump="season">Seasonal checklist</a><a href="#city" data-jump="city">Your city info</a><a href="#tips" data-jump="tips">Before you hire</a><a href="#more" data-jump="more">Recommend a pro</a></div>
     <input id="q-search" type="search" autocomplete="off" placeholder="Search: roof, sewer, painter, a name or a number" aria-label="Search trades" style="font:inherit;font-size:16px;width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)">
     <div class="filters" id="filters" role="group" aria-label="Filter trades"></div>
   </section>
 
-  <section class="sec look" id="lookfor"></section>
+  <section class="sec look" id="lookfor" hidden></section>
   <div class="needbar" id="needbar" hidden></div>
   <div class="grid" id="grid"></div>
 
@@ -326,7 +326,7 @@ body{margin:0}[hidden]{display:none!important}img{max-width:100%}
     if(btn&&btn!==$('shareBtn')){const t=btn.textContent;btn.textContent="Link copied";setTimeout(()=>btn.textContent=t,1800);}
   }
   document.addEventListener('click',e=>{const b=e.target.closest('#shareBtn,[data-share]');if(b){e.preventDefault();doShare(b);}});
-  document.addEventListener('click',e=>{const j=e.target.closest('[data-jump]');if(!j)return;e.preventDefault();const t=$(j.dataset.jump);if(j.dataset.jump==='lookfor'&&$('lkd'))$('lkd').open=true;if(t)t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});});
+  document.addEventListener('click',e=>{const j=e.target.closest('[data-jump]');if(!j)return;e.preventDefault();const t=$(j.dataset.jump);if(j.dataset.jump==='lookfor'&&$('lkd')){$('lookfor').hidden=false;$('lkd').open=true;}if(t)t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});});
   function vcardFor(t){
     const clean=x=>String(x||"").replace(/[\\,;]/g,m=>"\\"+m).replace(/\n/g," ");
     const name=t.contact||t.company||t.type;
