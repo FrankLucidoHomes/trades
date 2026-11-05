@@ -1,0 +1,1345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Frank Lucido's Buyer Cost Estimator: monthly payment, property taxes by city, closing costs and cash to close for any home in Metro Detroit.">
+<meta name="theme-color" content="#0f2d5c">
+<meta name="apple-mobile-web-app-title" content="Call Frank">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<meta property="og:title" content="Lucido Sales Buyer Cost Estimator">
+<meta property="og:description" content="What will this home really cost? Monthly payment, taxes by city and cash to close, from Frank Lucido, REALTOR&reg;.">
+<meta property="og:image" content="https://franklucidohomes.github.io/trades/estimator/img/og.jpg">
+<meta property="og:url" content="https://franklucidohomes.github.io/trades/estimator/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<title>Lucido Sales Buyer Cost Estimator Tool</title>
+<style>[hidden]{display:none!important}body{margin:0}</style>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+<style>
+:root{
+  --bg:#f3f5f6; --surface:#ffffff; --sunk:#eef2f4; --ink:#15212b; --muted:#5b6a76; --line:#dbe2e7;
+  --accent:#0f2d5c; --accent-soft:#e4eaf4; --brass:#1f5aa6; --brass-soft:#edf2f9;
+  --good:#2c7a57; --warn:#a85a1b; --warn-soft:#fbeee2;
+  --seg-pi:#0f2d5c; --seg-tax:#3f72b5; --seg-ins:#9db8dc; --seg-pmi:#8b95a1; --seg-hoa:#c3cad2;
+  --band:#0f2d5c; --band-2:#1b3f78; --band-ink:#ffffff; --band-muted:#c4d2e8; --silver:#b9c0c8;
+  --display:"Source Serif 4", Georgia, serif;
+  --body:"Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0e161d; --surface:#15212b; --sunk:#1b2934; --ink:#e5ecf1; --muted:#95a5b1; --line:#283844;
+    --accent:#9dbde6; --accent-soft:#1b2d45; --brass:#b9cff0; --brass-soft:#15253b;
+    --good:#5fc193; --warn:#e3995a; --warn-soft:#33251a;
+    --seg-pi:#9dbde6; --seg-tax:#5a87c4; --seg-ins:#34588a; --seg-pmi:#8b95a1; --seg-hoa:#56616c;
+    --band:#0b1f40; --band-2:#14305c; --band-ink:#ffffff; --band-muted:#a9bddb; --silver:#8f98a3;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0e161d; --surface:#15212b; --sunk:#1b2934; --ink:#e5ecf1; --muted:#95a5b1; --line:#283844;
+  --accent:#9dbde6; --accent-soft:#1b2d45; --brass:#b9cff0; --brass-soft:#15253b;
+  --good:#5fc193; --warn:#e3995a; --warn-soft:#33251a;
+  --seg-pi:#9dbde6; --seg-tax:#5a87c4; --seg-ins:#34588a; --seg-pmi:#8b95a1; --seg-hoa:#56616c;
+  --band:#0b1f40; --band-2:#14305c; --band-ink:#ffffff; --band-muted:#a9bddb; --silver:#8f98a3;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;padding-inline:16px;padding-block:20px 48px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+.band{background:linear-gradient(120deg,var(--band) 0%,var(--band) 55%,var(--band-2) 100%);color:var(--band-ink);border-radius:14px;padding:18px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 22px;position:relative;overflow:hidden}
+.band::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:26px solid rgba(255,255,255,.05);pointer-events:none}
+.tile{background:#fff;border-radius:12px;padding:8px;display:flex;align-items:center;justify-content:center;flex:none}
+.tile img{display:block}
+.logo-tile img{width:58px;height:auto}
+.head{width:78px;height:78px;border-radius:50%;object-fit:cover;border:3px solid var(--silver);flex:none}
+.who{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1 1 220px}
+.who .eyebrow{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--band-muted);font-weight:600}
+h1{font-family:var(--display);font-size:30px;line-height:1.1;margin:0;text-wrap:balance;color:var(--band-ink)}
+.who .name{font-weight:600;font-size:15px}
+.who .meta{font-size:13.5px;color:var(--band-muted)}
+.stars-tile img{width:92px;height:auto}
+.contact{flex:1 1 100%;display:flex;flex-wrap:wrap;align-items:center;gap:10px 28px;border-top:1px solid rgba(255,255,255,.16);padding-top:14px;position:relative;z-index:1}
+.contact .big{color:var(--band-ink);text-decoration:none;font-weight:700;font-size:30px;letter-spacing:.01em;font-variant-numeric:tabular-nums;line-height:1.1}
+.contact .mail{font-size:22px;font-weight:600;overflow-wrap:anywhere}
+.contact .big{user-select:text}
+.contact .lbl{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--band-muted);font-weight:600;margin-bottom:2px}
+.contact .addbtn{margin-left:auto}
+@media (max-width:640px){.contact .big{font-size:26px}.contact .mail{font-size:18px}.contact .addbtn{margin-left:0}}
+.qrwrap{position:fixed;inset:0;background:rgba(8,18,34,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
+.qrcard{background:var(--surface);color:var(--ink);border-radius:14px;padding:22px;max-width:380px;width:100%;display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.ownertag{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:#f28c28;color:#1d1204;border-radius:999px;padding:3px 10px;margin:2px 0}
+body.owner:not(.client) .ownertag::after{content:" · agent view"}
+body.owner.client .ownertag{background:rgba(255,255,255,.18);color:#fff}
+body.owner.client .ownertag::after{content:" · previewing client view"}
+body.owner:not(.client) section.agent-only,body.owner:not(.client) details.agent-only{border:2px solid #f28c28!important;border-radius:12px;position:relative}
+body.owner:not(.client) details.agent-only{padding:12px 14px}
+body.owner:not(.client) section.agent-only::before,body.owner:not(.client) details.agent-only::before{content:"AGENT ONLY · clients don't see this";display:inline-block;align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.08em;background:#f28c28;color:#1d1204;border-radius:999px;padding:3px 10px;margin-bottom:6px}
+body.owner:not(.client) .band .btn.agent-only,body.owner .band #viewBtn{border-color:#f28c28;color:#ffd3a6}
+body.owner .band #viewBtn{border-width:2px}
+.band .btn.callbtn{background:#2e9e62;border-color:#2e9e62;color:#fff}
+.callbtn2{background:#2e7a57;border-color:#2e7a57}
+#callQr svg{width:160px;height:160px;display:block}
+.qrcard h3{font-family:var(--display);font-size:20px;margin:0}
+.qrbox{background:#fff;padding:12px;border-radius:10px;border:1px solid var(--line)}
+.qrbox svg{display:block;width:220px;height:220px}
+.qrcard .row{justify-content:center}
+.band-actions{display:flex;gap:8px;flex-wrap:wrap;position:relative;z-index:1}
+.band .btn{background:#fff;border-color:#fff;color:var(--band)}
+.band .btn.ghost{background:transparent;border-color:rgba(255,255,255,.55);color:#fff}
+.prepared{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;color:var(--muted)}
+.prepared b{color:var(--ink)}
+.prepared:empty{display:none}
+body.client .agent-only{display:none!important}
+.pdfstatus{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;background:var(--brass-soft);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:14px}
+.pdfstatus.err{background:var(--warn-soft)}
+.pdfstatus a{color:var(--accent);font-weight:700}
+.pdfstatus .btn{padding:6px 12px;font-size:13px}
+.btn[disabled]{opacity:.6;cursor:progress}
+.reach{border:2px solid var(--accent)}
+.reach-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.checks{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px}
+.checks label{display:flex;align-items:center;gap:8px;cursor:pointer}
+.checks input{width:18px;height:18px;accent-color:var(--accent)}
+textarea{font:inherit;color:var(--ink);background:var(--sunk);border:1px solid var(--line);border-radius:8px;padding:9px 10px;width:100%;resize:vertical}
+.reach-actions{display:flex;flex-wrap:wrap;gap:10px}
+.send-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.send-opt{display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--surface)}
+.reach-actions .btn{font-size:16px;padding:12px 18px;text-decoration:none;display:inline-flex;align-items:center}
+a.btn{text-decoration:none;display:inline-flex;align-items:center}
+.pdfhint{background:var(--brass-soft);border-radius:10px;padding:10px 14px;font-size:14px}
+.linkbtn{font:inherit;font-weight:700;color:var(--accent);background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
+.copyrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.big-cta{font-size:17px!important;padding:13px 22px!important}
+.btn.done{background:#2c7a57;border-color:#2c7a57;color:#fff}
+.copystatus{font-size:14px;color:var(--muted);flex:1 1 240px}
+.copystatus.ok{color:var(--good);font-weight:600}
+#reachPreview{font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--sunk);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:10px;width:100%;resize:vertical}
+.savecontact{display:flex;flex-wrap:wrap;gap:14px 18px;align-items:center;border-top:1px solid var(--line);padding-top:14px}
+.savecontact .qrbox svg{width:132px;height:132px;display:block}
+.savecontact .txt{display:flex;flex-direction:column;gap:6px;flex:1 1 240px}
+.moreBtn{font:inherit;font-size:13px;font-weight:700;color:var(--accent);background:var(--accent-soft);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
+.line.edit{align-items:center}
+.line.edit .k{flex:1;min-width:0}
+.line.edit .sub{color:var(--muted);font-size:12.5px}
+.amt{width:118px!important;flex:none;text-align:right;padding:6px 8px!important;font-size:14px}
+.amt.pct{width:78px!important}
+.pdfopt{display:flex;align-items:center;gap:6px;color:#fff;font-size:13px;font-weight:600;cursor:pointer;padding:0 4px}
+.pdfopt input{width:16px;height:16px;margin:0;accent-color:#fff}
+.emdmode{font-size:12px;color:var(--muted)}
+.edit-sep{border-top:1px dashed var(--line);margin-top:6px;padding-top:8px}
+.homepanel{border:2px solid var(--accent)}
+.homehead{display:flex;gap:14px;align-items:center}
+.homehead .head{width:64px;height:64px;border-color:var(--accent)}
+.homehead h2{margin:0}
+.homesteps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.homesteps .os{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--sunk)}
+.homesteps .os.mine{border-color:var(--accent);background:var(--accent-soft)}
+.homesteps h3{font-size:15px;margin:0 0 6px}
+.homesteps ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px;font-size:14px}
+.submitbox{display:flex;flex-direction:column;gap:6px;background:var(--accent-soft);border-radius:10px;padding:14px}
+.altsend summary{cursor:pointer;font-weight:600;color:var(--accent);font-size:14px}
+.altsend #reachPreview{margin-top:10px}
+footer.foot{border-top:1px solid var(--line);padding-top:16px;display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;justify-content:space-between}
+footer.foot .who2{display:flex;gap:12px;align-items:center}
+footer.foot .who2 img.head{width:52px;height:52px;border-width:2px}
+.eho{font-size:12px;color:var(--muted);letter-spacing:.04em}
+@media (max-width:640px){.band{padding:16px}.head{width:64px;height:64px}h1{font-size:25px}.stars-tile img{width:74px}}
+.btn{font:inherit;font-weight:600;border:1px solid var(--accent);background:var(--accent);color:var(--surface);padding:9px 14px;border-radius:8px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.grid{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:16px}
+.label{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.field{display:flex;flex-direction:column;gap:6px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+input[type=text],input[type=number],input[type=date],select{font:inherit;color:var(--ink);background:var(--sunk);border:1px solid var(--line);border-radius:8px;padding:9px 10px;width:100%;font-variant-numeric:tabular-nums}
+select{cursor:pointer}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.big-input{font-size:20px!important;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:inherit;font-size:13px;font-weight:600;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-variant-numeric:tabular-nums}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{flex:1;font:inherit;font-size:13px;font-weight:600;padding:8px 6px;border:0;background:var(--surface);color:var(--ink);cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hint{font-size:12.5px;color:var(--muted)}
+.stepper{display:flex;gap:6px}
+.stepper button{font:inherit;font-weight:700;width:40px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);cursor:pointer}
+.results{display:flex;flex-direction:column;gap:20px}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:0;padding:0;overflow:hidden}
+@media (max-width:640px){.hero{grid-template-columns:1fr}}
+.hero>div{padding:20px;display:flex;flex-direction:column;gap:12px}
+.hero .cash{background:var(--brass-soft);border-left:1px solid var(--line)}
+@media (max-width:640px){.hero .cash{border-left:0;border-top:1px solid var(--line)}}
+.fig{font-family:var(--display);font-size:44px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.cash .fig{color:var(--brass)}
+.fig small{font-family:var(--body);font-size:15px;font-weight:500;color:var(--muted)}
+.bar{display:flex;height:12px;border-radius:6px;overflow:hidden;background:var(--sunk)}
+.bar span{display:block;height:100%}
+.lines{display:flex;flex-direction:column;gap:6px;font-variant-numeric:tabular-nums}
+.line{display:flex;justify-content:space-between;gap:10px;font-size:14px}
+.line .k{display:flex;align-items:center;gap:8px;color:var(--ink)}
+.line .v{white-space:nowrap;text-align:right}
+.dot{width:10px;height:10px;border-radius:3px;flex:none}
+.line.total{border-top:1px solid var(--line);padding-top:8px;font-weight:700}
+.line.muted .k,.line.muted .v{color:var(--muted)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cbox{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--surface)}
+.cbox .n{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;font-size:11.5px;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);letter-spacing:.02em}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.good{background:var(--accent-soft);color:var(--good)}
+.flags{display:flex;flex-wrap:wrap;gap:6px}
+h2{font-family:var(--display);font-size:20px;margin:0}
+.sechead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px}
+.tablewrap{overflow-x:auto;margin:0 -4px}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:14px}
+th,td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+th:first-child,td:first-child{text-align:left}
+tr.sel td{background:var(--accent-soft);font-weight:700}
+tr.clickable{cursor:pointer}
+tr.clickable:hover td{background:var(--sunk)}
+td .sd{color:var(--muted);font-size:12.5px;font-weight:400}
+details{border-top:1px solid var(--line);padding-top:12px}
+summary{cursor:pointer;font-weight:600;color:var(--accent)}
+.cc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:12px}
+.cc-grid .field input{padding:7px 9px}
+.ccols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.note{font-size:12.5px;color:var(--muted);line-height:1.5;max-width:90ch}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:8px;font-weight:600;font-size:14px}
+textarea#fallback{width:100%;min-height:160px;font:13px/1.4 ui-monospace,monospace;background:var(--sunk);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:10px}
+@media (prefers-reduced-motion:no-preference){.bar span{transition:width .25s ease}}
+
+.reachbtns{flex:1 1 100%;display:flex;flex-wrap:wrap;gap:8px;order:1}
+.contact .addbtn{order:2}
+.reachbtns a{font:inherit;font-size:15px;font-weight:700;text-decoration:none;border-radius:999px;padding:10px 16px;display:inline-flex;align-items:center;gap:6px;border:2px solid #fff;color:#fff;background:transparent}
+.reachbtns a.call{background:#2e9e62;border-color:#2e9e62}
+.reachbtns a.save{background:#fff;color:#0f2d5c}
+.contact a.big{color:var(--band-ink);text-decoration:none}
+.sendbtns{display:flex;flex-wrap:wrap;gap:8px}
+</style>
+
+<div class="wrap">
+  <header class="band">
+    <div class="tile logo-tile"><img src="img/lucido-logo.png" alt="Lucido logo" width="58"></div>
+    <img class="head" src="img/frank.jpg" alt="Frank Lucido" width="78" height="78">
+    <div class="who">
+      <span class="eyebrow" id="eyebrow">Lucido Sales Buyer Cost Estimator Tool</span>
+      <h1>What will this home really cost?</h1>
+      <span class="name">Frank Lucido, REALTOR<sup>®</sup></span>
+      <span class="meta">Sine &amp; Monaghan LLC · Grosse Pointe · Hour Detroit Real Estate All-Star</span>
+    </div>
+    <div class="tile stars-tile"><img src="img/all-stars.png" alt="Hour Media Real Estate All-Stars" width="92"></div>
+    <div class="band-actions">
+      <button class="btn ghost" id="viewBtn" type="button">Client view</button>
+      <button class="btn ghost agent-only" id="resetBtn" type="button">Reset</button>
+      <button class="btn ghost" id="copyBtn" type="button">Copy summary</button>
+      <button class="btn" id="pdfBtn" type="button">Create PDF</button>
+      <label class="pdfopt"><input type="checkbox" id="pdfTax"> Add property tax totals to PDF</label>
+    </div>
+    <div class="contact">
+      <div><span class="lbl">Call or text</span><a class="big" href="tel:+15864197607">586-419-7607</a></div>
+      <div><span class="lbl">Email</span><a class="big mail" href="mailto:frankjr@fjlucido.com">frankjr@fjlucido.com</a></div>
+      <div class="row addbtn">
+        <button class="btn ghost" type="button" id="shareBtn">Share this app</button>
+        <button class="btn ghost" type="button" id="homeBtn" aria-expanded="false" aria-controls="homePanel">Add to my home screen</button>
+        <a class="btn" href="#reach" id="reachJump">Request Frank to reach out</a>
+      </div>
+      <div class="reachbtns"><a class="call" href="tel:+15864197607">Call Frank</a><a href="sms:+15864197607?&body=Hi%20Frank%2C%20I%20was%20using%20your%20Buyer%20Cost%20Estimator%20and%20have%20a%20question%3A%20">Text Frank</a><a href="mailto:frankjr@fjlucido.com?subject=Buyer%20Cost%20Estimator&amp;body=Hi%20Frank%2C%0A%0A">Email Frank</a><a class="save" href="frank-lucido.vcf" download="Frank Lucido.vcf">Save Frank to my contacts</a></div>
+    </div>
+  </header>
+  <section class="panel homepanel" id="homePanel" hidden>
+    <div class="homehead">
+      <img class="head" src="img/frank.jpg" alt="" width="64" height="64">
+      <div><h2>Keep this on your phone</h2><p class="hint" style="margin:2px 0 0">Save it to your home screen and it opens like an app, with your numbers and Frank's contact info right there.</p></div>
+    </div>
+    <div class="homesteps" id="homeSteps"></div>
+    <p class="hint" style="margin:0">Tip: when your phone asks for a name, type <b>Call Frank</b>.</p>
+    <div><button class="btn ghost" type="button" id="homeClose">Got it</button></div>
+  </section>
+  <div class="prepared" id="prepared"></div>
+  <div class="pdfstatus" id="pdfStatus" role="status" hidden></div>
+
+  <div class="grid">
+    <!-- INPUTS -->
+    <form class="panel" id="inputs" autocomplete="off">
+      <div class="two">
+        <div class="field"><label class="label" for="clientName">Prepared for</label><input type="text" id="clientName" placeholder="Client name"></div>
+        <div class="field"><label class="label" for="propAddr">Property</label><input type="text" id="propAddr" placeholder="Address or MLS #"></div>
+      </div>
+      <div class="field">
+        <label class="label" for="price">Purchase price</label>
+        <input class="big-input" type="text" id="price" inputmode="numeric" value="$450,000">
+        <input type="range" id="priceRange" min="100000" max="3000000" step="5000" value="450000" aria-label="Purchase price slider">
+      </div>
+
+      <div class="field">
+        <label class="label" for="city">City &amp; school district</label>
+        <select id="city"></select>
+        <div class="seg" role="group" aria-label="Occupancy">
+          <button type="button" id="occPRE" aria-pressed="true">Primary home (homestead)</button>
+          <button type="button" id="occNON" aria-pressed="false">Investment / 2nd home</button>
+        </div>
+        <div class="hint" id="millHint"></div>
+      </div>
+
+      <div class="field">
+        <span class="label">Loan type</span>
+        <div class="seg" role="group" aria-label="Loan type" id="loanSeg">
+          <button type="button" data-loan="conv" aria-pressed="true">Conventional</button>
+          <button type="button" data-loan="fha" aria-pressed="false">FHA</button>
+          <button type="button" data-loan="va" aria-pressed="false">VA</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="label">Down payment</span>
+        <div class="chips" id="downChips"></div>
+        <div class="two">
+          <div class="field"><label class="hint" for="downPct">Percent</label><input type="number" id="downPct" step="0.5" min="0" max="100" value="20"></div>
+          <div class="field"><label class="hint" for="downAmt">Dollars</label><input type="text" id="downAmt" inputmode="numeric" value="$90,000"></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="label">Term &amp; rate</span>
+        <div class="seg" role="group" aria-label="Term" id="termSeg">
+          <button type="button" data-term="30" aria-pressed="true">30-year</button>
+          <button type="button" data-term="20" aria-pressed="false">20-year</button>
+          <button type="button" data-term="15" aria-pressed="false">15-year</button>
+        </div>
+        <div class="stepper">
+          <button type="button" id="rateDown" aria-label="Lower rate by one-eighth">−</button>
+          <input class="big-input" type="number" id="rate" step="0.125" min="0" max="20" value="" aria-label="Interest rate percent" style="text-align:center">
+          <button type="button" id="rateUp" aria-label="Raise rate by one-eighth">+</button>
+        </div>
+        <div class="hint" id="rateHint"></div>
+      </div>
+
+      <div class="field">
+        <span class="label">Insurance, HOA, credit</span>
+        <div class="two">
+          <div class="field"><label class="hint" for="ins">Homeowners ins. / yr</label><input type="text" id="ins" inputmode="numeric"></div>
+          <div class="field"><label class="hint" for="hoa">HOA / month</label><input type="text" id="hoa" inputmode="numeric" value="$0"></div>
+        </div>
+        <div class="field"><label class="hint" for="credit">Credit score (drives PMI estimate)</label>
+          <select id="credit">
+            <option value="1">760+</option>
+            <option value="1.25" selected>740–759</option>
+            <option value="1.6">700–739</option>
+            <option value="2.2">660–699</option>
+            <option value="3">620–659</option>
+          </select>
+        </div>
+        <div class="field"><label class="hint" for="flood">Flood insurance / yr (lakefront, canal homes)</label><input type="text" id="flood" inputmode="numeric" value="$0"></div>
+        <div class="hint" id="insHint">Insurance auto-estimates at 0.45% of price until you type your own figure.</div>
+      </div>
+
+      <div class="field">
+        <span class="label">Closing &amp; seller's taxes</span>
+        <div class="field"><label class="hint" for="closeDate">Closing date</label><input type="date" id="closeDate"></div>
+        <div class="two">
+          <div class="field"><label class="hint" for="sumBill">Seller's summer tax bill</label><input type="text" id="sumBill" inputmode="numeric"></div>
+          <div class="field"><label class="hint" for="winBill">Seller's winter tax bill</label><input type="text" id="winBill" inputmode="numeric"></div>
+        </div>
+        <div class="hint" id="billHint"></div>
+      </div>
+    </form>
+
+    <!-- RESULTS -->
+    <div class="results">
+      <section class="panel hero" aria-live="polite">
+        <div>
+          <span class="label">Estimated monthly payment</span>
+          <div class="fig" id="mTotal">$0</div>
+          <div class="bar" id="mBar"></div>
+          <div class="lines" id="mLines"></div>
+          <div class="compare" id="pmiCompare"></div>
+          <div class="flags" id="flags"></div>
+        </div>
+        <div class="cash">
+          <span class="label">Bring to closing</span>
+          <div class="fig" id="cTotal">$0</div>
+          <div class="lines" id="cLines"></div>
+        </div>
+      </section>
+
+      <section class="panel reach" id="reach">
+        <div class="sechead"><h2>Request Frank to reach out</h2><span class="hint">No obligation. Share only what you're comfortable with.</span></div>
+        <p class="hint" style="margin:0;max-width:70ch">Fill in what you like and tap <b>Submit to Frank</b>. Your details and the numbers above are included automatically.</p>
+        <div class="reach-grid">
+          <div class="field"><label class="hint" for="rName">Your name</label><input type="text" id="rName" autocomplete="name"></div>
+          <div class="field"><label class="hint" for="rPhone">Phone</label><input type="text" id="rPhone" inputmode="tel" autocomplete="tel"></div>
+          <div class="field"><label class="hint" for="rEmail">Email</label><input type="text" id="rEmail" inputmode="email" autocomplete="email"></div>
+          <div class="field"><label class="hint" for="rCities">Preferred cities</label><input type="text" id="rCities" placeholder="e.g. Grosse Pointe Woods, St. Clair Shores"></div>
+          <div class="field"><label class="hint" for="rAddr">Property address (if any)</label><input type="text" id="rAddr" placeholder="Address or MLS #"></div>
+          <div class="field"><label class="hint" for="rPrice">Price range</label><input type="text" id="rPrice" placeholder="e.g. $400,000 – $500,000"></div>
+          <div class="field"><label class="hint" for="rPref">Best way to reach you</label>
+            <select id="rPref"><option value="">No preference</option><option>Text</option><option>Call</option><option>Email</option></select></div>
+          <div class="field"><label class="hint" for="rTime">When are you hoping to buy?</label>
+            <select id="rTime"><option value="">Not sure yet</option><option>Within 3 months</option><option>3–6 months</option><option>6–12 months</option><option>12+ months</option></select></div>
+          <div class="field"><label class="hint" for="rPre">Pre-approved for a mortgage?</label>
+            <select id="rPre"><option value="">Not sure</option><option>Yes</option><option>Not yet</option><option>Paying cash</option></select></div>
+        </div>
+        <div class="checks">
+          <label><input type="checkbox" id="rSell"> I have a home to sell</label>
+          <label><input type="checkbox" id="rValue"> Send me a free home value estimate</label>
+          <label><input type="checkbox" id="rConsent" checked> OK for Frank to call or text me</label>
+        </div>
+        <div class="field"><label class="hint" for="rMsg">Anything else? (optional)</label><textarea id="rMsg" rows="3"></textarea></div>
+        <div class="submitbox">
+          <div class="copyrow">
+            <a class="btn big-cta" id="submitLead" href="#" target="_blank" rel="noopener">Submit to Frank</a>
+            <span class="copystatus" id="submitStatus" role="status">This will send a copy of your info to Frank and request him to reach out.</span>
+          </div>
+          <span class="hint">Opens a secure Microsoft Forms page with everything filled in. Tap <b>Submit</b> there to send it.</span>
+        </div>
+        <details class="altsend"><summary>Prefer to text or email it yourself?</summary>
+          <div class="sendbtns" style="margin-top:10px"><a class="btn" id="smsReq" href="#">Text it to Frank</a><a class="btn" id="mailReq" href="#">Email it to Frank</a></div>
+          <div class="copyrow" style="margin-top:10px">
+            <button class="btn ghost" type="button" id="reachCopy">Copy my request</button>
+            <span class="copystatus" id="reachStatus" role="status">Then paste it into a text to <b>586-419-7607</b> or an email to <b>frankjr@fjlucido.com</b>.</span>
+          </div>
+        <textarea id="reachPreview" rows="8" readonly aria-label="Your request, ready to copy"></textarea>
+        </details>
+        <div class="pdfhint"><b>Want to include your PDF?</b> Tap <button class="linkbtn" type="button" id="reachPdf">Create my PDF</button>, save it, then attach it to your text or email to Frank.</div>
+        <div class="savecontact">
+          <div class="qrbox" id="qrBox"></div>
+          <div class="txt">
+            <b>Save Frank's contact</b>
+            <span class="hint">On your phone: tap <b>Save Frank to my contacts</b>. On a computer: point your phone's camera at the code and tap <b>Add contact</b>.</span>
+            <span style="font-variant-numeric:tabular-nums"><b>Frank Lucido, REALTOR<sup>®</sup></b> · 586-419-7607 · frankjr@fjlucido.com</span>
+            <div class="copyrow"><a class="btn" href="frank-lucido.vcf" download="Frank Lucido.vcf">Save Frank to my contacts</a><button class="btn ghost" type="button" id="copyContact">Copy contact info</button><span class="copystatus" id="contactStatus" role="status"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="sechead"><h2>Down payment options</h2><button class="moreBtn" type="button" id="downMore" aria-expanded="false"></button></div>
+        <div class="tablewrap"><table id="downTable"></table></div>
+      </section>
+
+      <section class="panel">
+        <div class="sechead"><h2>Rate options</h2><button class="moreBtn" type="button" id="rateMore" aria-expanded="false"></button></div>
+        <div class="tablewrap"><table id="rateTable"></table></div>
+      </section>
+
+      <section class="panel">
+        <div class="sechead"><h2>Same house, every city</h2><button class="moreBtn" type="button" id="cityMore" aria-expanded="false"></button></div>
+        <span class="hint" id="cityHint"></span>
+        <div class="tablewrap"><table id="cityTable"></table></div>
+      </section>
+
+      <section class="panel">
+        <div class="sechead"><h2>Closing costs, prepaids &amp; prorations</h2><span class="hint">Typical Michigan buyer figures. Type over any amount to change it.</span></div>
+        <div class="ccols">
+          <div class="lines" id="ccEdit"></div>
+          <div class="lines"><div class="lines" id="ppDetail"></div><div class="lines edit-sep" id="ppEdit"></div></div>
+        </div>
+      </section>
+
+      <section class="panel agent-only">
+        <div class="sechead"><h2>What the seller typically pays</h2><span class="hint">Michigan custom. Useful when negotiating concessions.</span></div>
+        <div class="ccols">
+          <div class="lines"><div class="lines" id="commEdit"></div><div class="lines edit-sep" id="sellerDetail"></div></div>
+          <p class="note" id="sellerNote" style="margin:0"></p>
+        </div>
+      </section>
+
+
+    </div>
+  </div>
+  <footer class="foot">
+    <div class="who2">
+      <img class="head" src="img/frank.jpg" alt="" width="52" height="52">
+      <div><b>Frank Lucido, REALTOR<sup>®</sup></b><br><span class="hint">Sine &amp; Monaghan LLC · Grosse Pointe, Michigan</span><br><span class="eho">EQUAL HOUSING OPPORTUNITY</span></div>
+    </div>
+      <p class="note" style="margin:0;flex:1 1 420px">
+        Taxes use <span id="millYear">2025</span> total millage (summer + winter) from county and township records compiled by Transnation Title. Michigan taxable value uncaps the year after a sale, so the estimate uses 50% of the purchase price as taxable value, which is roughly what a new owner pays from the first full year. Homestead (PRE) rates exclude the 18-mill school operating tax. Special assessments, DDA levies and 2026 millage changes are not included; confirm with the city assessor. PMI, FHA MIP, VA funding fee, title and lender fees are estimates for planning, not a loan estimate. Seller customarily pays state and county transfer tax and the owner's title policy in Michigan, so those are left out of buyer costs.
+      </p>
+  </footer>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+/* ===== DATA BLOCK — the weekly update edits only this block ===== */
+const RATES = {asOf:"2026-10-29", r30:7.24, r15:6.60, source:"Freddie Mac PMMS"};
+const MILLAGE_YEAR = 2025;
+const CONTACT = {first:"Frank", last:"Lucido", phone:"586-419-7607", phoneIntl:"+15864197607", email:"frankjr@fjlucido.com", org:"Sine & Monaghan LLC", title:"REALTOR", city:"Grosse Pointe", state:"MI"};
+const LEAD_FORM = {base:"https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=i9BQx0PQNkCjJwjMptqkHEtGTma5L_FMhGDuB7NnE2lURFJLSDZDVkgwQTEwQzVYNU5SMktCTTNMRy4u",
+  name:"rca04f64747a7425dbc7499010f62ceb0", phone:"re2a4bec385564b2ba695637a15453043", email:"r2f754081319442908bb39d264a023d48",
+  cities:"ra298a25f1ff846f1a62903e6d2fb5bb4", address:"rd1e0f96e84ce46ec84a31b698ef73db0", price:"re6d3bf2cc4d148fc8ccea57b68296c32", details:"rc180827346a14a3fbee611135c00f541"};
+const DRIVE_FOLDER_ID = "1FRleMOOHaPr8RvFm5xJWHsWQN57ldDuG"; // "Lucido Payment Planner – Client PDFs" // year of the CITIES millage below; switch to the next year once published
+/* ---------- Millage data: totals [homestead h, non-homestead x] ---------- */
+const CITIES = [
+ {c:"Wayne", n:"Grosse Pointe (City)", s:"Grosse Pointe", h:52.2962, x:66.7739},
+ {c:"Wayne", n:"Grosse Pointe Farms", s:"Grosse Pointe", h:52.7433, x:67.2210},
+ {c:"Wayne", n:"Grosse Pointe Park", s:"Grosse Pointe", h:54.5661, x:69.0438},
+ {c:"Wayne", n:"Grosse Pointe Shores (Wayne)", s:"Grosse Pointe", h:52.4293, x:66.9070},
+ {c:"Macomb", n:"Grosse Pointe Shores (Macomb)", s:"South Lake", h:43.5773, x:59.8277},
+ {c:"Wayne", n:"Grosse Pointe Woods", s:"Grosse Pointe", h:55.2398, x:69.7175},
+ {c:"Wayne", n:"Harper Woods", s:"Grosse Pointe", h:69.1266, x:83.6043},
+ {c:"Wayne", n:"Harper Woods", s:"Harper Woods", h:70.4346, x:88.4346},
+ {c:"Wayne", n:"Detroit", s:"Detroit", h:64.1844, x:82.1844},
+ {c:"Wayne", n:"Dearborn", s:"Dearborn", h:50.8704, x:66.6894},
+ {c:"Wayne", n:"Grosse Ile", s:"Grosse Ile", h:44.1934, x:61.5843},
+ {c:"Wayne", n:"Livonia", s:"Livonia", h:41.2361, x:59.2361},
+ {c:"Wayne", n:"Northville (City)", s:"Northville", h:42.1693, x:60.1693},
+ {c:"Wayne", n:"Plymouth (City)", s:"Plymouth-Canton", h:40.9761, x:58.9761},
+ {c:"Wayne", n:"Wyandotte", s:"Wyandotte", h:53.1555, x:71.1555},
+ {c:"Macomb", n:"St. Clair Shores", s:"Lake Shore", h:48.4575, x:66.4575},
+ {c:"Macomb", n:"St. Clair Shores", s:"Lakeview", h:47.6308, x:65.6075},
+ {c:"Macomb", n:"St. Clair Shores", s:"L'Anse Creuse", h:48.4575, x:65.8802},
+ {c:"Macomb", n:"St. Clair Shores", s:"South Lake", h:50.1591, x:66.4095},
+ {c:"Macomb", n:"Harrison Township", s:"L'Anse Creuse", h:34.3809, x:51.8036},
+ {c:"Macomb", n:"Macomb Township", s:"Chippewa Valley", h:30.5468, x:48.5468},
+ {c:"Macomb", n:"Macomb Township", s:"L'Anse Creuse", h:28.9068, x:46.3295},
+ {c:"Macomb", n:"Macomb Township", s:"Utica", h:25.4068, x:43.4068},
+ {c:"Macomb", n:"Macomb Township", s:"New Haven", h:30.1668, x:48.1668},
+ {c:"Macomb", n:"Clinton Township", s:"Chippewa Valley", h:33.0147, x:51.0147},
+ {c:"Macomb", n:"Clinton Township", s:"Clintondale", h:37.3747, x:55.1547},
+ {c:"Macomb", n:"Clinton Township", s:"Fraser", h:31.3747, x:49.3747},
+ {c:"Macomb", n:"Clinton Township", s:"L'Anse Creuse", h:31.3747, x:48.7974},
+ {c:"Macomb", n:"Clinton Township", s:"Mt. Clemens", h:37.2403, x:54.6183},
+ {c:"Macomb", n:"Chesterfield Township", s:"Anchor Bay", h:29.2405, x:47.2405},
+ {c:"Macomb", n:"Chesterfield Township", s:"L'Anse Creuse", h:26.2405, x:43.6632},
+ {c:"Macomb", n:"Shelby Township", s:"Utica", h:30.6953, x:48.6953},
+ {c:"Macomb", n:"Shelby Township", s:"Romeo", h:32.2908, x:50.2908},
+ {c:"Macomb", n:"Shelby Township", s:"Rochester", h:28.5500, x:46.5500},
+ {c:"Macomb", n:"Washington Township", s:"Romeo", h:27.2342, x:45.2342},
+ {c:"Macomb", n:"Washington Township", s:"Utica", h:25.6387, x:43.6387},
+ {c:"Macomb", n:"Sterling Heights", s:"Utica", h:38.9277, x:56.9277},
+ {c:"Macomb", n:"Sterling Heights", s:"Warren Consolidated", h:43.3451, x:58.2077},
+ {c:"Macomb", n:"Warren", s:"Warren Consolidated", h:52.9663, x:67.8289},
+ {c:"Macomb", n:"Warren", s:"Fitzgerald", h:55.9699, x:73.0021},
+ {c:"Macomb", n:"Warren", s:"Van Dyke", h:52.9945, x:70.9945},
+ {c:"Macomb", n:"Warren", s:"Warren Woods", h:53.1489, x:71.1489},
+ {c:"Macomb", n:"Roseville", s:"Roseville", h:59.3014, x:77.3014},
+ {c:"Macomb", n:"Eastpointe", s:"East Detroit", h:60.3754, x:76.3959},
+ {c:"Macomb", n:"Fraser (City)", s:"Fraser", h:46.5688, x:64.5688},
+ {c:"Macomb", n:"Mount Clemens", s:"Mt. Clemens", h:52.9192, x:70.2971},
+ {c:"Macomb", n:"New Baltimore", s:"Anchor Bay", h:40.8182, x:58.8182},
+ {c:"Oakland", n:"Birmingham", s:"Birmingham", h:38.1422, x:51.5216},
+ {c:"Oakland", n:"Bloomfield Hills (City)", s:"Bloomfield Hills", h:35.4018, x:49.0182},
+ {c:"Oakland", n:"Bloomfield Hills (City)", s:"Birmingham", h:35.9981, x:49.3775},
+ {c:"Oakland", n:"Bloomfield Township", s:"Bloomfield Hills", h:36.5911, x:50.2075},
+ {c:"Oakland", n:"Bloomfield Township", s:"Birmingham", h:37.1874, x:50.5668},
+ {c:"Oakland", n:"Bloomfield Township", s:"Avondale", h:36.8668, x:54.8668},
+ {c:"Oakland", n:"Bloomfield Township", s:"Pontiac", h:31.5648, x:49.5648},
+ {c:"Oakland", n:"West Bloomfield", s:"West Bloomfield", h:37.3862, x:53.9603},
+ {c:"Oakland", n:"West Bloomfield", s:"Birmingham", h:37.3076, x:50.4551},
+ {c:"Oakland", n:"West Bloomfield", s:"Bloomfield Hills", h:36.4794, x:50.0958},
+ {c:"Oakland", n:"West Bloomfield", s:"Walled Lake", h:33.5426, x:51.2006},
+ {c:"Oakland", n:"Beverly Hills (Village)", s:"Birmingham", h:39.2445, x:52.6239},
+ {c:"Oakland", n:"Franklin (Village)", s:"Birmingham", h:35.1365, x:48.5159},
+ {c:"Oakland", n:"Troy", s:"Troy", h:36.0430, x:51.4634},
+ {c:"Oakland", n:"Troy", s:"Birmingham", h:34.8300, x:48.2094},
+ {c:"Oakland", n:"Troy", s:"Avondale", h:34.5094, x:52.5094},
+ {c:"Oakland", n:"Troy", s:"Bloomfield Hills", h:34.2337, x:47.8501},
+ {c:"Oakland", n:"Troy", s:"Warren Consolidated", h:35.9346, x:50.7972},
+ {c:"Oakland", n:"Rochester (City)", s:"Rochester", h:32.4246, x:50.4246},
+ {c:"Oakland", n:"Rochester Hills", s:"Rochester", h:30.8553, x:48.8553},
+ {c:"Oakland", n:"Rochester Hills", s:"Avondale", h:35.9928, x:53.9928},
+ {c:"Oakland", n:"Oakland Township", s:"Rochester", h:24.6821, x:42.6821},
+ {c:"Oakland", n:"Orion Township", s:"Lake Orion", h:35.6230, x:53.6230},
+ {c:"Oakland", n:"Auburn Hills", s:"Avondale", h:37.7877, x:55.7877},
+ {c:"Oakland", n:"Royal Oak", s:"Royal Oak", h:37.9616, x:54.9301},
+ {c:"Oakland", n:"Berkley", s:"Berkley", h:40.2818, x:58.2818},
+ {c:"Oakland", n:"Huntington Woods", s:"Berkley", h:47.6541, x:65.6541},
+ {c:"Oakland", n:"Ferndale", s:"Ferndale", h:47.1564, x:65.1564},
+ {c:"Oakland", n:"Clawson", s:"Clawson", h:48.6167, x:66.6167},
+ {c:"Oakland", n:"Madison Heights", s:"Lamphere", h:57.9247, x:62.8678},
+ {c:"Oakland", n:"Madison Heights", s:"Madison", h:48.7858, x:66.7858},
+ {c:"Oakland", n:"Southfield", s:"Southfield", h:57.0201, x:67.6801},
+ {c:"Oakland", n:"Southfield", s:"Birmingham", h:51.8496, x:65.2290},
+ {c:"Oakland", n:"Novi", s:"Novi", h:36.3224, x:53.3094},
+ {c:"Oakland", n:"Novi", s:"Northville", h:34.5195, x:52.5195},
+ {c:"Oakland", n:"Farmington Hills", s:"Farmington", h:42.8732, x:55.7693}
+];
+CITIES.forEach((c,i)=>c.id=i);
+
+const CONFORMING = 832750;
+const FHA_LIMIT = 541287; // 2026 FHA one-unit limit, Wayne / Macomb / Oakland
+const rateAgeDays = ()=>Math.floor((new Date()-parseDate(RATES.asOf))/864e5);
+const rateAsOfTxt = ()=>{const d=parseDate(RATES.asOf);return `${d.getMonth()+1}/${d.getDate()}/${String(d.getFullYear()).slice(2)}`;};
+const DEFAULT_CC = [
+  {k:"orig", n:"Lender origination / underwriting", v:1495},
+  {k:"points", n:"Discount points (% of loan)", v:0, pct:true},
+  {k:"appr", n:"Appraisal", v:650},
+  {k:"credit", n:"Credit report", v:75},
+  {k:"flood", n:"Flood cert & tax service", v:85},
+  {k:"titleL", n:"Lender's title policy", v:null, auto:"title"},
+  {k:"settle", n:"Title closing fee (buyer share)", v:395},
+  {k:"endorse", n:"Title endorsements & CPL", v:150},
+  {k:"record", n:"Recording fees (deed + mortgage)", v:60},
+  {k:"misc", n:"Wire, courier & e-recording", v:50},
+  {k:"insp", n:"Home inspection", v:550},
+  {k:"extraInsp", n:"Other inspections (sewer scope, radon)", v:0},
+  {k:"survey", n:"Mortgage survey / inspection", v:0},
+  {k:"buyerAgent", n:"Buyer agent pay not covered by seller (% of price)", v:0, pctPrice:true},
+  {k:"brokerFee", n:"Brokerage transaction fee", v:0},
+  {k:"warranty", n:"Home warranty (if buyer pays)", v:0},
+  {k:"hoaXfer", n:"HOA / condo transfer & capital fee", v:0}
+];
+const DEFAULT_PP = {interestDays:null, cushion:2, emdPct:1, emdAmt:null, emdMode:"pct", sellerCredit:0, proration:0, proMethod:"due"};
+const SUMMER_SHARE = 0.70;
+const pad=n=>String(n).padStart(2,"0");
+const isoDate=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const defaultClose=(()=>{const d=new Date();d.setDate(d.getDate()+30);return isoDate(d);})();
+
+const state = {
+  price:450000, downPct:20, loan:"conv", term:30, rate:RATES.r30, cityId:5, pre:true,
+  insOverride:null, hoa:0, credit:1.25, flood:0, closeDate:defaultClose, sumBill:null, winBill:null,
+  cc:Object.fromEntries(DEFAULT_CC.map(x=>[x.k,x.v])), pp:{...DEFAULT_PP}, comm:{list:3, buyer:3}
+};
+const INITIAL = JSON.parse(JSON.stringify(state));
+
+/* ---------- helpers ---------- */
+const $ = id=>document.getElementById(id);
+const fmt = (n,d=0)=>(n<0?"−":"")+"$"+Math.abs(n).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
+const num = s=>{const v=parseFloat(String(s).replace(/[^0-9.\-]/g,""));return isFinite(v)?v:0;};
+const pmt = (L,ratePct,years)=>{const r=ratePct/100/12,n=years*12;if(L<=0)return 0;if(r===0)return L/n;return L*r/(1-Math.pow(1+r,-n));};
+const cityLabel = c=>`${c.n} — ${c.s} schools`;
+
+function pmiRate(ltv, mult){
+  let base;
+  if(ltv<=80) return 0;
+  if(ltv<=85) base=0.17; else if(ltv<=90) base=0.28; else if(ltv<=95) base=0.40; else base=0.52;
+  return base*mult;
+}
+function minDown(loan){return loan==="fha"?3.5:loan==="va"?0:3;}
+
+/* Core calculation for a scenario */
+function calc(o){
+  const s = Object.assign({}, state, o||{});
+  const city = CITIES[s.cityId];
+  const price = s.price;
+  const down = price*s.downPct/100;
+  let base = price-down;
+  let financedFee=0, feeLabel="";
+  if(s.loan==="fha"){financedFee=base*0.0175;feeLabel="FHA upfront MIP (1.75%, financed)";}
+  if(s.loan==="va"){const f=s.downPct<5?0.0215:s.downPct<10?0.015:0.0125;financedFee=base*f;feeLabel=`VA funding fee (${(f*100).toFixed(2)}%, financed)`;}
+  const loan = base+financedFee;
+  const ltv = price>0?base/price*100:0;
+  const pi = pmt(loan,s.rate,s.term);
+  const mills = s.pre?city.h:city.x;
+  const taxYr = price*0.5*mills/1000;
+  const insYr = s.insOverride!=null?s.insOverride:Math.round(price*0.0045/10)*10;
+  let mi=0, miLabel="PMI";
+  if(s.loan==="conv"){mi=base*pmiRate(ltv,s.credit)/100/12;}
+  if(s.loan==="fha"){const r=s.term<=15?(ltv>90?0.40:0.15):(ltv>95?0.55:0.50);mi=base*r/100/12;miLabel=`FHA MIP (${r}%)`;}
+  const floodYr=s.flood||0;
+  const tax=taxYr/12, ins=(insYr+floodYr)/12, hoa=s.hoa;
+  const total=pi+tax+ins+mi+hoa;
+
+  // PMI removal month (conventional: balance reaches 78% of price)
+  let pmiOffMonth=null;
+  if(s.loan==="conv" && mi>0){
+    const r=s.rate/100/12;let bal=loan;
+    for(let m=1;m<=s.term*12;m++){bal=bal*(1+r)-pi;if(bal<=price*0.78){pmiOffMonth=m;break;}}
+  }
+
+  // Closing costs
+  const ccItems = DEFAULT_CC.map(d=>{
+    let v=s.cc[d.k], n=d.n;
+    if(d.pct){ v = loan*(v||0)/100; n=`Discount points (${s.cc[d.k]||0}%)`; }
+    if(d.pctPrice){ v = price*(v||0)/100; n=`Buyer agent pay not covered by seller (${s.cc[d.k]||0}%)`; }
+    if(d.auto==="title" && v==null) v = Math.round((250+loan*0.0015)/5)*5;
+    return {n, v:v||0};
+  });
+  const ccTotal = ccItems.reduce((a,b)=>a+b.v,0);
+
+  // Dates
+  const D = parseDate(s.closeDate);
+  const y = D.getFullYear();
+  const dim = new Date(y, D.getMonth()+1, 0).getDate();
+  const intDays = s.pp.interestDays!=null ? s.pp.interestDays : dim - D.getDate() + 1;
+  const dayInt = loan*s.rate/100/365;
+
+  // Seller's bills (what's on the tax roll now); blank = estimate from the new-owner figure
+  const sumBill = s.sumBill!=null ? s.sumBill : taxYr*SUMMER_SHARE;
+  const winBill = s.winBill!=null ? s.winBill : taxYr*(1-SUMMER_SHARE);
+
+  // Proration: due-date basis, as if paid in advance. Summer covers Jul 1–Jun 30, winter Dec 1–Nov 30.
+  const sStart = D>=new Date(y,6,1) ? new Date(y,6,1) : new Date(y-1,6,1);
+  const sEnd = new Date(sStart.getFullYear()+1,6,1);
+  const wStart = D>=new Date(y,11,1) ? new Date(y,11,1) : new Date(y-1,11,1);
+  const wEnd = new Date(wStart.getFullYear()+1,11,1);
+  const sDays = daysBetween(D,sEnd), wDays = daysBetween(D,wEnd);
+  const proS = s.pp.proMethod==="due" ? sumBill*sDays/daysBetween(sStart,sEnd) : 0;
+  const proW = s.pp.proMethod==="due" ? winBill*wDays/daysBetween(wStart,wEnd) : 0;
+
+  // Initial escrow deposit, aggregate method with cushion
+  const escYr = sumBill+winBill+insYr+floodYr;
+  const escMo = escYr/12;
+  const firstPay = new Date(y, D.getMonth()+2, 1);
+  const windowEnd = new Date(firstPay.getFullYear()+1, firstPay.getMonth(), 1);
+  const events=[];
+  for(let i=0;i<12;i++) events.push({d:new Date(firstPay.getFullYear(), firstPay.getMonth()+i, 1), a:escMo, o:0});
+  const nextSummer = D>=new Date(y,6,1) ? y+1 : y;           // next summer bill not settled at closing
+  const nextWinter = D>=new Date(y,11,1) ? y+1 : y;
+  events.push({d:new Date(nextSummer,7,15), a:-sumBill, o:1});   // paid ~Aug 15 (due Sept 14)
+  events.push({d:new Date(nextWinter+1,0,15), a:-winBill, o:1}); // paid ~Jan 15 (due Feb 14)
+  events.push({d:new Date(y+1, D.getMonth()-1, D.getDate()), a:-(insYr+floodYr), o:1}); // renewal
+  events.filter(e=>e.d<windowEnd).sort((a,b)=>a.d-b.d||a.o-b.o);
+  let run=0, low=0;
+  events.filter(e=>e.d<windowEnd).sort((a,b)=>a.d-b.d||a.o-b.o).forEach(e=>{run+=e.a;low=Math.min(low,run);});
+  const cushion = escMo*s.pp.cushion;
+  const escrowDeposit = Math.max(0, cushion - low);
+
+  const pp = [
+    {n:`Prepaid interest (${intDays} day${intDays===1?"":"s"}, to month end)`, v:dayInt*intDays},
+    {n:floodYr?"First-year home + flood insurance":"First-year homeowners insurance", v:insYr+floodYr},
+    {n:`Initial escrow deposit (${s.pp.cushion}-mo cushion)`, v:escrowDeposit},
+  ];
+  const pro = [];
+  if(s.pp.proMethod==="due"){
+    pro.push({n:`Summer tax to seller (${sDays} days to Jun 30)`, v:proS});
+    pro.push({n:`Winter tax to seller (${wDays} days to Nov 30)`, v:proW});
+  }
+  if(s.pp.proration) pro.push({n:"Other prorations (assessments, HOA dues)", v:s.pp.proration});
+  const ppTotal = pp.reduce((a,b)=>a+b.v,0);
+  const proTotal = pro.reduce((a,b)=>a+b.v,0);
+  const emd = s.pp.emdMode==="amt" ? (s.pp.emdAmt||0) : price*(s.pp.emdPct||0)/100;
+  const emdPctEff = price>0 ? emd/price*100 : 0;
+  const funds = down+ccTotal+ppTotal+proTotal-s.pp.sellerCredit;
+  const bring = funds-emd;
+
+  // Seller side (Michigan custom)
+  const seller = [
+    {n:`Listing agent commission (${s.comm.list}%)`, v:price*s.comm.list/100},
+    {n:`Buyer's agent commission (${s.comm.buyer}%)`, v:price*s.comm.buyer/100},
+    {n:"State transfer tax ($3.75 per $500)", v:Math.ceil(price/500)*3.75},
+    {n:"County transfer tax ($0.55 per $500)", v:Math.ceil(price/500)*0.55},
+    {n:"Owner's title policy (est.)", v:Math.round((400+price*0.003)/5)*5},
+    {n:"Tax reimbursement received from buyer", v:-(proS+proW)},
+  ];
+  return {intDays,s,city,price,down,base,loan,ltv,pi,mills,taxYr,insYr,floodYr,tax,ins,mi,miLabel,hoa,total,financedFee,feeLabel,pmiOffMonth,ccItems,ccTotal,pp,ppTotal,pro,proTotal,proS,proW,sumBill,winBill,escrowDeposit,emd,emdPctEff,funds,bring,seller,D};
+}
+function parseDate(str){const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(str||"");if(!m){const d=new Date();d.setHours(0,0,0,0);return d;}return new Date(+m[1],+m[2]-1,+m[3]);}
+function daysBetween(a,b){return Math.round((b-a)/864e5);}
+
+/* ---------- build static UI ---------- */
+function buildCitySelect(){
+  const sel=$("city");
+  ["Wayne","Macomb","Oakland"].forEach(county=>{
+    const g=document.createElement("optgroup");g.label=county+" County";
+    CITIES.filter(c=>c.c===county).forEach(c=>{const o=document.createElement("option");o.value=c.id;o.textContent=cityLabel(c);g.appendChild(o);});
+    sel.appendChild(g);
+  });
+}
+const DOWN_CHOICES=[0,3,3.5,5,10,15,20,25,30];
+function buildDownChips(){
+  const box=$("downChips");box.innerHTML="";
+  DOWN_CHOICES.filter(p=>p>=minDown(state.loan)&&!(p===3.5&&state.loan!=="fha")).forEach(p=>{
+    const b=document.createElement("button");b.type="button";b.className="chip";b.textContent=p+"%";b.dataset.p=p;
+    b.addEventListener("click",()=>{state.downPct=p;render();});box.appendChild(b);
+  });
+}
+const PP_EDIT=[
+  {id:"pp_emd", n:"Earnest money deposit, as % of price", get:()=>state.pp.emdPct, set:v=>{state.pp.emdPct=v??0;state.pp.emdMode="pct";}, pct:true},
+  {id:"pp_emdamt", n:"Earnest money deposit, as a $ amount", get:()=>state.pp.emdAmt, set:v=>{state.pp.emdAmt=v??0;state.pp.emdMode="amt";}},
+  {id:"pp_seller", n:"Seller credit toward your costs", get:()=>state.pp.sellerCredit, set:v=>state.pp.sellerCredit=v??0},
+  {id:"pp_pror", n:"Other prorations (HOA dues, assessments)", get:()=>state.pp.proration, set:v=>state.pp.proration=v??0},
+  {id:"pp_days", n:"Prepaid interest days (blank = to month end)", get:()=>state.pp.interestDays, set:v=>state.pp.interestDays=v, days:true},
+  {id:"pp_cush", n:"Escrow cushion (months)", get:()=>state.pp.cushion, set:v=>state.pp.cushion=v??0, days:true}
+];
+function buildCostEditor(){
+  const row=(id,label)=>`<div class="line edit"><label class="k" for="${id}">${label}</label><input class="amt" type="text" inputmode="decimal" id="${id}"></div>`;
+  $("ccEdit").innerHTML=`<span class="label">Closing costs</span>`+DEFAULT_CC.map(d=>row("cc_"+d.k, d.pct?`Discount points <span class="sub" id="cc_${d.k}_amt"></span>`:d.pctPrice?`Buyer's agent pay not covered by seller <span class="sub" id="cc_${d.k}_amt"></span>`:d.auto?`${d.n} <span class="sub">(estimate)</span>`:d.n)).join("")
+    +`<div class="line total"><span class="k">Total closing costs</span><span class="v" id="ccTotalV"></span></div>`;
+  $("ppEdit").innerHTML=`<span class="label">Adjust</span>`+PP_EDIT.map(e=>row(e.id,e.n)).join("")
+    +`<div class="line edit"><label class="k" for="pp_method">Tax proration method</label><select id="pp_method" style="width:auto;flex:none"><option value="due">Due date, paid in advance</option><option value="none">None</option></select></div>`;
+  DEFAULT_CC.forEach(d=>{const el=$("cc_"+d.k); if(d.pct||d.pctPrice) el.classList.add("pct");
+    el.addEventListener("input",()=>{const raw=el.value.trim(); state.cc[d.k]= raw==="" ? (d.auto?null:0) : num(raw); render();});
+    el.addEventListener("blur",render);});
+  PP_EDIT.forEach(e=>{const el=$(e.id); if(e.pct||e.days) el.classList.add("pct");
+    el.addEventListener("input",()=>{const raw=el.value.trim(); e.set(raw===""?(e.id==="pp_days"?null:0):num(raw)); render();});
+    el.addEventListener("blur",render);});
+  $("pp_method").addEventListener("change",e=>{state.pp.proMethod=e.target.value;render();});
+  $("commEdit").innerHTML=`<span class="label">Commission rates (type to change)</span>`+row("comm_list",`Listing agent <span class="sub" id="comm_list_amt"></span>`)+row("comm_buyer",`Buyer's agent <span class="sub" id="comm_buyer_amt"></span>`);
+  ["list","buyer"].forEach(k=>{const el=$("comm_"+k); el.classList.add("pct");
+    el.addEventListener("input",()=>{const raw=el.value.trim(); state.comm[k]= raw==="" ? 0 : num(raw); render();});
+    el.addEventListener("blur",render);});
+}
+function emdLabel(r){return r.s.pp.emdMode==="amt" ? `${+r.emdPctEff.toFixed(2)}% of price` : `${+(r.s.pp.emdPct||0)}%`;}
+function syncCostEditor(r){
+  const act=document.activeElement, s=r.s;
+  DEFAULT_CC.forEach((d,i)=>{const el=$("cc_"+d.k); if(el===act) return;
+    if(d.pct||d.pctPrice) el.value=(s.cc[d.k]||0)+"%"; else el.value=fmt(r.ccItems[i].v);});
+  const pts=$("cc_points_amt"); if(pts) pts.textContent=`(% of loan = ${fmt(r.ccItems[DEFAULT_CC.findIndex(d=>d.k==="points")].v)})`;
+  const ba=$("cc_buyerAgent_amt"); if(ba) ba.textContent=`(% of price = ${fmt(r.ccItems[DEFAULT_CC.findIndex(d=>d.k==="buyerAgent")].v)})`;
+  $("ccTotalV").textContent=fmt(r.ccTotal);
+  PP_EDIT.forEach(e=>{const el=$(e.id); if(el===act) return; const v=e.get();
+    if(e.id==="pp_emd"){ el.value=+r.emdPctEff.toFixed(2)+"%"; return; }
+    if(e.id==="pp_emdamt"){ el.value=fmt(r.emd); return; }
+    el.value = e.pct ? (v||0)+"%" : e.days ? (v==null?"":String(v)) : fmt(v||0);});
+  ["list","buyer"].forEach(k=>{const el=$("comm_"+k); if(el!==act) el.value=(s.comm[k]||0)+"%"; $("comm_"+k+"_amt").textContent=`(= ${fmt(s.price*(s.comm[k]||0)/100)})`;});
+  $("pp_days").placeholder=String(r.intDays);
+  $("pp_method").value=s.pp.proMethod;
+}
+
+/* ---------- render ---------- */
+const EXPAND={down:false,rate:false,city:false};
+function lineHTML(k,v,color,cls=""){
+  return `<div class="line ${cls}"><span class="k">${color?`<span class="dot" style="background:${color}"></span>`:""}${k}</span><span class="v">${v}</span></div>`;
+}
+function render(){
+  // clamp
+  state.downPct=Math.max(minDown(state.loan),Math.min(100,state.downPct));
+  const r=calc();
+  const {s}=r;
+
+  // inputs sync (skip focused)
+  const act=document.activeElement;
+  if(act!==$("price")) $("price").value=fmt(s.price);
+  $("priceRange").value=Math.min(3000000,Math.max(100000,s.price));
+  if(act!==$("downPct")) $("downPct").value=+s.downPct.toFixed(2);
+  if(act!==$("downAmt")) $("downAmt").value=fmt(r.down);
+  if(act!==$("rate")) $("rate").value=s.rate;
+  if(act!==$("ins")) $("ins").value=fmt(r.insYr);
+  if(act!==$("hoa")) $("hoa").value=fmt(s.hoa);
+  if(act!==$("flood")) $("flood").value=fmt(s.flood||0);
+  if(act!==$("closeDate")) $("closeDate").value=s.closeDate;
+  if(act!==$("sumBill")) $("sumBill").value=s.sumBill!=null?fmt(s.sumBill):"";
+  if(act!==$("winBill")) $("winBill").value=s.winBill!=null?fmt(s.winBill):"";
+  $("sumBill").placeholder="Est. "+fmt(r.sumBill);
+  $("winBill").placeholder="Est. "+fmt(r.winBill);
+  $("billHint").textContent = (s.sumBill==null||s.winBill==null)
+    ? "Blank bills use an estimate (70% summer / 30% winter). For an accurate proration, enter the seller's actual bills from the tax record or MLS."
+    : "Using the seller's actual bills for the tax proration and escrow.";
+  $("city").value=s.cityId;
+  $("occPRE").setAttribute("aria-pressed",s.pre);$("occNON").setAttribute("aria-pressed",!s.pre);
+  document.querySelectorAll("#loanSeg button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.loan===s.loan));
+  document.querySelectorAll("#termSeg button").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.term===s.term));
+  document.querySelectorAll("#downChips .chip").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.p===s.downPct));
+  $("credit").value=String(s.credit);
+  $("credit").disabled = s.loan!=="conv";
+  $("millHint").textContent=`${r.city.c} County · ${r.mills.toFixed(4)} mills (${MILLAGE_YEAR} ${s.pre?"homestead":"non-homestead"}) · taxes ≈ ${fmt(r.taxYr)}/yr`;
+  $("insHint").textContent = s.insOverride!=null ? "Using your insurance figure. Clear the box to go back to the estimate." : "Insurance auto-estimates at 0.45% of price until you type your own figure.";
+
+  // monthly
+  $("mTotal").innerHTML=`${fmt(r.total)} <small>/ month</small>`;
+  const segs=[["Principal & interest",r.pi,"var(--seg-pi)"],["Property taxes",r.tax,"var(--seg-tax)"],[r.floodYr?"Insurance (home + flood)":"Homeowners insurance",r.ins,"var(--seg-ins)"],[r.miLabel,r.mi,"var(--seg-pmi)"],["HOA",r.hoa,"var(--seg-hoa)"]];
+  $("mBar").innerHTML=segs.filter(x=>x[1]>0).map(x=>`<span style="width:${x[1]/r.total*100}%;background:${x[2]}" title="${x[0]}"></span>`).join("");
+  $("mLines").innerHTML=segs.filter(x=>x[1]>0||x[0]==="Principal & interest").map(x=>lineHTML(x[0],fmt(x[1]),x[2])).join("")
+    + lineHTML(`Loan ${fmt(r.loan)} · ${s.term}-yr at ${s.rate}%`, `LTV ${r.ltv.toFixed(1)}%`, null, "muted")
+    + lineHTML(`Rates: ${RATES.source} average as of ${rateAsOfTxt()}. Your rate depends on credit, loan type and lock.`, "", null, "muted");
+
+  // PMI compare
+  let cmp="";
+  if(r.mi>0){
+    const off = r.pmiOffMonth? `${r.miLabel.startsWith("FHA")?"":`Drops off around year ${Math.ceil(r.pmiOffMonth/12)} (78% LTV) without extra payments`}` : "";
+    const fhaNote = s.loan==="fha" ? (s.downPct>=10?"FHA MIP ends after 11 years at 10%+ down":"FHA MIP stays for the life of the loan under 10% down") : off;
+    cmp=`<div class="cbox"><div class="hint">With ${s.loan==="fha"?"MIP":"PMI"}</div><div class="n">${fmt(r.total)}</div><div class="hint">${fmt(r.mi)}/mo</div></div>
+         <div class="cbox"><div class="hint">Without ${s.loan==="fha"?"MIP":"PMI"}</div><div class="n">${fmt(r.total-r.mi)}</div><div class="hint">${fhaNote}</div></div>`;
+  } else {
+    const r20=calc({downPct:Math.max(minDown(s.loan),5)});
+    cmp = s.loan==="conv" ? `<div class="cbox" style="grid-column:1/-1"><div class="hint">No PMI at ${s.downPct}% down. At 5% down the same home runs ${fmt(r20.total)}/mo including ${fmt(r20.mi)} PMI.</div></div>`
+         : s.loan==="va" ? `<div class="cbox" style="grid-column:1/-1"><div class="hint">VA loans carry no monthly mortgage insurance. ${r.feeLabel}: ${fmt(r.financedFee)}.</div></div>` : "";
+  }
+  $("pmiCompare").innerHTML=cmp;
+
+  // flags
+  const fl=[];
+  if(r.base>CONFORMING && s.loan==="conv") fl.push(`<span class="pill warn">Jumbo: loan over ${fmt(CONFORMING)} conforming limit</span>`);
+  if(r.base>FHA_LIMIT && s.loan==="fha") fl.push(`<span class="pill warn">Over the ${fmt(FHA_LIMIT)} FHA limit for this county. FHA can't finance this loan amount; add down payment or choose Conventional.</span>`);
+  if(r.financedFee>0) fl.push(`<span class="pill">${r.feeLabel}: ${fmt(r.financedFee)}</span>`);
+  if(!s.pre) fl.push(`<span class="pill warn">Non-homestead: +18 school mills</span>`);
+  if(s.loan==="conv" && r.mi===0) fl.push(`<span class="pill good">No PMI</span>`);
+  if(rateAgeDays()>14) fl.push(`<span class="pill warn">Market rate last updated ${rateAsOfTxt()}; check today's rate with your lender</span>`);
+  $("flags").innerHTML=fl.join("");
+
+  // cash to close
+  $("cTotal").textContent=fmt(r.bring);
+  $("cLines").innerHTML=[
+    lineHTML(`Down payment (${+s.downPct.toFixed(2)}%)`,fmt(r.down)),
+    lineHTML("Closing costs",fmt(r.ccTotal)),
+    lineHTML("Prepaids & escrow",fmt(r.ppTotal)),
+    r.proTotal?lineHTML("Tax reimbursement to seller",fmt(r.proTotal)):"",
+    s.pp.sellerCredit?lineHTML("Seller credit",fmt(-s.pp.sellerCredit)):"",
+    lineHTML("Total funds needed",fmt(r.funds),null,"total"),
+    lineHTML(`Earnest money already deposited (${emdLabel(r)})`,fmt(-r.emd),null,"muted"),
+    lineHTML("Wire to title at closing",fmt(r.bring),null,"total")
+  ].join("");
+
+  // down table
+  const exp=EXPAND;
+  const moreLbl=(k,open,closed)=>{const b=$(k+"More");b.textContent=exp[k]?open:closed;b.setAttribute("aria-expanded",exp[k]);};
+  moreLbl("down","Show only my choice ▴","Compare other down payments ▾");
+  moreLbl("rate","Show only my rate ▴","Compare other rates ▾");
+  moreLbl("city","Show only my city ▴",`Compare all ${CITIES.length} cities ▾`);
+  const downRows=[3,3.5,5,10,15,20,25,30].filter(p=>p>=minDown(s.loan)&&!(s.loan!=="fha"&&p===3.5)&&!(s.loan==="fha"&&p===3));
+  if(s.loan==="va") downRows.unshift(0);
+  if(!downRows.includes(s.downPct)) {downRows.push(s.downPct);downRows.sort((a,b)=>a-b);}
+  $("downTable").innerHTML=`<thead><tr><th>Down</th><th>Down $</th><th>Loan</th><th>P&amp;I</th><th>${s.loan==="fha"?"MIP":"PMI"}</th><th>Monthly total</th><th>No PMI</th><th>Cash to close</th></tr></thead><tbody>`+
+    downRows.filter(p=>exp.down||p===s.downPct).map(p=>{const x=calc({downPct:p});return `<tr class="clickable${p===s.downPct?" sel":""}" data-down="${p}"><td>${p}%</td><td>${fmt(x.down)}</td><td>${fmt(x.loan)}</td><td>${fmt(x.pi)}</td><td>${x.mi?fmt(x.mi):"—"}</td><td>${fmt(x.total)}</td><td>${fmt(x.total-x.mi)}</td><td>${fmt(x.bring)}</td></tr>`;}).join("")+"</tbody>";
+
+  // rate table
+  const base=Math.round(s.rate*8)/8, rates=[];
+  for(let d=-1;d<=1.001;d+=0.25) rates.push(+(base+d).toFixed(3));
+  if(!rates.includes(s.rate)){rates.push(s.rate);rates.sort((a,b)=>a-b);}
+  const cur=r.total;
+  $("rateTable").innerHTML=`<thead><tr><th>Rate</th><th>P&amp;I</th><th>Monthly total</th><th>vs. current</th><th>Interest, first 5 yrs</th></tr></thead><tbody>`+
+    rates.filter(x=>x>0&&(exp.rate||x===s.rate)).map(rt=>{const x=calc({rate:rt});const diff=x.total-cur;
+      let bal=x.loan,int5=0;const rm=rt/100/12;for(let m=0;m<60;m++){const i=bal*rm;int5+=i;bal-=x.pi-i;}
+      return `<tr class="clickable${rt===s.rate?" sel":""}" data-rate="${rt}"><td>${rt.toFixed(3)}%</td><td>${fmt(x.pi)}</td><td>${fmt(x.total)}</td><td>${Math.abs(diff)<0.5?"—":(diff>0?"+":"")+fmt(diff).replace("$","$")}</td><td>${fmt(int5)}</td></tr>`;}).join("")+"</tbody>";
+
+  // city table
+  const rows=CITIES.map(c=>{const x=calc({cityId:c.id});return {c,x};}).sort((a,b)=>a.x.taxYr-b.x.taxYr);
+  $("cityHint").textContent=exp.city?`${fmt(s.price)} home, ${s.pre?"homestead":"non-homestead"} · lowest to highest tax · tap a row to switch city`:`Open the list to see this same ${fmt(s.price)} home's taxes and payment in every city.`;
+  $("cityTable").innerHTML=`<thead><tr><th>City · schools</th><th>Mills</th><th>Taxes / yr</th><th>Taxes / mo</th><th>Monthly total</th><th>vs. selected</th></tr></thead><tbody>`+
+    rows.filter(({c})=>exp.city||c.id===s.cityId).map(({c,x})=>{const d=x.total-r.total;return `<tr class="clickable${c.id===s.cityId?" sel":""}" data-city="${c.id}"><td>${c.n} <span class="sd">· ${c.s}</span></td><td>${x.mills.toFixed(2)}</td><td>${fmt(x.taxYr)}</td><td>${fmt(x.tax)}</td><td>${fmt(x.total)}</td><td>${Math.abs(d)<0.5?"—":(d>0?"+":"")+fmt(d)}</td></tr>`;}).join("")+"</tbody>";
+
+  // closing detail
+  syncCostEditor(r);
+  const closeTxt=r.D.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
+  $("ppDetail").innerHTML=`<span class="label">Prepaids &amp; escrow · closing ${closeTxt}</span>`+r.pp.map(i=>lineHTML(i.n,fmt(i.v))).join("")+lineHTML("Total prepaids",fmt(r.ppTotal),null,"total")
+    + (r.pro.length?`<span class="label" style="margin-top:10px">Prorations</span>`+r.pro.map(i=>lineHTML(i.n,fmt(i.v))).join("")+lineHTML("Total prorations",fmt(r.proTotal),null,"total"):"")
+    + lineHTML(`Everything beyond the down payment = ${(100*(r.ccTotal+r.ppTotal+r.proTotal)/s.price).toFixed(1)}% of price`,"",null,"muted");
+
+  const sTot=r.seller.reduce((a,b)=>a+b.v,0);
+  $("sellerDetail").innerHTML=`<span class="label">Seller costs on a ${fmt(s.price)} sale</span>`+r.seller.map(i=>lineHTML(i.n,fmt(i.v))).join("")
+    + lineHTML(sTot<0?"Seller comes out ahead on these items":"Estimated seller costs",fmt(Math.abs(sTot)),null,"total")
+    + `<p class="hint" style="margin:6px 0 0">Commissions shown: ${+(s.comm.list+s.comm.buyer).toFixed(3)}% total (${fmt(s.price*(s.comm.list+s.comm.buyer)/100)}). A 6% total is typical here, usually 3% to the listing agent and 3% to the buyer's agent. Commissions are negotiable and set in each listing and purchase agreement.</p>`;
+  $("sellerNote").textContent="Also on the seller's side, varying by city: final water and sewer bill (often a holdback escrow at closing), point-of-sale or certificate-of-occupancy inspections and any required repairs, mortgage payoff, and any concessions agreed in the purchase agreement. Transfer tax exemptions (for example when the seller's value has dropped) can apply; the title company confirms.";
+}
+
+/* ---------- events ---------- */
+$("price").addEventListener("input",e=>{state.price=num(e.target.value);render();});
+$("price").addEventListener("blur",render);
+$("priceRange").addEventListener("input",e=>{state.price=+e.target.value;render();});
+$("city").addEventListener("change",e=>{state.cityId=+e.target.value;render();});
+$("occPRE").addEventListener("click",()=>{state.pre=true;render();});
+$("occNON").addEventListener("click",()=>{state.pre=false;render();});
+document.querySelectorAll("#loanSeg button").forEach(b=>b.addEventListener("click",()=>{state.loan=b.dataset.loan;buildDownChips();render();}));
+document.querySelectorAll("#termSeg button").forEach(b=>b.addEventListener("click",()=>{
+  const t=+b.dataset.term; if(state.rate===RATES.r30&&t===15) state.rate=RATES.r15; else if(state.rate===RATES.r15&&t===30) state.rate=RATES.r30;
+  state.term=t;render();}));
+$("downPct").addEventListener("input",e=>{state.downPct=num(e.target.value);render();});
+$("downPct").addEventListener("blur",render);
+$("downAmt").addEventListener("input",e=>{state.downPct=state.price?num(e.target.value)/state.price*100:0;render();});
+$("downAmt").addEventListener("blur",render);
+$("rate").addEventListener("input",e=>{state.rate=num(e.target.value);render();});
+$("rateUp").addEventListener("click",()=>{state.rate=+(state.rate+0.125).toFixed(3);render();});
+$("rateDown").addEventListener("click",()=>{state.rate=Math.max(0,+(state.rate-0.125).toFixed(3));render();});
+$("ins").addEventListener("input",e=>{const v=e.target.value.trim();state.insOverride=v===""?null:num(v);render();});
+$("ins").addEventListener("blur",render);
+$("hoa").addEventListener("input",e=>{state.hoa=num(e.target.value);render();});
+$("hoa").addEventListener("blur",render);
+$("credit").addEventListener("change",e=>{state.credit=+e.target.value;render();});
+$("flood").addEventListener("input",e=>{state.flood=num(e.target.value);render();});
+$("flood").addEventListener("blur",render);
+const cd=$("closeDate");
+cd.addEventListener("change",e=>{if(e.target.value){state.closeDate=e.target.value;render();}});
+cd.addEventListener("click",()=>{try{cd.showPicker&&cd.showPicker();}catch(e){}});
+["sumBill","winBill"].forEach(id=>{
+  $(id).addEventListener("input",e=>{const v=e.target.value.trim();state[id]=v===""?null:num(v);render();});
+  $(id).addEventListener("blur",render);
+});
+$("inputs").addEventListener("submit",e=>e.preventDefault());
+$("downTable").addEventListener("click",e=>{const tr=e.target.closest("tr[data-down]");if(tr){state.downPct=+tr.dataset.down;render();}});
+$("rateTable").addEventListener("click",e=>{const tr=e.target.closest("tr[data-rate]");if(tr){state.rate=+tr.dataset.rate;render();}});
+$("cityTable").addEventListener("click",e=>{const tr=e.target.closest("tr[data-city]");if(tr){state.cityId=+tr.dataset.city;render();}});
+["down","rate","city"].forEach(k=>$(k+"More").addEventListener("click",()=>{EXPAND[k]=!EXPAND[k];render();}));
+function updatePrepared(){
+  const n=$("clientName").value.trim(), a=$("propAddr").value.trim();
+  $("prepared").innerHTML=(n?`<span>Prepared for <b>${esc(n)}</b></span>`:"")+(a?`<span>Property <b>${esc(a)}</b></span>`:"");
+}
+function esc(t){return t.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+$("clientName").addEventListener("input",updatePrepared);
+$("propAddr").addEventListener("input",updatePrepared);
+function setClientView(on){document.body.classList.toggle("client",on);$("viewBtn").textContent=on?"Back to agent view":"Preview client view";$("viewBtn").setAttribute("aria-pressed",on);}
+$("viewBtn").addEventListener("click",()=>setClientView(!document.body.classList.contains("client")));
+// One link for everyone: clients get client view; the owner (Frank, signed in) also gets the agent tools.
+setClientView(true);$("viewBtn").hidden=true;
+(async()=>{
+  try{
+    const u=window.claude&&window.claude.use?await window.claude.use("user"):null;
+    if(u&&await u.isOwner()){
+      document.body.classList.add("owner");
+      $("viewBtn").hidden=false;
+      setClientView(location.hash==="#client");
+      const tag=document.createElement("span");tag.className="ownertag";tag.textContent="Only you see this";$("eyebrow").after(tag);
+    }
+  }catch(e){}
+})();
+$("resetBtn").addEventListener("click",()=>{Object.assign(state,JSON.parse(JSON.stringify(INITIAL)));buildDownChips();render();});
+
+function toast(msg){pdfStatus(esc(msg));}
+function flash(btn,label,statusEl,statusHtml,ok=true){
+  const orig=btn.dataset.orig||btn.textContent; btn.dataset.orig=orig;
+  btn.textContent=label; if(ok) btn.classList.add("done");
+  clearTimeout(btn._t); btn._t=setTimeout(()=>{btn.textContent=orig;btn.classList.remove("done");},3000);
+  if(statusEl){statusEl.innerHTML=statusHtml;statusEl.classList.toggle("ok",ok);}
+}
+$("copyBtn").addEventListener("click",()=>{
+  const r=calc(),s=r.s;
+  const cn=$("clientName").value.trim(), pa=$("propAddr").value.trim();
+  const txt=[
+cn?`Prepared for ${cn}`:null,
+pa?`Property: ${pa}`:null,
+`${cityLabel(r.city)} · ${fmt(s.price)} purchase`,
+`${({conv:"Conventional",fha:"FHA",va:"VA"})[s.loan]} ${s.term}-yr at ${s.rate}% · ${+s.downPct.toFixed(2)}% down (${fmt(r.down)})`,
+``,
+`Estimated monthly payment: ${fmt(r.total)}`,
+`  Principal & interest: ${fmt(r.pi)}`,
+`  Property taxes: ${fmt(r.tax)} (${r.mills.toFixed(2)} mills, ${s.pre?"homestead":"non-homestead"})`,
+`  Homeowners insurance: ${fmt(r.ins)}`,
+r.mi?`  ${r.miLabel}: ${fmt(r.mi)}  (without it: ${fmt(r.total-r.mi)})`:null,
+s.hoa?`  HOA: ${fmt(s.hoa)}`:null,
+``,
+`Cash to close: ${fmt(r.bring)}`,
+`  Down payment ${fmt(r.down)} + closing costs ${fmt(r.ccTotal)} + prepaids/escrow ${fmt(r.ppTotal)}${r.proTotal?` + tax reimbursement to seller ${fmt(r.proTotal)}`:""}${s.pp.sellerCredit?` − seller credit ${fmt(s.pp.sellerCredit)}`:""} − earnest money ${fmt(r.emd)}`,
+``,
+`Estimates only; your lender's Loan Estimate is final.`,
+`Frank Lucido, REALTOR® · Sine & Monaghan LLC · Grosse Pointe`
+  ].filter(x=>x!==null).join("\n");
+  const done=()=>flash($("copyBtn"),"Summary copied ✓");
+  const fallback=()=>{let ta=$("fallback");if(!ta){ta=document.createElement("textarea");ta.id="fallback";ta.setAttribute("aria-label","Client summary");$("inputs").after(ta);}ta.value=txt;ta.focus();ta.select();toast("Select and copy the summary below the inputs");};
+  try{navigator.clipboard.writeText(txt).then(done,fallback);}catch(e){fallback();}
+});
+
+(function(){const d=parseDate(RATES.asOf);$("rateHint").textContent=`${RATES.source} avg (${d.getMonth()+1}/${d.getDate()}/${String(d.getFullYear()).slice(2)}): 30-yr ${RATES.r30}% · 15-yr ${RATES.r15}%. Steps are 1/8 point.`;$("millYear").textContent=MILLAGE_YEAR;})();
+
+/* ---------- Contact card ---------- */
+function vcard(){
+  return ["BEGIN:VCARD","VERSION:3.0",`N:${CONTACT.last};${CONTACT.first};;;`,`FN:${CONTACT.first} ${CONTACT.last}`,`ORG:${CONTACT.org}`,`TITLE:${CONTACT.title}`,
+    `TEL;TYPE=CELL,VOICE:${CONTACT.phoneIntl}`,`EMAIL;TYPE=INTERNET,WORK:${CONTACT.email}`,"END:VCARD"].join("\r\n");
+}
+function makeQR(){ if(!window.qrcode) return null; const q=qrcode(0,"M"); q.addData(vcard()); q.make(); return q; }
+function renderContactQR(){
+  const q=makeQR(), box=$("qrBox");
+  if(!q){box.hidden=true;return;}
+  box.innerHTML=q.createSvgTag({cellSize:4,margin:0,scalable:true});
+  const svg=box.querySelector("svg"); if(svg){svg.setAttribute("role","img");svg.setAttribute("aria-label","QR code with Frank Lucido's contact card");svg.querySelectorAll("path,rect").forEach(el=>{if(el.getAttribute("fill")==="black"||el.getAttribute("fill")==="#000000")el.setAttribute("fill","#0f2d5c");});}
+}
+$("copyContact").addEventListener("click",()=>{
+  const t=`Frank Lucido, REALTOR®\nSine & Monaghan LLC, Grosse Pointe\n${CONTACT.phone}\n${CONTACT.email}`;
+  const ok=()=>flash($("copyContact"),"Copied ✓",$("contactStatus"),"Copied. Open Contacts, tap <b>+</b>, and paste.");
+  const no=()=>flash($("copyContact"),"Copy contact info",$("contactStatus"),"Copying isn't allowed here. Press and hold the name and number above to copy them.",false);
+  try{navigator.clipboard.writeText(t).then(ok,no);}catch(e){no();}
+});
+
+/* ---------- Share this app ---------- */
+const SHARE_URL="https://franklucidohomes.github.io/trades/estimator/";
+const SHARE_TEXT="Here's Frank Lucido's Buyer Cost Estimator. See the monthly payment, property taxes by city and cash to close on any home in Metro Detroit. Save it to your home screen:";
+$("shareBtn").addEventListener("click",async()=>{
+  const btn=$("shareBtn"), full=SHARE_TEXT+" "+SHARE_URL;
+  try{ if(navigator.share){ await navigator.share({title:"Lucido Sales Buyer Cost Estimator Tool",text:SHARE_TEXT,url:SHARE_URL}); return; } }
+  catch(e){ if(e&&e.name==="AbortError") return; }
+  const shown=()=>{flash(btn,"Share this app",null,null,false);pdfStatus(`<span>Copy this link and send it by text or email: <b style="user-select:all;overflow-wrap:anywhere">${esc(SHARE_URL)}</b></span>`);};
+  try{ await navigator.clipboard.writeText(full); flash(btn,"Link copied ✓"); pdfStatus("<span>Link copied. Paste it into a text or email to share the estimator.</span>"); }
+  catch(_){ shown(); }
+});
+
+/* ---------- Save to home screen ---------- */
+(function(){
+  const ua=navigator.userAgent||"", ios=/iPhone|iPad|iPod/i.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1), android=/Android/i.test(ua);
+  const iosCard=`<div class="os${ios?" mine":""}"><h3>iPhone or iPad${ios?" (your phone)":""}</h3><ol>
+    <li>Open this link in <b>Safari</b>. If you're in another app, tap its menu and choose <b>Open in Safari</b>.</li>
+    <li>Tap the <b>Share</b> button (the square with an arrow pointing up).</li>
+    <li>Scroll down and tap <b>Add to Home Screen</b>.</li>
+    <li>Name it <b>Call Frank</b> and tap <b>Add</b>.</li></ol></div>`;
+  const andCard=`<div class="os${android?" mine":""}"><h3>Android${android?" (your phone)":""}</h3><ol>
+    <li>Open this link in <b>Chrome</b>.</li>
+    <li>Tap the <b>⋮</b> menu in the top-right corner.</li>
+    <li>Tap <b>Add to Home screen</b> (or <b>Install</b>).</li>
+    <li>Name it <b>Call Frank</b> and tap <b>Add</b>.</li></ol></div>`;
+  const pcCard=`<div class="os"><h3>On a computer?</h3><ol>
+    <li>Text or email yourself this page's link, then follow the phone steps.</li>
+    <li>Or bookmark it in your browser (Ctrl+D, or ⌘+D on a Mac).</li></ol></div>`;
+  $("homeSteps").innerHTML = ios ? iosCard+andCard : android ? andCard+iosCard : iosCard+andCard+pcCard;
+  const btn=$("homeBtn"), panel=$("homePanel");
+  btn.addEventListener("click",()=>{panel.hidden=!panel.hidden;btn.setAttribute("aria-expanded",!panel.hidden);if(!panel.hidden)panel.scrollIntoView({behavior:"smooth",block:"nearest"});});
+  $("homeClose").addEventListener("click",()=>{panel.hidden=true;btn.setAttribute("aria-expanded","false");btn.focus();});
+})();
+
+/* ---------- Request Frank to reach out ---------- */
+function requestText(short){
+  const r=calc(), s=r.s, v=id=>$(id).value.trim();
+  const who=[v("rName")&&`Name: ${v("rName")}`, v("rPhone")&&`Phone: ${v("rPhone")}`, v("rEmail")&&`Email: ${v("rEmail")}`, v("rCities")&&`Preferred cities: ${v("rCities")}`, v("rAddr")&&`Property address: ${v("rAddr")}`, v("rPrice")&&`Price range: ${v("rPrice")}`,
+    $("rPref").value&&`Best way to reach me: ${$("rPref").value}`, $("rTime").value&&`Timeline: ${$("rTime").value}`,
+    $("rPre").value&&`Pre-approved: ${$("rPre").value}`,
+    $("rSell").checked&&`I have a home to sell`, $("rValue").checked&&`Please send me a free home value estimate`,
+    $("rConsent").checked?`OK to call or text me`:`Please contact me by email only`].filter(Boolean);
+  const prop=$("propAddr").value.trim();
+  const scen=[prop&&`Property: ${prop}`,`${r.city.n} (${r.city.s} schools) · ${fmt(s.price)}`,
+    `${({conv:"Conventional",fha:"FHA",va:"VA"})[s.loan]} ${s.term}-yr at ${s.rate}% · ${+s.downPct.toFixed(2)}% down (${fmt(r.down)})`,
+    `Est. monthly payment: ${fmt(r.total)}${r.mi?` (${fmt(r.total-r.mi)} without ${s.loan==="fha"?"MIP":"PMI"})`:""}`,
+    `Est. cash to close: ${fmt(r.bring)}`].filter(Boolean);
+  const msg=v("rMsg");
+  return (short?"Hi Frank, please reach out to me.":"Hi Frank,\n\nI used your Buyer Cost Estimator and would like you to reach out.")+"\n\n"+who.join("\n")+(msg?`\n\n${msg}`:"")+"\n\nWhat I looked at:\n"+scen.join("\n");
+}
+function leadDetails(){
+  const r=calc(), s=r.s, v=id=>$(id).value.trim();
+  return [ $("rPref").value&&`Best way to reach me: ${$("rPref").value}`, $("rTime").value&&`Timeline: ${$("rTime").value}`,
+    $("rPre").value&&`Pre-approved: ${$("rPre").value}`, $("rSell").checked&&`Has a home to sell`, $("rValue").checked&&`Wants a free home value estimate`,
+    $("rConsent").checked?`OK to call or text`:`Email only, please`, v("rMsg")&&`Message: ${v("rMsg")}`,
+    ` `, `Estimator scenario:`, `${r.city.n} (${r.city.s} schools) · ${fmt(s.price)} · ${s.pre?"primary home":"investment/2nd home"}`,
+    `${({conv:"Conventional",fha:"FHA",va:"VA"})[s.loan]} ${s.term}-yr at ${s.rate}% · ${+s.downPct.toFixed(2)}% down (${fmt(r.down)})`,
+    `Est. monthly ${fmt(r.total)}${r.mi?` (${fmt(r.total-r.mi)} without ${s.loan==="fha"?"MIP":"PMI"})`:""} · Est. cash to close ${fmt(r.bring)}`
+  ].filter(Boolean).join("\n").replace(/^ $/m,"").slice(0,3500);
+}
+function refreshReach(){
+  $("reachPreview").value=requestText(false);
+  const v=id=>$(id).value.trim();
+  const addr=v("rAddr")||$("propAddr").value.trim();
+  const cities=v("rCities")||CITIES[state.cityId].n;
+  const vals={name:v("rName"),phone:v("rPhone"),email:v("rEmail"),cities,address:addr,price:v("rPrice"),details:leadDetails()};
+  let url=LEAD_FORM.base;
+  Object.keys(vals).forEach(k=>{if(vals[k]) url+=`&${LEAD_FORM[k]}=${encodeURIComponent(vals[k])}`;});
+  $("submitLead").href=url;
+}
+["rName","rPhone","rEmail","rMsg","rCities","rAddr","rPrice"].forEach(id=>$(id).addEventListener("input",refreshReach));
+$("submitLead").addEventListener("click",()=>{refreshReach();flash($("submitLead"),"Opening form…",$("submitStatus"),"A Microsoft Forms page opened in a new tab with your info filled in. Tap <b>Submit</b> there to send it to Frank. Didn't open? Use <b>Copy my request</b> below.");});
+["rPref","rTime","rPre","rSell","rValue","rConsent"].forEach(id=>$(id).addEventListener("change",refreshReach));
+document.getElementById("inputs").addEventListener("input",()=>setTimeout(refreshReach,0));
+document.getElementById("inputs").addEventListener("change",()=>setTimeout(refreshReach,0));
+document.addEventListener("click",e=>{if(e.target.closest("tr.clickable,.chip,.seg button,.stepper button"))setTimeout(refreshReach,0);});
+$("reachCopy").addEventListener("click",()=>{
+  refreshReach();
+  const t=$("reachPreview").value;
+  const ok=()=>flash($("reachCopy"),"Copied ✓",$("reachStatus"),"Copied! Now open your texts or email and paste it to Frank: <b>586-419-7607</b> or <b>frankjr@fjlucido.com</b>.");
+  const no=()=>{const ta=$("reachPreview");ta.focus();ta.select();flash($("reachCopy"),"Copy my request",$("reachStatus"),"Your request is selected in the box below. Use your device's Copy, then paste it into a text or email to Frank.",false);};
+  try{navigator.clipboard.writeText(t).then(ok,no);}catch(e){no();}
+});
+$("reachPdf").addEventListener("click",()=>{ if(!$("clientName").value.trim()&&$("rName").value.trim()) $("clientName").value=$("rName").value.trim(); updatePrepared(); $("pdfBtn").click(); });
+$("reachJump").addEventListener("click",e=>{e.preventDefault();$("reach").scrollIntoView({behavior:"smooth",block:"start"});setTimeout(()=>$("rName").focus({preventScroll:true}),400);});
+refreshReach();
+
+/* ---------- PDF ---------- */
+const imgCache={};
+async function imgData(src){
+  if(imgCache[src]) return imgCache[src];
+  const b=await (await fetch(src)).blob();
+  imgCache[src]=await new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>res(fr.result);fr.onerror=rej;fr.readAsDataURL(b);});
+  return imgCache[src];
+}
+const pm=n=>fmt(n).replace("−","-");
+async function buildPDF(){
+  const r=calc(), s=r.s;
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF({unit:"pt",format:"letter"});
+  const W=612, M=40, NAVY=[15,45,92], BLUE=[31,90,166], INK=[21,33,43], MUTED=[91,106,118], LINE=[219,226,231], SOFT=[237,242,249];
+  const [logo,head,stars]=await Promise.all([imgData("img/lucido-logo.png"),imgData("img/frank.jpg"),imgData("img/all-stars.png")]);
+  const cn=$("clientName").value.trim(), pa=$("propAddr").value.trim();
+  const today=new Date().toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"});
+  const txt=(t,x,y,o={})=>{doc.setFont("helvetica",o.b?"bold":"normal");doc.setFontSize(o.sz||10);doc.setTextColor(...(o.c||INK));doc.text(String(t),x,y,{align:o.a||"left"});};
+
+  // header band
+  doc.setFillColor(...NAVY);doc.rect(0,0,W,146,"F");
+  doc.setFillColor(255,255,255);doc.roundedRect(M,22,64,64,8,8,"F");doc.addImage(logo,"PNG",M+7,27,50,52);
+  doc.addImage(head,"JPEG",M+76,22,64,64);doc.setDrawColor(185,192,200);doc.setLineWidth(2);doc.rect(M+76,22,64,64);
+  txt("PAYMENT & CASH-TO-CLOSE ESTIMATE",M+156,38,{sz:8.5,b:1,c:[196,210,232]});
+  txt("Frank Lucido, REALTOR®",M+156,60,{sz:19,b:1,c:[255,255,255]});
+  txt("Sine & Monaghan LLC · Grosse Pointe, Michigan",M+156,78,{sz:10,c:[196,210,232]});
+  txt("Hour Detroit Real Estate All-Star",M+156,92,{sz:9,c:[196,210,232]});
+  doc.setFillColor(255,255,255);doc.roundedRect(W-M-86,20,86,68,8,8,"F");doc.addImage(stars,"PNG",W-M-80,25,74,59.7);
+  doc.setDrawColor(60,90,135);doc.setLineWidth(.6);doc.line(M,102,W-M,102);
+  doc.setFont("helvetica","bold");doc.setFontSize(20);doc.setTextColor(255,255,255);
+  doc.textWithLink(CONTACT.phone,M,136,{url:"tel:"+CONTACT.phoneIntl});
+  const pw=doc.getTextWidth(CONTACT.phone);
+  txt("CALL OR TEXT",M,115,{sz:7.5,b:1,c:[196,210,232]});
+  txt("EMAIL",M+pw+30,115,{sz:7.5,b:1,c:[196,210,232]});
+  doc.setFont("helvetica","bold");doc.setFontSize(16);doc.setTextColor(255,255,255);
+  doc.textWithLink(CONTACT.email,M+pw+30,136,{url:"mailto:"+CONTACT.email});
+
+  let y=172;
+  const who=[cn?`Prepared for ${cn}`:null, pa?`Property: ${pa}`:null, today].filter(Boolean).join("   ·   ");
+  txt(who,M,y,{sz:11,b:1});
+  y+=18;
+  txt(`${r.city.n} — ${r.city.s} schools  ·  ${pm(s.price)} purchase  ·  ${({conv:"Conventional",fha:"FHA",va:"VA"})[s.loan]} ${s.term}-yr at ${s.rate}%  ·  ${+s.downPct.toFixed(2)}% down`,M,y,{sz:9.5,c:MUTED});
+  if(s.loan==="fha"&&r.base>FHA_LIMIT){y+=14;txt(`Note: this loan is over the ${pm(FHA_LIMIT)} FHA limit for this county. FHA can't finance this amount as shown.`,M,y,{sz:9,b:1,c:[168,90,27]});}
+
+  // two boxes
+  y+=16; const bw=(W-2*M-16)/2, bh=176;
+  const box=(x,title,big,lines,fill)=>{
+    doc.setFillColor(...fill);doc.setDrawColor(...LINE);doc.setLineWidth(.8);doc.roundedRect(x,y,bw,bh,8,8,"FD");
+    txt(title,x+14,y+20,{sz:8.5,b:1,c:MUTED});
+    txt(big,x+14,y+50,{sz:26,b:1,c:fill===SOFT?BLUE:NAVY});
+    let ly=y+72;
+    lines.forEach(l=>{
+      if(l.rule){doc.setDrawColor(...LINE);doc.line(x+14,ly-9,x+bw-14,ly-9);}
+      txt(l.k,x+14,ly,{sz:9.5,b:l.b,c:l.m?MUTED:INK});txt(l.v,x+bw-14,ly,{sz:9.5,b:l.b,c:l.m?MUTED:INK,a:"right"});ly+=15;
+    });
+  };
+  const mLines=[{k:"Principal & interest",v:pm(r.pi)},{k:$("pdfTax").checked?`Property taxes (${pm(r.taxYr)}/yr · ${r.mills.toFixed(2)} mills)`:`Property taxes (${r.mills.toFixed(2)} mills, ${s.pre?"homestead":"non-homestead"})`,v:pm(r.tax),b:$("pdfTax").checked?1:0},{k:r.floodYr?"Insurance (home + flood)":"Homeowners insurance",v:pm(r.ins)}];
+  if(r.mi) mLines.push({k:r.miLabel,v:pm(r.mi)});
+  if(r.hoa) mLines.push({k:"HOA",v:pm(r.hoa)});
+  mLines.push({k:`Loan ${pm(r.loan)} · LTV ${r.ltv.toFixed(1)}%`,v:"",m:1,rule:1});
+  if(r.mi) mLines.push({k:`Without ${s.loan==="fha"?"MIP":"PMI"}`,v:pm(r.total-r.mi),b:1});
+  box(M,"ESTIMATED MONTHLY PAYMENT",pm(r.total)+" / mo",mLines,[255,255,255]);
+  const cLines=[{k:`Down payment (${+s.downPct.toFixed(2)}%)`,v:pm(r.down)},{k:"Closing costs",v:pm(r.ccTotal)},{k:"Prepaids & escrow",v:pm(r.ppTotal)}];
+  if(r.proTotal) cLines.push({k:"Tax reimbursement to seller",v:pm(r.proTotal)});
+  if(s.pp.sellerCredit) cLines.push({k:"Seller credit",v:pm(-s.pp.sellerCredit)});
+  cLines.push({k:"Total funds needed",v:pm(r.funds),b:1,rule:1});
+  cLines.push({k:`Less earnest money (${emdLabel(r)})`,v:pm(-r.emd),m:1});
+  box(M+bw+16,"BRING TO CLOSING",pm(r.bring),cLines,SOFT);
+
+  // down payment table
+  y+=bh+26; txt("Down payment options",M,y,{sz:12,b:1,c:NAVY}); y+=8;
+  const cols=[{h:"Down",x:M+6,a:"left"},{h:"Down $",x:M+130},{h:"Loan",x:M+210},{h:"P&I",x:M+280},{h:s.loan==="fha"?"MIP":"PMI",x:M+335},{h:"Monthly",x:M+398},{h:"No PMI",x:M+452},{h:"Cash to close",x:W-M-6}];
+  y+=14; cols.forEach(c=>txt(c.h.toUpperCase(),c.x,y,{sz:7.5,b:1,c:MUTED,a:c.a||"right"}));
+  const rows=[3,5,10,15,20,25].filter(p=>p>=minDown(s.loan)); if(s.loan==="fha"&&!rows.includes(3.5)) rows.unshift(3.5);
+  if(!rows.includes(s.downPct)){rows.push(s.downPct);rows.sort((a,b)=>a-b);}
+  rows.forEach(p=>{
+    const x=calc({downPct:p}); y+=16;
+    if(p===s.downPct){doc.setFillColor(...SOFT);doc.rect(M,y-11,W-2*M,15,"F");}
+    doc.setDrawColor(...LINE);doc.line(M,y+4,W-M,y+4);
+    const v=[`${+p.toFixed(2)}%`,pm(x.down),pm(x.loan),pm(x.pi),x.mi?pm(x.mi):"—",pm(x.total),pm(x.total-x.mi),pm(x.bring)];
+    cols.forEach((c,i)=>txt(v[i],c.x,y,{sz:9,b:p===s.downPct,a:c.a||"right"}));
+  });
+
+  // closing detail
+  y+=24; const colW=(W-2*M-24)/2;
+  const list=(x,title,items,totLabel,tot)=>{
+    let ly=y; txt(title,x,ly,{sz:12,b:1,c:NAVY}); ly+=16;
+    items.forEach(i=>{txt(i.n,x,ly,{sz:8.5});txt(pm(i.v),x+colW,ly,{sz:8.5,a:"right"});ly+=12;});
+    doc.setDrawColor(...LINE);doc.line(x,ly-7,x+colW,ly-7);
+    txt(totLabel,x,ly+4,{sz:9,b:1});txt(pm(tot),x+colW,ly+4,{sz:9,b:1,a:"right"});
+    return ly+4;
+  };
+  const e1=list(M,"Closing costs",r.ccItems.filter(i=>i.v),"Total closing costs",r.ccTotal);
+  const ppItems=r.pp.concat(r.pro);
+  const e2=list(M+colW+24,"Prepaids, escrow & prorations",ppItems,"Total",r.ppTotal+r.proTotal);
+  y=Math.max(e1,e2)+14;
+
+  const newPage=()=>{doc.addPage();
+    txt("Frank Lucido, REALTOR® · Sine & Monaghan LLC",M,40,{sz:9,b:1,c:NAVY});
+    txt(`${CONTACT.phone} · ${CONTACT.email}`,W-M,40,{sz:9,b:1,c:NAVY,a:"right"});
+    doc.setDrawColor(...LINE);doc.setLineWidth(.8);doc.line(M,48,W-M,48);
+    txt([cn?`Prepared for ${cn}`:null,pa||null,`${r.city.n} · ${pm(s.price)}`].filter(Boolean).join("   ·   "),M,68,{sz:10,b:1});
+    y=96;};
+  // optional property tax totals
+  if($("pdfTax").checked){
+    if(y+120>792-110){newPage();}
+    const taxable=s.price*0.5;
+    const tItems=[
+      {n:`Taxable value (50% of ${pm(s.price)} price)`,v:taxable},
+      {n:`Millage: ${r.mills.toFixed(4)} mills (${MILLAGE_YEAR}, ${s.pre?"homestead":"non-homestead"})`,v:null},
+      {n:"Summer tax bill (est.)",v:r.taxYr*SUMMER_SHARE},
+      {n:"Winter tax bill (est.)",v:r.taxYr*(1-SUMMER_SHARE)},
+      {n:"Monthly tax escrow in payment",v:r.tax},
+    ];
+    const atClose=r.pro.filter(i=>/tax/i.test(i.n));
+    const escItem=r.pp.find(i=>/escrow/i.test(i.n));
+    const cItems=atClose.concat(escItem?[{n:"Initial escrow deposit (taxes + insurance)",v:escItem.v}]:[]);
+    let ly=y; txt(`Property taxes · ${r.city.n}`,M,ly,{sz:12,b:1,c:NAVY}); ly+=16;
+    tItems.forEach(i=>{txt(i.n,M,ly,{sz:8.5});if(i.v!=null)txt(pm(i.v),M+colW,ly,{sz:8.5,a:"right"});ly+=12;});
+    doc.setDrawColor(...LINE);doc.line(M,ly-7,M+colW,ly-7);
+    txt("Estimated annual property taxes",M,ly+4,{sz:9,b:1});txt(pm(r.taxYr),M+colW,ly+4,{sz:9,b:1,a:"right"});
+    const t1=ly+4;
+    const x2=M+colW+24; ly=y; txt("Property tax money at closing",x2,ly,{sz:12,b:1,c:NAVY}); ly+=16;
+    if(!cItems.length){txt("No tax proration selected",x2,ly,{sz:8.5,c:MUTED});ly+=12;}
+    cItems.forEach(i=>{txt(i.n,x2,ly,{sz:8.5});txt(pm(i.v),x2+colW,ly,{sz:8.5,a:"right"});ly+=12;});
+    doc.setDrawColor(...LINE);doc.line(x2,ly-7,x2+colW,ly-7);
+    const cTot=cItems.reduce((a,b)=>a+b.v,0);
+    txt("Total tax-related funds at closing",x2,ly+4,{sz:9,b:1});txt(pm(cTot),x2+colW,ly+4,{sz:9,b:1,a:"right"});
+    y=Math.max(t1,ly+4)+22;
+  }
+
+  // footer
+  const note=`Estimates only; not a loan offer. Your lender's Loan Estimate and the title company's settlement statement are final. Taxes use ${MILLAGE_YEAR} total millage on 50% of the purchase price (new-owner taxable value). Tax reimbursement to seller uses due-date proration, as if paid in advance. Seller customarily pays Michigan transfer taxes and the owner's title policy. Rates: ${RATES.source} weekly average as of ${RATES.asOf}; your rate depends on credit, loan type and lock.`;
+  doc.setFont("helvetica","normal");doc.setFontSize(7.5);doc.setTextColor(...MUTED);
+  const q=makeQR(); const qs=64;
+  const wrapped=doc.splitTextToSize(note,W-2*M-(q?qs+16:0));
+  const fh=Math.max(wrapped.length*9+14, q?qs+12:0);
+  if(y+fh>786){newPage();doc.setFont("helvetica","normal");doc.setFontSize(7.5);doc.setTextColor(...MUTED);}
+  const fy2=Math.max(y,786-fh);
+  doc.setDrawColor(...LINE);doc.line(M,fy2-10,W-M,fy2-10);
+  doc.text(wrapped,M,fy2);
+  txt("Frank Lucido, REALTOR® · Sine & Monaghan LLC · Grosse Pointe, Michigan",M,fy2+wrapped.length*9+8,{sz:8,b:1,c:NAVY});
+  txt("EQUAL HOUSING OPPORTUNITY",q?W-M-qs-16:W-M,fy2+wrapped.length*9+8,{sz:7.5,b:1,c:MUTED,a:"right"});
+  if(q){
+    const n=q.getModuleCount(), cs=qs/n, qx=W-M-qs, qy=fy2-4;
+    doc.setFillColor(...NAVY);
+    for(let r2=0;r2<n;r2++)for(let c2=0;c2<n;c2++) if(q.isDark(r2,c2)) doc.rect(qx+c2*cs,qy+r2*cs,cs+.05,cs+.05,"F");
+    txt("Scan to save my contact",qx+qs/2,qy+qs+10,{sz:7,b:1,c:MUTED,a:"center"});
+  }
+
+  const label=(cn||pa||r.city.n).replace(/[\\/:*?"<>|]+/g," ").trim().slice(0,60);
+  const d=new Date(), stamp=`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  return {doc, filename:`Payment Estimate - ${label} - ${stamp}.pdf`};
+}
+
+function pdfStatus(html,err){const el=$("pdfStatus");el.innerHTML=html;el.classList.toggle("err",!!err);el.hidden=false;}
+let lastPdf=null;
+async function offerDownload(){
+  if(!lastPdf) return;
+  const dl=(window.claude&&window.claude.use)?await window.claude.use("downloads").catch(()=>null):null;
+  if(!dl){const a=document.createElement("a");a.href=URL.createObjectURL(lastPdf.blob);a.download=lastPdf.filename;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},4000);pdfStatus(`<span><b>${esc(lastPdf.filename)}</b> is ready. If it opened in a new screen, tap Share to save it or send it to Frank.</span>`);return;}
+  try{await dl.save({filename:lastPdf.filename,data:lastPdf.blob});toast("PDF saved");}
+  catch(e){ if(e&&e.code==="declined") return; pdfStatus(e&&e.code==="rate_limited"?"A save prompt is already open. Finish that one first.":"The PDF couldn't be saved here.",true);}
+}
+function driveErr(e){
+  const c=e&&e.code;
+  if(c==="server_not_connected"||c==="server_not_found") return "Google Drive isn't connected. Add it in claude.ai Settings → Connectors.";
+  if(c==="needs_reauth") return "Google Drive needs to be reconnected in claude.ai Settings → Connectors.";
+  if(c==="not_in_manifest") return "Saving to Google Drive is turned off for this page.";
+  if(c==="blocked_by_policy"||c==="approval_required") return "Your organization's settings block saving to Google Drive from this page.";
+  if(c==="selection_required") return "Choose which Google Drive account to use when Claude asks, then try again.";
+  if(c==="tool_error") return "Google Drive refused the file: "+(e.message||"unknown error");
+  if(c==="server_unavailable") return "Google Drive didn't answer. Check your Drive folder before trying again, in case it went through.";
+  return "Couldn't save to Google Drive"+(e&&e.message?": "+e.message:"")+".";
+}
+$("pdfBtn").addEventListener("click",async()=>{
+  const btn=$("pdfBtn"); btn.disabled=true; btn.textContent="Creating…";
+  try{
+    if(!window.jspdf){pdfStatus("The PDF tool didn't load. Check your connection and reload the page.",true);return;}
+    const {doc,filename}=await buildPDF();
+    const blob=doc.output("blob");
+    lastPdf={blob,filename};
+    const mcp=(window.claude&&window.claude.use)?await window.claude.use("mcp").catch(()=>null):null;
+    if(!mcp){ pdfStatus(`<span><b>${esc(filename)}</b> is ready.</span>`); await offerDownload(); return; }
+    pdfStatus(`<span>Saving <b>${esc(filename)}</b> to Google Drive…</span>`);
+    const b64=doc.output("datauristring").split(",")[1];
+    try{
+      const res=await mcp.callTool("Google Drive","create_file",{title:filename,base64Content:b64,contentMimeType:"application/pdf",disableConversionToGoogleType:true,parentId:DRIVE_FOLDER_ID});
+      const f=res.payload||{};
+      const link=f.viewUrl?`<a href="${esc(f.viewUrl)}" target="_blank" rel="noopener">Open in Drive</a>`:"";
+      pdfStatus(`<span>Saved <b>${esc(filename)}</b> to your Google Drive (Client PDFs folder).</span>${link}<button class="btn ghost" type="button" id="dlAgain">Download a copy</button>`);
+      $("dlAgain").addEventListener("click",offerDownload);
+    }catch(e){
+      pdfStatus(`<span>${esc(driveErr(e))}</span><button class="btn ghost" type="button" id="dlAgain">Download instead</button>`,true);
+      $("dlAgain").addEventListener("click",offerDownload);
+    }
+  }catch(e){ pdfStatus("Something went wrong building the PDF"+(e&&e.message?": "+esc(e.message):"")+".",true); }
+  finally{ btn.disabled=false; btn.textContent="Create PDF"; }
+});
+
+buildCitySelect();buildDownChips();buildCostEditor();renderContactQR();render();
+
+/* ---------- Public-site extras ---------- */
+(function(){
+  const go=(id,fn)=>{const a=$(id);if(a)a.addEventListener("click",()=>{refreshReach();a.href=fn(requestText(true));});};
+  go("smsReq",t=>"sms:+15864197607?&body="+encodeURIComponent(t));
+  go("mailReq",t=>"mailto:frankjr@fjlucido.com?subject="+encodeURIComponent("Please reach out - Buyer Cost Estimator")+"&body="+encodeURIComponent(t));
+  let installEvt=null;
+  window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();installEvt=e;});
+  $("homeBtn").addEventListener("click",async e=>{
+    if(!installEvt) return;
+    e.stopImmediatePropagation();
+    try{installEvt.prompt();await installEvt.userChoice;}catch(_){}
+    installEvt=null;
+  },true);
+  if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(()=>{});
+})();
+</script>
+
+</body></html>
