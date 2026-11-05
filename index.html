@@ -121,6 +121,14 @@ footer div{flex:1 1 260px;min-width:0}
 .city dt{color:var(--muted);font-weight:600}
 .city dd{margin:0;min-width:0;overflow-wrap:anywhere}
 .city a,.more a{color:var(--blue);font-weight:700;text-decoration:none}
+.look summary{cursor:pointer;list-style:none;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;justify-content:space-between}
+.look summary::-webkit-details-marker{display:none}
+.look summary h2{margin:0}
+.look .lf{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:12px}
+.look label{display:flex;flex-direction:column;gap:4px;font-size:12.5px;font-weight:700;color:var(--muted);letter-spacing:.03em;text-transform:uppercase}
+.look input,.look select,.look textarea{font:inherit;font-size:16px;text-transform:none;letter-spacing:0;font-weight:400;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 10px;width:100%;box-sizing:border-box}
+.look .wide{grid-column:1/-1}
+.look .err{color:var(--warn);font-size:13.5px;font-weight:600}
 .more .links{display:flex;flex-wrap:wrap;gap:8px}
 .jump a{color:var(--blue);font-weight:700;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 11px;background:var(--sunk)}
 .more .links a{border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:14px;background:var(--sunk)}
@@ -178,11 +186,12 @@ body{margin:0}[hidden]{display:none!important}img{max-width:100%}
     <p>These are local pros I&rsquo;ve gathered from friends and colleagues who can help with whatever you need around the house. Call them directly and tell them Frank sent you.</p>
     <p class="note"><b>Keep this on your phone:</b> iPhone, tap Share then &ldquo;Add to Home Screen.&rdquo; Android, tap &#8942; then &ldquo;Add to Home screen.&rdquo; It updates on its own whenever I add a pro. Tap &ldquo;Save contact&rdquo; on any pro to put them in your phone.</p>
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px"><button class="btn" type="button" id="shareBtn">Share this list</button><span id="shareMsg" style="font-size:13.5px;color:var(--muted)">Send it to a friend or neighbor by text or email.</span></div>
-    <div class="jump" style="display:flex;flex-wrap:wrap;gap:6px;font-size:14px"><span style="color:var(--muted);font-weight:600">Jump to:</span><a href="#season" data-jump="season">Seasonal checklist</a><a href="#city" data-jump="city">Your city info</a><a href="#tips" data-jump="tips">Before you hire</a><a href="#more" data-jump="more">Recommend a pro</a></div>
+    <div class="jump" style="display:flex;flex-wrap:wrap;gap:6px;font-size:14px"><span style="color:var(--muted);font-weight:600">Jump to:</span><a href="#lookfor" data-jump="lookfor">Home search</a><a href="#season" data-jump="season">Seasonal checklist</a><a href="#city" data-jump="city">Your city info</a><a href="#tips" data-jump="tips">Before you hire</a><a href="#more" data-jump="more">Recommend a pro</a></div>
     <input id="q-search" type="search" autocomplete="off" placeholder="Search: roof, sewer, painter, a name or a number" aria-label="Search trades" style="font:inherit;font-size:16px;width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)">
     <div class="filters" id="filters" role="group" aria-label="Filter trades"></div>
   </section>
 
+  <section class="sec look" id="lookfor"></section>
   <div class="needbar" id="needbar" hidden></div>
   <div class="grid" id="grid"></div>
 
@@ -289,7 +298,7 @@ body{margin:0}[hidden]{display:none!important}img{max-width:100%}
     try{ await navigator.clipboard.writeText(full); msg.textContent="Copied. Paste it into a text or email."; }
     catch(_){ window.prompt("Copy this and paste it into a text or email:",full); }
   });
-  document.addEventListener('click',e=>{const j=e.target.closest('[data-jump]');if(!j)return;e.preventDefault();const t=$(j.dataset.jump);if(t)t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});});
+  document.addEventListener('click',e=>{const j=e.target.closest('[data-jump]');if(!j)return;e.preventDefault();const t=$(j.dataset.jump);if(j.dataset.jump==='lookfor'&&$('lkd'))$('lkd').open=true;if(t)t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});});
   function vcardFor(t){
     const clean=x=>String(x||"").replace(/[\\,;]/g,m=>"\\"+m).replace(/\n/g," ");
     const name=t.contact||t.company||t.type;
@@ -377,6 +386,42 @@ body{margin:0}[hidden]{display:none!important}img{max-width:100%}
       };
       $('citySel').onchange=show;
       try{const saved=localStorage.getItem('lt-city');if(saved!==null&&CITY[+saved]){$('citySel').value=saved;show();}}catch(_){}
+    }
+    const lk=$('lookfor');
+    if(lk&&!lk.dataset.done){lk.dataset.done=1;
+      const opt=a=>a.map(x=>`<option>${esc(x)}</option>`).join('');
+      const prices=["$100,000","$150,000","$200,000","$250,000","$300,000","$350,000","$400,000","$450,000","$500,000","$600,000","$700,000","$800,000","$900,000","$1,000,000","$1,250,000","$1,500,000","$2,000,000","$3,000,000+"];
+      lk.innerHTML='<details id="lkd"><summary><h2>Looking for a home? Tell me what you want</h2><span class="btn">Start my search</span></summary>'+
+        '<p style="margin-top:8px">Tell me what you&rsquo;re after and I&rsquo;ll set up a personal home search and send you homes as they come up, sometimes even before they hit the market.</p>'+
+        '<form class="lf" id="lkf" novalidate>'+
+        '<label>Your name<input id="lk-name" autocomplete="name"></label>'+
+        '<label>Phone<input id="lk-phone" inputmode="tel" autocomplete="tel"></label>'+
+        '<label>Email (optional)<input id="lk-email" inputmode="email" autocomplete="email"></label>'+
+        '<label>I want to<select id="lk-goal">'+opt(["Buy a home","Sell my home","Buy and sell","Rent","Just looking"])+'</select></label>'+
+        '<label class="wide">Cities or areas<input id="lk-areas" placeholder="Grosse Pointe Woods, St. Clair Shores&hellip;"></label>'+
+        '<label>Price from<select id="lk-min"><option>No minimum</option>'+opt(prices)+'</select></label>'+
+        '<label>Price up to<select id="lk-max"><option>No maximum</option>'+opt(prices)+'</select></label>'+
+        '<label>Bedrooms<select id="lk-beds">'+opt(["Any","2+","3+","4+","5+"])+'</select></label>'+
+        '<label>Bathrooms<select id="lk-baths">'+opt(["Any","1+","1.5+","2+","2.5+","3+"])+'</select></label>'+
+        '<label>Timeframe<select id="lk-when">'+opt(["Right away","1 to 3 months","3 to 6 months","6 to 12 months","Over a year","Not sure yet"])+'</select></label>'+
+        '<label>Mortgage<select id="lk-loan">'+opt(["Pre-approved","Paying cash","Need a lender","Not sure yet"])+'</select></label>'+
+        '<label class="wide">Must-haves<textarea id="lk-must" rows="2" placeholder="Garage, finished basement, first-floor bedroom, near the water&hellip;"></textarea></label>'+
+        '<div class="wide" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button class="btn" type="submit">Send to Frank</button><span class="note" id="lk-msg">Opens a text on your phone, or an email on your computer, with everything filled in. Just hit send.</span></div>'+
+        '</form></details>';
+      $('lkf').addEventListener('submit',e=>{e.preventDefault();
+        const v=k=>($('lk-'+k).value||'').trim();
+        if(!v('name')||!(v('phone')||v('email'))){$('lk-msg').className='err';$('lk-msg').textContent='Please add your name and a phone number or email so Frank can reach you.';return;}
+        const lines=["Hi Frank, I found you on Lucido Local Trades. Please set up a home search for me.",
+          "Name: "+v('name'),"Phone: "+v('phone')+(v('email')?"  Email: "+v('email'):""),
+          "I want to: "+v('goal'),"Areas: "+(v('areas')||"Open"),
+          "Price: "+v('min')+" to "+v('max'),"Beds: "+v('beds')+"  Baths: "+v('baths'),
+          "Timeframe: "+v('when'),"Mortgage: "+v('loan')];
+        if(v('must')) lines.push("Must-haves: "+v('must'));
+        const href=msgLink(FRANK_SMS,"Home search request from "+v('name'),lines.join("\n"));
+        $('lk-msg').className='note';$('lk-msg').textContent='Thanks! Your message is ready to send.';
+        const a=document.createElement('a');a.href=href;document.body.appendChild(a);a.click();a.remove();
+      });
+      lk.addEventListener('click',e=>{if(e.target.closest('[data-jump]'))return;});
     }
     const tp=$('tips');
     if(tp&&!tp.dataset.done){tp.dataset.done=1;
