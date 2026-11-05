@@ -415,7 +415,7 @@ body{margin:0}[hidden]{display:none!important}img{max-width:100%}
     if(lk&&!lk.dataset.done){lk.dataset.done=1;
       const opt=a=>a.map(x=>`<option>${esc(x)}</option>`).join('');
       const prices=["$100,000","$150,000","$200,000","$250,000","$300,000","$350,000","$400,000","$450,000","$500,000","$600,000","$700,000","$800,000","$900,000","$1,000,000","$1,250,000","$1,500,000","$2,000,000","$3,000,000+"];
-      lk.innerHTML='<details id="lkd"><summary><h2>Looking for a home? Tell me what you want</h2><span class="btn">Start my search</span></summary>'+
+      lk.innerHTML='<details id="lkd"><summary><h2>Looking for a home? Tell me what you want</h2><span aria-hidden="true" style="font-size:22px;color:var(--accent)">&#9662;</span></summary>'+
         '<p style="margin-top:8px">Tell me what you&rsquo;re after and I&rsquo;ll set up a personal home search and send you homes as they come up, sometimes even before they hit the market.</p>'+
         '<form class="lf" id="lkf" novalidate>'+
         '<label>Your name<input id="lk-name" autocomplete="name"></label>'+
