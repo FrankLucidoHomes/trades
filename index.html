@@ -673,6 +673,22 @@ body{margin:0}[hidden]{display:none!important}img{max-width:100%}
   })();
 })();
 </script>
-<script>if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));}</script>
+<script>
+if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').then(r=>r.update()).catch(()=>{}));}
+// Home-screen app: when it comes back to the front, check for a newer list and reload if there is one
+(function(){
+  const mine=()=>{const m=document.getElementById('trades-data');try{const d=JSON.parse(m.textContent);return d.updated+'|'+d.trades.length+'|'+m.textContent.length}catch(_){return ''}};
+  let busy=false,last=0;
+  async function check(){
+    if(busy||Date.now()-last<60000)return;busy=true;last=Date.now();
+    try{const r=await fetch(location.pathname+'?fresh='+Date.now(),{cache:'no-store'});const t=await r.text();
+      const m=t.match(/<script id="trades-data" type="application\/json">(\{[\s\S]*?)<\/script>/);
+      if(m){const d=JSON.parse(m[1]);const sig=d.updated+'|'+d.trades.length+'|'+m[1].length;if(sig!==mine())location.reload();}
+    }catch(_){}busy=false;
+  }
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')check();});
+  addEventListener('pageshow',()=>setTimeout(check,1500));
+})();
+</script>
 </body>
 </html>
