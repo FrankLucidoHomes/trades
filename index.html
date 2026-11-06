@@ -140,6 +140,31 @@ footer div{flex:1 1 260px;min-width:0}
 .ci .err{color:var(--warn);font-size:13.5px;font-weight:600}
 .inst ol{margin:0;padding-left:22px;display:grid;gap:8px;font-size:16px}
 .inst .ico{display:inline-block;border:1.5px solid currentColor;border-radius:5px;padding:0 5px;font-size:13px;font-weight:700}
+@page{size:letter;margin:0.5in}
+@media print{
+ body{background:#fff!important;color:#000!important;padding:0!important;font-size:11pt}
+ .wrap{max-width:none;gap:10px}
+ .band{background:#fff!important;color:#0f2d5c!important;border:2px solid #0f2d5c;padding:10px!important;gap:6px 12px!important;break-inside:avoid}
+ .band .head{width:80px!important;height:80px!important;box-shadow:none}
+ .band .tile{width:64px!important;height:64px!important;border:1px solid #ccc}
+ .band h1{font-size:24pt!important;color:#0f2d5c}
+ .band .eyebrow,.band .meta,.band .tagline,.band .top5{color:#333!important}
+ .band .who>span[style],.upd-top,.hdr-actions,#sig-help,.owner,#editor,.emerg,.intro .note,.helpbuild,#shareBtn,#shareMsg,.jump,#q-search,.filters,.needbar,#lookfor,.season,.city,.tips,.more,.friend,.copy,.act,.ci-back,[data-vcard]{display:none!important}
+ .intro{border:0;padding:0}
+ .grid{display:block!important;columns:3;column-gap:12px}
+ .card{break-inside:avoid;border:0;border-bottom:1px solid #ccc;border-radius:0;padding:3px 0 4px;margin:0 0 3px;gap:0}
+ .card h2{font-size:10pt}
+ .card .cat{font-size:7pt;color:#555}
+ .card p,.card .person{font-size:8pt;line-height:1.25;color:#333}
+ .tags{display:none!important}
+ .reach{border-top:0;padding-top:2px;margin-top:2px}
+ .line a{color:#000!important}
+ .line a.ph{font-size:9.5pt}
+ .line a.em{font-size:8pt}
+ .line{gap:4px}
+ footer{break-inside:avoid}
+ a{text-decoration:none}
+}
 .more .links{display:flex;flex-wrap:wrap;gap:8px}
 .jump a{color:var(--blue);font-weight:700;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 11px;background:var(--sunk)}
 .more .links a{border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:14px;background:var(--sunk)}
@@ -186,7 +211,7 @@ body{margin:0}[hidden]{display:none!important}img{max-width:100%}
       <h1>Lucido Local Trades</h1>
       <p class="tagline">I&rsquo;ve put this list together to make life easier for you: trusted local pros for anything around the house, your city&rsquo;s info, and help when something breaks. Save it, share it, and call me anytime.</p>
       <span class="meta">Frank Lucido, REALTOR® · Sine &amp; Monaghan · 586-419-7607</span><span class="upd-top" style="display:inline-block;margin-top:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);border-radius:12px;padding:7px 12px;font-size:14px;line-height:1.35;color:#fff"><b>Updated <span id="updated-top"></span></b> · This list updates on its own twice a week as I add new pros, so it&rsquo;s always current.</span>
-      <span style="margin-top:8px;display:grid;gap:8px;align-self:flex-start;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);border-radius:10px;padding:10px 12px;font-size:15px;line-height:1.35;color:var(--band-ink)"><span><b>Thinking of selling or buying?</b> Tap a button and I&rsquo;ll reach out to you personally. Or call <b style="white-space:nowrap;font-variant-numeric:tabular-nums">586-419-7607</b>.</span><span style="display:flex;flex-wrap:wrap;gap:6px"><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%27m%20thinking%20about%20selling%20my%20home%20and%20would%20like%20to%20talk.%20My%20address%20is%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">I&rsquo;m thinking of selling</a><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%27m%20thinking%20about%20buying%20a%20home%20and%20would%20like%20to%20talk.%20I%27m%20looking%20for%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">I&rsquo;m thinking of buying</a><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%27d%20like%20a%20free%20home%20value%20for%20when%20the%20time%20comes.%20My%20address%20is%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">What&rsquo;s my home worth?</a><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%20have%20a%20real%20estate%20question%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">Real estate questions of any kind</a></span><span id="sig-help" style="font-size:13px;opacity:.85">These buttons open a text on your phone, or an email on your computer, to let Frank know you&rsquo;d like him to reach out. Add your name and number, then hit send.</span><span class="hdr-actions"><a class="fill" href="#lookfor" data-jump="lookfor">Start my home search</a><button class="outline" type="button" data-share>Share this app</button><button class="outline" type="button" data-install>Add to my home screen</button></span></span>
+      <span style="margin-top:8px;display:grid;gap:8px;align-self:flex-start;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);border-radius:10px;padding:10px 12px;font-size:15px;line-height:1.35;color:var(--band-ink)"><span><b>Thinking of selling or buying?</b> Tap a button and I&rsquo;ll reach out to you personally. Or call <b style="white-space:nowrap;font-variant-numeric:tabular-nums">586-419-7607</b>.</span><span style="display:flex;flex-wrap:wrap;gap:6px"><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%27m%20thinking%20about%20selling%20my%20home%20and%20would%20like%20to%20talk.%20My%20address%20is%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">I&rsquo;m thinking of selling</a><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%27m%20thinking%20about%20buying%20a%20home%20and%20would%20like%20to%20talk.%20I%27m%20looking%20for%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">I&rsquo;m thinking of buying</a><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%27d%20like%20a%20free%20home%20value%20for%20when%20the%20time%20comes.%20My%20address%20is%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">What&rsquo;s my home worth?</a><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%20have%20a%20real%20estate%20question%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">Real estate questions of any kind</a></span><span id="sig-help" style="font-size:13px;opacity:.85">These buttons open a text on your phone, or an email on your computer, to let Frank know you&rsquo;d like him to reach out. Add your name and number, then hit send.</span><span class="hdr-actions"><a class="fill" href="#lookfor" data-jump="lookfor">Start my home search</a><button class="outline" type="button" data-share>Share this app</button><button class="outline" type="button" data-install>Add to my home screen</button><button class="outline" type="button" data-print>Print or save as PDF</button></span></span>
     </div>
     <div class="top5"><div class="tile stars"><img src="img/all-stars.png" alt="Hour Media Real Estate All-Stars" width="80"></div>Top 5%</div>
   </header>
@@ -387,6 +412,12 @@ body{margin:0}[hidden]{display:none!important}img{max-width:100%}
     const b=e.target.closest('[data-install]');if(!b)return;e.preventDefault();
     if(installEvt){try{installEvt.prompt();const r=await installEvt.userChoice;installEvt=null;if(r&&r.outcome==='accepted')hideInstall();return;}catch(_){}}
     installHelp();
+  });
+  // Print or save as PDF: show the whole list (no filters), then open the print sheet
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('[data-print]');if(!b)return;e.preventDefault();
+    try{cur="All";need=null;const q=document.getElementById('q-search');if(q)q.value='';render();}catch(_){}
+    setTimeout(()=>{try{window.print()}catch(_){alert('To save as a PDF, use your browser menu: Print, then Save as PDF.')}},150);
   });
   const SHARE_URL="https://franklucidohomes.github.io/trades/";
   const SHARE_TEXT="Here's Frank Lucido's list of local trades: plumbers, roofers, painters and more, all in one place. Save it to your home screen and it updates on its own:";
