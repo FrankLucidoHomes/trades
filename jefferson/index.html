@@ -1,22 +1,584 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex">
-<title>29142 Jefferson Court · Your Listing Report · Frank Lucido</title>
-<meta name="description" content="Prepared for Robyn Stanford, from Frank Lucido, REALTOR® · Sine &amp; Monaghan.">
-<meta property="og:title" content="29142 Jefferson Court · Your Listing Report">
-<meta property="og:description" content="Prepared for Robyn Stanford · Frank Lucido, REALTOR®">
-<meta property="og:image" content="https://franklucidohomes.github.io/trades/jefferson/og.jpg">
-<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta property="og:url" content="https://franklucidohomes.github.io/trades/jefferson/">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="apple-touch-icon" href="../next/apple-touch-icon.png"><link rel="icon" href="../next/apple-touch-icon.png">
-<style>body{margin:0;font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#0f2d5c;color:#fff;min-height:100vh;display:grid;place-items:center}
-.c{max-width:420px;padding:28px 22px;text-align:center}img{width:120px;height:120px;border-radius:26px;border:3px solid #fff;object-fit:cover}
-h1{font-size:24px;line-height:1.2;margin:16px 0 4px}p{margin:6px 0;color:#c8d6ee}
-a.btn{display:block;background:#fff;color:#0f2d5c;font-weight:700;font-size:18px;text-decoration:none;border-radius:12px;padding:15px 18px;margin:22px 0 14px}</style></head>
-<body><div class="c"><img src="../next/apple-touch-icon.png" alt="Frank Lucido"><p style="color:#9fc3f0;font-weight:600;margin-top:14px">Your Listing Report</p><h1>29142 Jefferson Court</h1><p>Prepared for Robyn Stanford</p>
-<a class="btn" href="https://claude.ai/artifact/KomizYteHQMDxDTdirFvZg">Open your page</a>
-<p style="font-size:14px">Frank Lucido, REALTOR® · Sine &amp; Monaghan · <a style="color:#fff" href="tel:5864197607">586-419-7607</a></p></div>
-<script>setTimeout(function(){location.replace('https://claude.ai/artifact/KomizYteHQMDxDTdirFvZg')},700)</script></body></html>
+<!doctype html><html><head><meta charset=utf8><link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Jefferson Listing"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0d2a5e"><meta name="robots" content="noindex">
+<meta property="og:title" content="29142 Jefferson Court · Your Listing Report"><meta property="og:description" content="Prepared for Robyn Stanford · Frank Lucido, REALTOR®"><meta property="og:image" content="https://franklucidohomes.github.io/trades/jefferson/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:url" content="https://franklucidohomes.github.io/trades/jefferson/"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>29142 Jefferson Court Listing Tracker</title>
+<meta name="x-claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Lora:ital,wght@0,600;1,400&display=swap">
+<style>
+/* Layout: navy branded band (logo, headshot, Hour badge), stat strip, then one reading column of checklists; agent copy adds a send panel and light-blue note boxes */
+:root{
+  --navy:#0d2a5e; --blue:#2f6fb0; --ink:#1b2333; --soft:#5a6476; --line:#d6dce6;
+  --paper:#ffffff; --tint:#f3f6fb; --note:#e8f1fb; --noteline:#b9d0ec;
+  --good:#1f7a4d; --warn:#a4560c; --warnbg:#fdf3e7;
+  --band:#0d2a5e; --bandtext:#ffffff; --bandsoft:#c8d6ee;
+  --sans:Poppins,"Helvetica Neue",Arial,sans-serif; --serif:Lora,Georgia,serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --navy:#9fbcea; --blue:#7fb0e8; --ink:#e7ecf4; --soft:#a6b0c2; --line:#2c3850;
+  --paper:#111826; --tint:#172135; --note:#16263f; --noteline:#2d4a72;
+  --good:#5cc495; --warn:#f0a65a; --warnbg:#2b2114;
+  --band:#0b1f45; --bandtext:#ffffff; --bandsoft:#aec2e4; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --navy:#9fbcea; --blue:#7fb0e8; --ink:#e7ecf4; --soft:#a6b0c2; --line:#2c3850;
+  --paper:#111826; --tint:#172135; --note:#16263f; --noteline:#2d4a72;
+  --good:#5cc495; --warn:#f0a65a; --warnbg:#2b2114;
+  --band:#0b1f45; --bandtext:#ffffff; --bandsoft:#aec2e4; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font:400 15px/1.6 var(--sans);margin:0}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band{background:var(--band);color:var(--bandtext);position:relative;overflow:hidden}
+.band .bg{position:absolute;inset:0;background:url(img/cover.jpg) center 35%/cover;opacity:.2}
+.band .inner{position:relative;display:flex;gap:18px;align-items:flex-end;flex-wrap:wrap;padding-block:26px 0}
+.band .left{flex:1 1 320px;min-width:0;padding-bottom:22px;display:grid;gap:6px}
+.eyebrow{font:500 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--bandsoft)}
+h1{font:700 clamp(28px,5.4vw,40px)/1.08 var(--sans);margin:0;text-wrap:balance}
+.city{color:var(--bandsoft);font-size:15px}
+.prepfor{color:#fff;font-size:15px;font-weight:600;margin-top:6px}
+.k{font:italic 400 22px/1.2 var(--serif);margin-top:6px}
+.ksub{color:var(--bandsoft);font-size:15px;margin-top:4px;max-width:34em}
+.brandrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.brandrow .logo{width:132px;background:#fff;border-radius:6px;padding:6px}
+.badge{display:flex;gap:8px;align-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:6px;padding:4px 10px 4px 4px}
+.badge img{width:46px;height:46px;object-fit:contain;background:#fff;border-radius:4px}
+.badge span{font:600 12px/1.25 var(--sans)}
+.head{flex:0 1 230px;max-width:230px;align-self:flex-end;display:block}
+.stripe{height:6px;display:flex}.stripe span{background:var(--blue);width:22%}.stripe i{background:#222;flex:1}
+.contact{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:14px;color:var(--soft);padding-block:12px;border-bottom:1px solid var(--line)}
+.contact b{color:var(--ink);font-weight:600}
+.modebar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding-block:14px}
+.seg{display:inline-flex;border:1.5px solid var(--navy);border-radius:999px;overflow:hidden}
+.seg button{font:500 14px var(--sans);border:0;background:transparent;color:var(--navy);padding:8px 16px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--navy);color:var(--paper)}
+.seg button:focus-visible,.btn:focus-visible,.inc input:focus-visible+span{outline:2px solid var(--blue);outline-offset:2px}
+.sync{font-size:13px;color:var(--soft)}
+.hint{font-size:13px;color:var(--soft);margin:0}
+h2{font:600 22px/1.3 var(--sans);color:var(--blue);margin:30px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line);text-wrap:balance}
+.stat.jump{cursor:pointer;border-color:var(--navy)}.stat.jump:hover{background:var(--tint)}.stat .go{margin-top:6px;font:600 13px var(--sans);color:var(--navy);text-decoration:underline}
+.offck{display:block;margin-top:4px;font-size:12px;color:var(--navy);white-space:nowrap}.offtag{display:inline-block;margin-top:3px;font:600 10.5px var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--navy);background:var(--tint);border:1px solid var(--line);border-radius:3px;padding:0 6px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:4px}
+.stat{border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:6px;padding:10px 12px;display:grid;gap:2px;position:relative;min-width:0}
+.stat .l{font:500 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+.stat .v{font:600 26px/1.15 var(--sans);color:var(--navy);font-variant-numeric:tabular-nums}
+.stat .s{font-size:12.5px;color:var(--soft)}
+ul.items{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.item{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:start;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper)}
+.item .mark{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font:700 12px var(--sans);margin-top:2px}
+.done .mark,.mark.ok{background:var(--good);color:var(--paper)}
+.next .mark{background:var(--blue);color:var(--paper)}
+.needed .mark{background:var(--warn);color:var(--paper)}
+.log .mark{background:var(--tint);color:var(--navy);border:1px solid var(--line)}
+.mark.open{background:var(--paper);color:var(--warn);border:2px solid var(--warn)}
+.item .body{min-width:0;display:grid;gap:6px}
+button.mark{border:0;padding:0;cursor:pointer;font:700 12px var(--sans)}
+button.mark.open{border:2px solid var(--warn)}
+button.mark:focus-visible,.txt:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.txt[contenteditable="true"]{border-bottom:1px dashed transparent;cursor:text}
+.txt[contenteditable="true"]:hover{border-bottom-color:var(--noteline)}
+.txt[contenteditable="true"]:focus{background:var(--note);outline:0;border-radius:3px}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin:6px 0}
+.plan{margin:0;border:1px solid var(--line);border-radius:6px;padding:8px;background:#fff;display:grid;gap:4px}
+.plan img{width:100%;height:auto;display:block}
+.plan figcaption{font:600 13px var(--sans);color:#0d2a5e;text-align:center}
+.agrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.recbox{border:1px solid var(--line);border-left:5px solid var(--navy);border-radius:6px;padding:12px 14px;display:grid;gap:8px;background:#fff}.recd{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--navy)}.rect{white-space:pre-wrap;outline:0;min-height:2.8em;line-height:1.5}.rect:empty::before{content:attr(data-ph);color:#8a94a6;font-style:italic}
+.askc{display:grid;gap:6px;margin-top:10px;padding:10px 12px;border:1px dashed var(--line);border-radius:6px}.askl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--navy)}.askin{width:100%;font:inherit;font-size:15px;padding:8px 10px;border:1px solid var(--line);border-radius:6px;resize:vertical;box-sizing:border-box}.askst{margin-left:8px}
+.trf{margin-top:12px;padding:12px;border:1px solid var(--line);border-radius:8px;display:grid;gap:8px}.trf h3{margin:0;font-size:15px}.trf .btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.trf .sin{max-width:160px}
+.qbox{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:8px 0;display:grid;gap:8px}.qq{font-weight:700}.qopts{display:flex;flex-wrap:wrap;gap:8px}.qopt{font:inherit;font-size:15px;padding:10px 14px;border-radius:999px;border:1.5px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer}.qopt.on{background:var(--navy);color:#fff}.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:84px;z-index:2147483001;background:#12305a;color:#fff;padding:10px 14px;border-radius:10px;display:flex;gap:10px;align-items:center;box-shadow:0 4px 14px rgba(0,0,0,.25)}.toast .btn{color:#fff;border-color:#fff}.sentx{border:1px solid var(--line);border-radius:6px;padding:8px 10px;margin:6px 0}.sentx summary{cursor:pointer;font-weight:600}
+.recq{margin:0;font-weight:700;color:var(--navy)}
+.qoff{opacity:.4;pointer-events:none}.qwait{color:#8a5a00;font-weight:600;margin:6px 0 0}
+.sendbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}.sendbar .btn{flex:1 1 200px;text-align:center;text-decoration:none}.ksec .kbox{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:10px 0;display:grid;gap:8px}.ksec h3{margin:0;font-size:16px}.koff .kbox,.koff .note{opacity:.4;pointer-events:none}.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}.kf{display:grid;gap:3px;font-size:13px}.kf span{color:#5a6475;font-weight:600}.kdone td{color:#5a6475}
+.fbinit{border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:6px;padding:10px 12px;display:grid;gap:6px;margin:6px 0 10px}
+.fbl{font:600 12px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.fbt{white-space:pre-wrap;outline:0;min-height:1.4em}
+.fbt[contenteditable="true"]{cursor:text}.fbt:empty::before{content:attr(data-ph);color:var(--soft);font-style:italic}
+.fbt[contenteditable="true"]:focus{background:var(--note);border-radius:4px}
+.sin{font:inherit;color:inherit;background:transparent;border:1px solid transparent;border-radius:4px;padding:3px 4px;min-width:0;width:100%}
+.sin:hover,.sin:focus{border-color:var(--line);background:var(--paper)}
+td.fbcell{min-width:200px;white-space:normal}
+.xbtn{background:transparent;border:0;color:var(--soft);cursor:pointer;font:600 14px var(--sans)}
+.ntxt{outline:0;cursor:text;white-space:pre-wrap}
+.ntxt:empty::before{content:attr(data-ph);color:var(--soft);font-style:italic}
+.note:focus-within{box-shadow:0 0 0 2px var(--blue)}
+.note.blank{background:transparent;border-style:dashed;opacity:.7}
+.item .date{font:600 12.5px var(--sans);color:var(--navy);letter-spacing:.02em}
+.who{display:inline-block;font:500 10.5px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--navy);background:var(--tint);border:1px solid var(--line);border-radius:3px;padding:0 6px;margin-left:6px;vertical-align:1px}
+.note{background:var(--note);border:1px solid var(--noteline);border-radius:5px;padding:7px 10px;font-size:13.5px;line-height:1.5}
+.note b{font-weight:600;color:var(--navy)}
+.inc{display:inline-flex;align-items:center;gap:6px;font:500 12px var(--sans);color:var(--soft);cursor:pointer;user-select:none;justify-self:start}
+.inc input{position:absolute;opacity:0;width:1px;height:1px}
+.inc span{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 6px}
+.inc span:before{content:"";width:14px;height:14px;border-radius:3px;border:1.5px solid var(--blue);box-sizing:border-box}
+.inc input:checked+span{color:var(--navy);border-color:var(--blue);background:var(--tint)}
+.inc input:checked+span:before{background:var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2l2.3 2.3 4.7-5' stroke='white' stroke-width='1.8' fill='none'/%3E%3C/svg%3E") center/12px no-repeat}
+[hidden]{display:none!important}
+.stat .inc{margin-top:4px}
+.stat .inc span{padding:2px 8px 2px 6px}
+.stat .inc span b{display:none}
+.inc input:not(:checked)+span{color:var(--warn);border-color:var(--warn);border-style:dashed}
+.out{opacity:.55}
+.out .note{opacity:1}
+.agentonly{font:600 10.5px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--warn);background:var(--warnbg);border-radius:3px;padding:1px 6px;justify-self:start}
+.lead{font-weight:500;margin:4px 0 10px}
+.why{margin:0 0 12px;padding-left:20px;display:grid;gap:4px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0}
+th{text-align:left;font:500 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--soft);border-bottom:1.5px solid var(--ink);padding:7px 8px;white-space:nowrap}
+td{padding:7px 8px;border-bottom:1px dotted var(--line);vertical-align:top;font-variant-numeric:tabular-nums;white-space:nowrap}
+td:first-child{white-space:normal}
+tr.hi td{background:var(--tint);font-weight:600}
+.ladder{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:6px;margin:8px 0}
+.rung{border:1px solid var(--line);border-radius:5px;padding:6px 8px;font-size:13px;font-variant-numeric:tabular-nums;display:grid}
+.rung b{font-size:15px;color:var(--ink)}
+.rung small{color:var(--soft)}
+.rung.list{border-color:var(--navy);background:var(--tint)}
+.rung.plan{border-color:var(--blue);border-width:2px}
+.rung.floor{border-style:dashed}
+textarea{width:100%;box-sizing:border-box;min-height:96px;font:400 15px/1.5 var(--sans);color:var(--ink);background:var(--note);border:1px solid var(--noteline);border-radius:6px;padding:10px}
+.send{border:1.5px solid var(--navy);border-radius:8px;padding:14px;display:grid;gap:12px;margin-top:10px}
+.send .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.send .box{display:grid;gap:8px;min-width:0}
+.send h3{margin:0;font:600 15px var(--sans);color:var(--navy)}
+.send pre{white-space:pre-wrap;word-break:break-word;font:400 13px/1.5 var(--sans);background:var(--tint);border:1px solid var(--line);border-radius:6px;padding:10px;margin:0;max-height:260px;overflow:auto}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font:500 14px var(--sans);border-radius:5px;padding:8px 14px;cursor:pointer;border:1.5px solid var(--navy);background:var(--navy);color:var(--paper);text-decoration:none;display:inline-block}
+.btn.ghost{background:transparent;color:var(--navy)}
+.small{font-size:12.5px;color:var(--soft)}
+.footer{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:30px;padding-block:18px 30px}
+.footer img.h{width:60px;height:60px;border-radius:50%;object-fit:cover}
+.footer .nm{font:600 18px var(--sans);color:var(--blue)}
+.footer .t{font-size:13.5px;line-height:1.5}
+.footer .stars{display:flex;align-items:center;gap:8px;margin-left:auto}
+.footer .stars img{width:54px}
+.photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px;margin-top:10px}
+.photos img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px;display:block}
+.src{font-size:12px;color:var(--soft);margin-top:14px}
+.secinc{margin:-2px 0 8px}
+.linkrow{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin:6px 0 8px}
+.lbtn{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:8px;background:var(--navy);color:var(--paper);text-decoration:none;border-left:5px solid var(--blue)}
+.lbtn b{font:600 15px var(--sans)}.lbtn b::after{content:" ↗"}
+.lbtn span{font-size:12px;opacity:.85}
+.lbtn:hover{background:var(--blue)}
+.lbtn.media{background:var(--blue);border-left-color:var(--navy)}
+.lbtn.media:hover{background:var(--navy)}
+li.isdone .txt{color:var(--soft);text-decoration:line-through}
+.next button.mark,.needed button.mark{color:var(--paper)}
+.next button.mark{background:var(--blue)}.needed button.mark{background:var(--warn)}
+button.mark.ok{background:var(--good)!important}
+.lbtn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media (prefers-reduced-motion:no-preference){.item,.stat{transition:opacity .2s}}
+</style>
+
+<header class="band">
+  <div class="bg"></div>
+  <div class="wrap inner">
+    <div class="left">
+      <div class="eyebrow" id="eyebrow"></div>
+      <h1 id="addr"></h1>
+      <div class="city" id="city"></div>
+      <div class="prepfor" id="prep"></div>
+      <div class="k" id="kicker"></div>
+      <div class="ksub" id="kicksub"></div>
+      <div class="brandrow">
+        <img class="logo" src="img/logo_c.png" alt="Lucido Sales · Sine &amp; Monaghan Realtors">
+        <div class="badge"><img src="img/all-stars.png" alt="Hour Detroit Real Estate All-Stars"><span>Frank Lucido<br>Top 5% · Hour Detroit All-Star</span></div>
+      </div>
+    </div>
+    <img class="head" src="img/photo_crop.png" alt="Frank Lucido">
+  </div>
+</header>
+<div class="stripe"><span></span><i></i></div>
+
+<div class="wrap">
+  <div class="contact"><span><b>Frank Lucido</b>, REALTOR® · Sine &amp; Monaghan</span><span>Cell <b>586-419-7607</b></span><span><b>frankjr@fjlucido.com</b></span><span>franklucidohomes.com</span></div>
+
+  <div class="modebar" id="modebar" hidden>
+    <div class="seg" role="group" aria-label="Which copy">
+      <button type="button" id="mAgent" aria-pressed="true">My copy (everything)</button>
+      <button type="button" id="mClient" aria-pressed="false"></button>
+    </div>
+    <span class="sync" id="sync">Loading your checkmarks…</span>
+  </div>
+  <div class="sendbar" id="sendBar" hidden><a class="btn" id="sbText" href="#"></a><a class="btn" id="sbEmail" href="#"></a><a class="btn ghost" id="sbTestT" href="#">Text me a test</a><a class="btn ghost" id="sbTestE" href="#">Email me a test</a><span class="small" id="sbNote"></span></div>
+  <p class="hint" id="hint" hidden></p>
+
+  <main id="main"></main>
+  <div id="kWrap"></div>
+
+  <section id="takeSec" hidden>
+    <h2>My take</h2>
+    <p class="hint">Your own read on price and next steps. Saved for you on any device; never sent to the seller.</p>
+    <textarea id="take" aria-label="My take" placeholder="Where do you think the price should go, and when?"></textarea>
+  </section>
+
+  <section id="sendSec" hidden>
+    <h2 id="sendTitle"></h2>
+    <div class="send">
+      <p class="small" id="clientLink"></p>
+      <div class="row">
+        <div class="box">
+          <h3>Email</h3>
+          <pre id="emailText"></pre>
+          <div class="btns"><button class="btn" type="button" id="cpEmail">Copy email</button><a class="btn ghost" id="mailLink" href="#">Open in Mail</a></div>
+        </div>
+        <div class="box">
+          <h3>Text message</h3>
+          <pre id="smsText"></pre>
+          <div class="btns"><button class="btn" type="button" id="cpSms">Copy text</button><a class="btn ghost" id="smsLink" href="#">Open in Messages</a></div>
+        </div>
+      </div>
+      <p class="small" id="copied" aria-live="polite">Both messages update as you tick items above. "Open in" buttons may not work everywhere; copy always does.</p>
+    </div>
+  </section>
+
+  <div class="photos" id="photos"></div>
+  <div id="planSec"></div>
+
+  <footer class="footer">
+    <img class="h" src="img/head_s.jpg" alt="">
+    <div><div class="nm">Frank Lucido</div><div class="t">REALTOR® · Sine &amp; Monaghan Realtors<br>Cell 586-419-7607 · frankjr@fjlucido.com</div></div>
+    <div class="stars"><img src="img/all-stars.png" alt="Hour Detroit Real Estate All-Stars"><span class="small">Top 5% in Metro Detroit</span></div>
+  </footer>
+  <p class="src" id="src"></p>
+</div>
+
+<script id="data" type="application/json">{"asOf": "Thursday, Nov. 12, 2026", "asOfShort": "Nov. 12", "nextUpdate": "Monday, Nov. 16", "clientUrl": "https://claude.ai/artifact/KomizYteHQMDxDTdirFvZg", "client": {"first": "Robyn", "full": "Robyn Stanford", "greet": "Hi Robyn", "email": "Sjr8455@yahoo.com"}, "listing": {"address": "29142 Jefferson Court", "short": "Jefferson", "city": "St. Clair Shores, Michigan 48081", "sub": "Lakeview Club · On Lake St. Clair", "mls": "50226648", "price": 875000, "sqft": 2500}, "links": [{"t": "MLS listing", "s": "MiRealSource · MLS #50226648", "url": "https://www.mirealsource.com/29142-jefferson-court-saint-clair-shores-mi-48081/mrsmi50226648_h_mirealsource"}, {"t": "Zillow", "s": "Photos, 3D tour, views", "url": "https://www.zillow.com/homedetails/29142-Jefferson-Ct-Saint-Clair-Shores-MI-48081/83628876_zpid/"}, {"t": "Realtor.com", "s": "Listing page", "url": "https://www.realtor.com/realestateandhomes-detail/29142-Jefferson-Ct_Saint-Clair-Shores_MI_48081_M47725-73177"}, {"t": "Homes.com", "s": "Listing page", "url": "https://www.homes.com/property/29142-jefferson-ct-saint-clair-shores-mi-unit-13/8nhey5qk7vneg/"}], "photos": [["photos/balcony.jpg", "Lake St. Clair from the balcony"], ["photos/sunset.jpg", "Sunset over the lake"], ["photos/front.jpg", "Front of the home"]], "stats": [{"id": "st-price", "label": "List price", "value": "$875,000", "sub": "$350 per sq ft", "inc": true}, {"id": "st-dom", "label": "Days on market", "value": "9", "sub": "Live since Thu., Nov. 5", "inc": true, "cs": "2026-11-03", "act": "2026-11-05"}, {"id": "st-views", "label": "Zillow views", "value": "502", "sub": "Up from 417 on Nov. 9", "inc": true}, {"id": "st-saves", "label": "Zillow saves", "value": "31", "sub": "Up from 27 on Nov. 9", "inc": true}, {"id": "st-open", "label": "Open houses", "value": "2", "sub": "Broker open + Sunday public", "inc": true}], "sections": [{"id": "activity", "title": "What's happened so far", "kind": "log", "items": [{"id": "a-show1", "text": "Private showing with a buyer's agent, 11 a.m. to noon. Feedback has been requested.", "note": "", "inc": true, "date": "Wed., Nov. 11"}, {"id": "a-social", "text": "Listing video and posts went out on Facebook, Instagram, TikTok and YouTube.", "note": "", "inc": true, "date": "Mon., Nov. 9"}, {"id": "a-live", "text": "Went live on the MLS and every major home site. Had a broker open for local agents.", "note": "", "inc": true, "date": "Thu., Nov. 5"}]}, {"id": "prep", "title": "Listing prep & marketing", "kind": "prep", "lead": "Everything we set up to get your home ready and in front of buyers.", "items": [{"id": "p-sign", "text": "Listing paperwork signed, Oct. 21", "note": "", "inc": true, "done": true, "who": "Robyn"}, {"id": "p-price", "text": "Starting price agreed: $875,000", "note": "", "inc": true, "done": true, "who": "Robyn & Frank"}, {"id": "p-clean", "text": "House cleaned before photos", "note": "", "inc": true, "done": true, "who": "Robyn"}, {"id": "p-photos", "text": "Professional photos and video. Bedrooms and lower level virtually staged and labeled that way.", "note": "", "inc": true, "done": true, "who": "Frank"}, {"id": "p-covers", "text": "Shoe covers at the door for every showing", "note": "", "inc": true, "done": true, "who": "Frank"}, {"id": "p-hoa", "text": "HOA bylaws and assessment information from Lawyers Condo Management", "note": "", "inc": true, "done": true, "who": "Frank"}, {"id": "p-broch", "text": "Printed brochures at the home for every showing", "note": "", "inc": true, "done": true, "who": "Frank"}, {"id": "p-private", "text": "Private outreach to my buyers and top agents first. No off-market fit, so we went live.", "note": "", "inc": true, "done": true, "who": "Frank"}, {"id": "p-mls", "text": "MLS listing and online showing schedule set up; listed on Zillow, Realtor.com and Homes.com", "note": "", "inc": true, "done": true, "who": "Frank"}]}, {"id": "ads", "title": "Advertising", "kind": "done", "lead": "What I've ordered to promote your home, and how it's doing.", "items": [{"id": "ad-video", "text": "Paid video ad: the 28-second listing video on Facebook, Instagram, TikTok and YouTube, aimed at lakefront buyers in St. Clair Shores, all five Grosse Pointes and Harrison Township, with retargeting to people who view it.", "note": "", "inc": true, "date": "Ordered Nov. 9"}, {"id": "ad-social", "text": "Listing posts on my Facebook, Instagram, TikTok and YouTube pages.", "note": "", "inc": true, "date": "Nov. 9"}]}, {"id": "next", "title": "Coming up", "kind": "next", "items": [{"id": "n-open", "text": "Open house this weekend, Saturday, Nov. 14 or Sunday, Nov. 15, if that works for you.", "note": "", "inc": true}, {"id": "n-updates", "text": "An update from me every week. The next one comes Thursday, Nov. 19.", "note": "", "inc": true}]}, {"id": "needed", "title": "Needed from you", "kind": "needed", "items": [{"id": "r-disc", "text": "Seller's disclosure statement and lead-based paint disclosure, completed and signed. I'll send this to you when we need it.", "note": "", "inc": true}, {"id": "r-reno", "text": "If you're open to this. Your renovation list, with approximate costs. It helps buyers and the appraiser see the value.", "note": "", "inc": true}]}], "price": {"id": "price", "inc": false, "title": "", "lead": "", "why": [], "steps": [], "comps": []}, "emailSections": [["WHAT'S HAPPENED", "activity"], ["ADVERTISING", "ads"], ["COMING UP", "next"], ["NEEDED FROM YOU", "needed"]], "sms": [{"ids": ["st-views", "st-saves"], "text": "502 views and 31 saves on Zillow so far."}, {"ids": ["n-3d"], "text": "We're adding a 3D walkthrough to the listing."}, {"ids": ["r-disc"], "text": "Still need the signed seller's disclosure and lead paint form when you get a chance."}], "sources": "", "clientSrc": "Online views and saves are from Zillow; sales are from the MLS.", "media": {"by": "Nick, Vansen Media", "items": [{"t": "Professional photos", "s": "Full set on OneDrive", "url": "https://fjlucidocom-my.sharepoint.com/:f:/g/personal/frankjr_fjlucido_com/IgBAFeVgDjFlQoGFwXb0qSktAcw26ZuPa3zob5hzxqDwvJU?e=BDQwIE"}, {"t": "Listing video", "s": "Tap to play", "url": "https://drive.google.com/file/d/1eFH67HGMRHc0QZo45EED924N52EPchnF/view"}]}, "showings": [{"date": "2026-11-11", "feedback": "Feedback requested through ShowingTime Nov. 11; no response yet. It asks again Fri., Nov. 13 at noon.", "id": "s1", "status": "Held", "time": "11 a.m.-noon", "who": ""}], "rec": {"asof": "2026-11-12", "text": "Where we stand: 9 days on the market (2 days Coming Soon, 7 Active). 502 Zillow views and 31 saves tell me buyers are finding your home and like what they see. We've had one showing so far, and that buyer's agent pointed out that the highest Lakeview Club sale to date is $675,000.\n\nWhat history tells us: Lakeview Club has had 10 sales since 2015. Half sold within about 52 days and the average was 66 days. The last six sales (2024 and 2025) averaged 70 days, anywhere from 4 days to 172. These units don't sell quickly, but they do sell. At 9 days, we're early.\n\nPricing: at $875,000 ($350 a sq ft) we're $200,000 above the best sale in the complex ($675,000, or $270 a sq ft, in July 2025, which sold in 4 days at full price). Your updates and the water justify a premium; my sense is the next few weeks will tell us how much of one.\n\nMy recommendation:\n1. Let me hold an open house this coming weekend, just in case, to gauge how buyers in the area respond. If you're good with me doing this, it will be Saturday or Sunday.\n\n2. On price, we have two good options. We could keep it where it is, or make one decent cut now, for example $849,900 down to $824,900, which puts it into lower searches, and then hold tight to that for a while. Since we're still new to the market, my sense is a cut now may make more of an impact than one later. Whichever we choose, we'll watch the Zillow, Homes.com and ad numbers after the change. They're great feedback on what buyers are feeling. We'll also see whether we get an uptick in showings if we make a change.\n\n3. Buyers of a condo like this are a smaller group, so it may take some time to find one, but water always sells when buyers feel the value is there. \n\n4. At some point, the details or the total of what you spent on updates may help our cause. Buyers will ask, and if we get a buyer who is financing, I'll definitely want to share as much as I can with the appraiser so the appraisal doesn't come back short. That's a hurdle I expect we'll face at some point unless we get a cash buyer."}, "traffic": {"live": "2026-11-03", "price": 875000, "changes": [], "snaps": {"Zillow": [{"d": "2026-11-09", "v": 417, "s": 27}, {"d": "2026-11-12", "v": 502, "s": 31}], "Homes.com": [{"d": "2026-11-12", "v": 546, "s": 1}], "Back At You ad": []}}, "agentCell": "5864197607", "agentEmail": "frankjr@fjlucido.com", "sentlog": [{"questions": "1) Price: keep $875,000 / change to $849,900 / change to $824,900. 2) Open house this weekend: OK / not OK.", "rec": "Open house this weekend; two price options: keep $875,000 or one decent cut now (e.g. $849,900 down to $824,900) and hold; watch Zillow/Homes.com/ad numbers after any change; smaller buyer pool, water sells when value is there; renovation details help with appraisal.", "summary": "First Listing Tracker sent to Robyn (email to Sjr8455@yahoo.com, cc Frank). Included: the numbers (DOM 9, Zillow views/saves, showings, open houses), what's done, next steps (open house this weekend, weekly updates, next one Thu Nov 19), needed from you (seller's disclosure + lead-based paint, renovation list), initial showing feedback, showings with agent names, floor plan, links.", "when": "2026-11-12T19:20:00Z"}], "questions": [{"id": "q-price", "short": "Price", "q": "What would you like to do on price?", "opts": ["Keep the price at $875,000", "Change the price to $849,900", "Change the price to $824,900"]}, {"id": "q-oh", "short": "Open house this weekend", "q": "Are you OK with an open house this coming weekend?", "opts": ["Yes, OK with an open house", "No, not this weekend"]}], "qTitle": "Robyn, please answer these", "qLead": "I tried to make this easy since you're recovering.", "initfb": "They liked it but noted that the highest selling unit to date was $675,000 - He said he'd let me know if they decide to do anything. Feedback was verbal. I'll check back in with him before any reduction goes live to gauge interest.", "contract": {"offers": [], "on": false, "steps": {}, "syncedAt": "2026-11-13T02:11:00Z", "terms": {}}, "include": {"st-price": true, "st-dom": true, "st-views": true, "st-saves": true, "st-open": true, "links": true, "media": false, "plans": true, "st-showings": true, "showings": false, "fb-init": true, "a-show1": true, "a-haven": false, "a-social": true, "a-open": false, "a-live": true, "a-soon": false, "p-sign": true, "p-price": true, "p-clean": true, "p-photos": true, "p-covers": true, "p-opener": false, "p-hoa": true, "p-broch": true, "p-private": true, "p-mls": true, "ad-video": true, "ad-result": false, "ad-social": true, "online": false, "n-open": true, "n-3d": false, "n-ad": false, "n-feedback": false, "n-updates": true, "n-mls": false, "n-listtrac": false, "r-disc": true, "r-lead": false, "r-reno": true, "r-weekend": false, "r-access": false, "history": false, "comps": false, "price": false, "c-offers": false, "c-steps": true, "c-terms": true, "m-agents": true, "m-broch": true, "m-photos": true, "m-sites": true, "m-social": true, "questions": true, "rec": true, "show-agents": false, "st-show": true}}</script>
+<script>
+const MODE="client"; // "agent" or "client"
+const D=JSON.parse(document.getElementById('data').textContent);
+// Listing facts that change often (stats, traffic, links, media, questions...) can be updated in the page's saved data under 'data' without rebuilding the page.
+const DATA_KEYS=['stats','traffic','links','media','showNote','questions','qTitle','qLead','photos','plans','planSrc','showings'];let dataOv={};
+function applyData(o){DATA_KEYS.forEach(k=>{if(o[k]!==undefined)D[k]=JSON.parse(JSON.stringify(o[k]))})}
+const $=id=>document.getElementById(id);
+const money=n=>'$'+Math.round(n).toLocaleString('en-US');
+const psf=n=>'$'+Math.round(n/D.listing.sqft)+' / sq ft';
+let view=MODE;
+let inc={};
+function domFix(){const s=D.stats.find(x=>x.id==='st-dom');if(!s||!s.act)return;
+  const p=d=>{const a=d.split('-');return Date.UTC(+a[0],+a[1]-1,+a[2])};
+  const n=new Date(new Date().toLocaleString('en-US',{timeZone:'America/New_York'}));const today=Date.UTC(n.getFullYear(),n.getMonth(),n.getDate());
+  const day=86400000,act=p(s.act),cs=s.cs?p(s.cs):null;
+  const csDays=cs?Math.max(0,Math.round((Math.min(act,today)-cs)/day)):0;const actDays=Math.max(0,Math.round((today-act)/day));
+  const md=t=>new Date(t).toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'});
+  s.label='Days on market (cumulative)';s.value=String((s.prior||0)+csDays+actDays);
+  s.sub=(cs?'Coming soon '+csDays+' day'+(csDays===1?'':'s')+' ('+md(cs)+'–'+md(act)+')':'Coming soon 0 days')+' · Active '+actDays+' day'+(actDays===1?'':'s')+' (since '+md(act)+')'+(s.prior?' · '+s.prior+' from an earlier listing':'')}
+domFix();
+function defaults(){const o={rec:false,questions:false,'c-offers':false,'c-terms':true,'c-steps':true,links:true,media:true,plans:true,'st-showings':true,showings:true,'fb-init':true};D.stats.forEach(s=>o[s.id]=!!s.inc);D.sections.forEach(sec=>{if(sec.kind==='table')o[sec.id]=!!sec.inc;else sec.items.forEach(i=>o[i.id]=!!i.inc)});if(D.price)o[D.price.id]=!!D.price.inc;return o}
+inc=defaults();
+if(MODE==='client'&&D.include){inc=Object.assign(inc,D.include)}
+const isIn=id=>id==='showings'||!!inc[id];
+let doneOv=Object.assign({},D.doneOv||{}),textOv=Object.assign({},D.textOv||{}),editing=false;
+const isDone=i=>(i.id in doneOv)?!!doneOv[i.id]:!!i.done;
+const txt=i=>textOv[i.id]||i.text;
+let noteOv=Object.assign({},D.noteOv||{});
+let shows=JSON.parse(JSON.stringify(D.showings||[])),initfb=D.initfb||'',rec=Object.assign({asof:'',text:''},D.rec||{}),pchanges=((D.traffic||{}).changes||[]).slice(),contract=Object.assign({on:false,offers:[],terms:{},steps:{}},D.contract||{});
+const SST=['Scheduled','Held','Canceled'];
+const CSTEPS=[['k-pa','Purchase agreement signed by both sides',0],['k-emd','Earnest money deposited with the title company',0],['k-title','Title ordered; title commitment received',0],['k-insp','Buyer\'s home inspection',0],['k-repair','Inspection response and any repair agreement',0],['k-appr','Appraisal (if the buyer is financing)',0],['k-mtg','Mortgage commitment',0],['k-coo','City certificate of occupancy / inspection (if the city requires it)',0],['k-hoa','HOA or condo paperwork and payoff letters',0],['k-water','Final water bill ordered',0],['k-util','Utilities transferred',0],['k-walk','Buyer\'s final walk-through',0],['k-close','Closing',0],['k-keys','Keys and possession to the buyer',0],
+ ['k-comm','Commission request to Annmarie',1],['k-gift','Closing gift ordered and logged',1],['k-sold','Just Sold posts and review request',1],['k-board','Added to Closing Board, anniversary saved',1]];
+const KST=['Not started','Scheduled','Waiting','Done','N/A'];
+const OST=['Received','Countered','Accepted','Declined','Withdrawn'];
+const fmtD=s=>{const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||'');if(!m)return s||'';const d=new Date(+m[1],+m[2]-1,+m[3]);return d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})};
+function showCounts(){const h=shows.filter(x=>x.status==='Held').length,sc=shows.filter(x=>x.status==='Scheduled').length,off=shows.filter(x=>x.off&&x.status==='Held').length;return{h,sc,off}}
+async function spellFix(v,apply){if(!v||v.length<3||!(window.claude&&claude.use))return;let sp=null;try{sp=await claude.use('sample')}catch(e){}if(!sp)return;
+  try{const r=await sp('Correct only the spelling, typos, capitalization and punctuation in the text below. Do not change the wording, the meaning, any names, numbers or prices, or the line breaks. If nothing needs fixing, return it unchanged. Output only the corrected text.\n\nText:\n'+v,{modelTier:'quick'});
+    const out=(r&&r.text||'').trim();if(!out||out===v||Math.abs(out.length-v.length)>Math.max(20,v.length*0.25))return;apply(out);save();render();toast('Spelling fixed',()=>{apply(v);save();render()})}catch(e){}}
+function toast(msg,undo){let t=document.getElementById('toast');if(t)t.remove();t=el('div','toast');t.id='toast';t.append(el('span',null,esc(msg)));if(undo){const b=el('button','btn ghost','Undo');b.type='button';b.onclick=()=>{undo();t.remove()};t.append(b)}document.body.append(t);setTimeout(()=>{if(t.isConnected)t.remove()},9000)}
+function noteBox(id,orig){const cur=(id in noteOv)?noteOv[id]:(orig||'');
+  const d=el('div','note'+(cur?'':' blank'));d.append(el('b',null,'For you:'),document.createTextNode(' '));
+  const sp=el('span','ntxt');sp.textContent=cur;sp.contentEditable='true';sp.spellcheck=true;sp.setAttribute('aria-label','Your private note, editable');sp.dataset.ph='Tap to add a note';
+  sp.addEventListener('focus',()=>{editing=true;d.classList.remove('blank')});
+  sp.addEventListener('blur',()=>{editing=false;const v=sp.innerText.replace(/[ \t]+/g,' ').trim();if(v!==cur){noteOv[id]=v;save();spellFix(v,x=>{noteOv[id]=x})}if(!v)d.classList.add('blank')});
+  d.append(sp);return d}
+const MARK={done:'✓',next:'→',needed:'!',log:'•'};
+
+function incBox(id,label){
+  if(!(MODE==='agent'&&view==='agent'))return null;
+  const l=document.createElement('label');l.className='inc';
+  const c=document.createElement('input');c.type='checkbox';c.id='inc-'+id;c.checked=isIn(id);
+  c.addEventListener('change',()=>{inc[id]=c.checked;save();render()});
+  const s=document.createElement('span');s.textContent=isIn(id)?'Sending to '+D.client.first:'Not sending to '+D.client.first;
+  l.append(c,s);return l;
+}
+function el(tag,cls,html){const e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+function render(){
+  const agent=MODE==='agent'&&view==='agent';
+  const showAll=agent;
+  $('eyebrow').textContent=(MODE==='agent'?(agent?'Listing Report & Tracker · Agent copy':'Preview · what '+D.client.first+' sees'):'Listing Tracker for '+D.client.full)+' · '+D.asOf;
+  $('addr').textContent=D.listing.address;
+  $('city').textContent=D.listing.city+(D.listing.sub?' · '+D.listing.sub:'');
+  $('prep').textContent='Prepared for '+D.client.full.replace(' & ',' and ');
+  $('kicker').textContent=agent?'Everything on the listing, plus my notes':'Everything you need to know';$('kicksub').textContent=agent?'':'A living document that will keep you updated and informed throughout your listing, and after we\'re under contract to sell.';
+  const m=$('main');m.innerHTML='';
+  const sc0=showCounts();const SHOWSTAT={id:'st-showings',label:'Showings',value:String(sc0.h),sub:(sc0.off?'Includes '+sc0.off+' off-market'+(sc0.sc?' · ':''):'')+(sc0.sc?sc0.sc+' more scheduled':(sc0.off?'':(sc0.h?'Held so far':'None yet'))),inc:true};
+  const st=[SHOWSTAT].concat(D.stats).filter(s=>showAll||isIn(s.id));
+  if(st.length){m.append(el('h2',null,'At a glance'));const g=el('div','stats');
+    st.forEach(s=>{const c=el('div','stat'+(agent&&!isIn(s.id)?' out':''));c.append(el('div','l',esc(s.label)),el('div','v',esc(s.value)),el('div','s',esc(s.sub)));if(s.id==='st-showings'&&(sc0.h||sc0.sc)){c.classList.add('jump');c.setAttribute('role','link');c.tabIndex=0;c.append(el('div','go','See them ↓'));const j=()=>{const x=document.getElementById('showSec');if(x)x.scrollIntoView({behavior:'smooth',block:'start'})};c.addEventListener('click',e=>{if(e.target.closest('label,input,button'))return;j()});c.addEventListener('keydown',e=>{if(e.key==='Enter')j()})}const b=incBox(s.id);if(b)c.append(b);g.append(c)});m.append(g)}
+  if(agent||(isIn('rec')&&rec.text)){
+    const w=el('section',agent&&!isIn('rec')?'out':'');w.id='recSec';w.append(el('h2',null,agent?'My recommendations':'Frank\'s recommendations'));
+    const md=s=>{const mm=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||'');return mm?new Date(+mm[1],+mm[2]-1,+mm[3]).toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric',year:'numeric'}):''};
+    const box=el('div','recbox');box.append(el('div','recd',rec.asof?'As of '+md(rec.asof):(agent?'Not written yet':'')));
+    const tx=el('div','rect');tx.textContent=rec.text;
+    if(agent){tx.contentEditable='true';tx.dataset.ph='Tap to write your read on where things stand and what you recommend next. The date updates when you change it.';
+      tx.addEventListener('focus',()=>{editing=true});tx.addEventListener('blur',()=>{editing=false;const v=tx.innerText.trim();if(v!==rec.text){rec.text=v;const n=new Date();rec.asof=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0');save();render();spellFix(v,x=>{rec.text=x})}})}
+    box.append(tx);if(D.questions&&D.questions.length&&isIn('questions')){const n=D.questions.length;const words=['','one','two','three','four','five'];box.append(el('p','recq',(agent?'Shown to '+D.client.first+': ':'')+'You can choose your answer'+(n===1?'':'s')+' to '+(n===1?'one important question':(words[n]||n)+' important questions')+' right after this by tapping the ovals.'))}w.append(box);
+    if(agent){const ask=el('div','askc');ask.innerHTML='<label class="askl" for="askIn">Ask Claude to adjust it <span style="font-weight:600;text-transform:none;letter-spacing:0;color:#8a5a00">· only you see this box</span></label>';
+      const ta=el('textarea','askin');ta.id='askIn';ta.rows=2;ta.placeholder='For example: make it shorter, soften the price part, add that the open house is Sunday 1 to 3.';
+      const row=el('div','btns');const go=el('button','btn','Rewrite it');go.type='button';const st=el('span','small askst');row.append(go,st);ask.append(ta,row);w.append(ask);
+      go.onclick=async()=>{const want=ta.value.trim();if(!want){st.textContent='Type what you want changed first.';return}
+        const sp=window.claude&&claude.use?await claude.use('sample'):null;if(!sp){st.textContent='Claude can\'t be reached from this page right now. Ask in chat instead.';return}
+        const before=rec.text;go.disabled=true;st.textContent='Claude is rewriting it…';editing=true;
+        const facts={address:D.listing.address,seller:D.client.full,asOf:D.asOf,stats:D.stats.map(s=>s.label+': '+s.value+' ('+s.sub+')'),showings:shows.map(x=>[x.date,x.time,x.status,x.off?'off-market':'',x.feedback].filter(Boolean).join(', ')),initialFeedback:initfb,
+          tables:D.sections.filter(s=>s.kind==='table').map(s=>({title:s.title,lead:s.lead||'',cols:s.cols,rows:(s.rows||[]).map(r=>r.c.join(' | ')),foot:s.foot||''})),
+          comingUp:(D.sections.find(s=>s.id==='next')||{items:[]}).items.map(i=>txt(i))};
+        const prompt='You are helping Frank Lucido, a REALTOR at Sine & Monaghan, revise the recommendations note he shows his seller, '+D.client.full+', on the listing page for '+D.listing.address+'.\n\nRules: write in Frank\'s voice to the seller, plain words, short paragraphs, the same section layout unless he asks otherwise. Use hedged phrasing like "my sense is" and "my preference would be"; never promise or guarantee anything and never write "I\'ll be honest". Use only numbers that appear in the current note or the page data below; never invent a number. Output only the revised note text, nothing before or after it.\n\nFrank\'s request: '+want+'\n\nCurrent note:\n'+before+'\n\nPage data (JSON):\n'+JSON.stringify(facts);
+        try{const r=await sp(prompt,{modelTier:'default',onText:({text})=>{tx.textContent=text}});tx.textContent=r.text.trim();
+          st.textContent='';const keep=el('button','btn','Keep this');keep.type='button';const undo=el('button','btn ghost','Undo');undo.type='button';row.append(keep,undo);
+          keep.onclick=()=>{rec.text=tx.textContent.trim();const n=new Date();rec.asof=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0');editing=false;save();render()};
+          undo.onclick=()=>{tx.textContent=before;editing=false;keep.remove();undo.remove();go.disabled=false}}
+        catch(e){tx.textContent=before;editing=false;go.disabled=false;st.textContent=e&&e.code==='not_granted'?'Claude wasn\'t allowed on this page. Ask in chat instead.':(e&&e.code==='rate_limited'?'Too many requests just now. Try again in a minute.':'That didn\'t work. Try again, or ask in chat.')}}}
+    const bx=incBox('rec');if(bx)w.append(bx);m.append(w)}
+  if(D.questions&&D.questions.length&&(agent||isIn('questions'))){
+    const w=el('section',agent&&!isIn('questions')?'out':'');w.id='qSec';w.append(el('h2',null,D.qTitle||(D.client.first+', please answer these')));
+    w.append(el('p','lead',(D.qLead?D.qLead+' ':'')+'Tap your answer to each one, then tap Send my answers. It opens a text to Frank with your choices filled in.'));
+    const picks={};
+    D.questions.forEach(q=>{const b=el('div','qbox');b.append(el('div','qq',esc(q.q)));const o=el('div','qopts');
+      q.opts.forEach(op=>{const btn=el('button','qopt',esc(op));btn.type='button';btn.onclick=()=>{picks[q.id]=op;o.querySelectorAll('.qopt').forEach(x=>x.classList.toggle('on',x===btn));upd()};o.append(btn)});b.append(o);w.append(b)});
+    const extra=el('textarea','askin');extra.rows=2;extra.placeholder='Anything else you want Frank to know (optional)';w.append(extra);
+    const row=el('div','btns');const sms=el('a','btn','Send my answers by text');const em=el('a','btn ghost','Send by email instead');const wait=el('p','small qwait');row.append(sms,em);w.append(wait,row);
+    const upd=()=>{const lines=D.questions.map((q,k)=>(k+1)+'. '+q.short+': '+(picks[q.id]||'(no answer yet)'));const body=D.client.first+"'s answers for "+D.listing.address+':\n'+lines.join('\n')+(extra.value.trim()?'\nNote: '+extra.value.trim():'');
+      sms.href='sms:'+D.agentCell+'?&body='+encodeURIComponent(body);em.href='mailto:'+D.agentEmail+'?subject='+encodeURIComponent(D.listing.address+': my answers')+'&body='+encodeURIComponent(body)};
+    const upd0=upd;const upd2=()=>{upd0();const left=D.questions.filter(q=>!picks[q.id]).length;const ready=!left;[sms,em].forEach(x=>{x.classList.toggle('qoff',!ready);x.setAttribute('aria-disabled',String(!ready));if(!ready)x.removeAttribute('href')});wait.textContent=ready?'':'Answer '+(left===D.questions.length?(left===2?'both questions':left===1?'the question':'all '+left+' questions'):(left===1?'the last question':left+' more questions'))+' to send.'};
+    D.questions.forEach(q=>{});w.querySelectorAll('.qopt').forEach(bt=>bt.addEventListener('click',upd2));extra.addEventListener('input',upd2);upd2();
+    const b=incBox('questions');if(b)w.append(b);m.append(w)}
+  $('kWrap').innerHTML='';
+  if(agent||(contract.on&&(isIn('c-offers')||isIn('c-terms')||isIn('c-steps')))){
+    const w=el('section','ksec'+(agent&&!contract.on?' koff':''));w.id='kSec';w.append(el('h2',null,'Part two · Under contract: offers, inspection and closing'));
+    const save2=()=>{save()};
+    if(agent){const sw=el('div','btns');const tg=el('button',contract.on?'btn ghost':'btn',contract.on?'Turn off (back to active)':'We\'re under contract: turn this on');tg.type='button';tg.onclick=()=>{contract.on=!contract.on;save2();render()};sw.append(tg);
+      sw.append(el('span','small',contract.on?'On. Use the switches below to choose what '+D.client.first+' sees.':'Greyed out until we\'re under contract. Nothing here goes to '+D.client.first+' until you turn it on.'));w.append(sw);
+      const cbl=el('p','small');cbl.append('Linked to your ');const ca=el('a',null,'Closing Board');ca.href='https://claude.ai/code/artifact/f0eb700e-8ffa-49e5-a595-2d048d5bfbab';ca.target='_blank';ca.rel='noopener';cbl.append(ca,'. Enter a price, date or check-off in either place and it copies to the other'+(contract.syncedAt?' · last synced '+new Date(contract.syncedAt).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'')+'.');w.append(cbl)}
+    const inp=(val,ph,on,type)=>{const i=el('input','sin');i.type=type||'text';i.value=val||'';i.placeholder=ph;i.setAttribute('aria-label',ph);i.disabled=!agent||!contract.on;i.addEventListener('focus',()=>{editing=true});i.addEventListener('blur',()=>{editing=false});i.onchange=()=>{on(i.value.trim());save2()};return i};
+    const sel=(val,opts,on)=>{const s=el('select','sin');opts.forEach(o=>{const op=el('option',null,o);op.value=o;if(val===o)op.selected=true;s.append(op)});s.disabled=!agent||!contract.on;s.onchange=()=>{on(s.value);save2();render()};return s};
+    const fd=s=>s?fmtD(s):'';
+    // offers
+    if(agent||isIn('c-offers')){const box=el('div','kbox');box.append(el('h3',null,'Offers'));
+      const tb=el('div','tbl');const tbl=el('table');tbl.innerHTML='<tr><th>Date</th>'+(agent?'<th>Buyer\'s agent</th>':'')+'<th>Price</th><th>Financing</th><th>Closing</th><th>Status</th>'+(agent?'<th></th>':'')+'</tr>';
+      contract.offers.forEach(o=>{const tr=el('tr');
+        if(agent){const c=(k,ph,ty)=>{const td=el('td');td.append(inp(o[k],ph,v=>{o[k]=v},ty));return td};tr.append(c('d','Date','date'),c('who','Agent'),c('price','Price'),c('fin','Cash, conventional…'),c('close','Closing','date'));
+          const td=el('td');td.append(sel(o.st||'Received',OST,v=>{o.st=v}));tr.append(td);const tx=el('td');const x=el('button','xbtn','×');x.type='button';x.disabled=!contract.on;x.onclick=()=>{contract.offers=contract.offers.filter(y=>y!==o);save2();render()};tx.append(x);tr.append(tx)}
+        else tr.innerHTML='<td>'+esc(fd(o.d))+'</td><td>'+esc(o.price||'')+'</td><td>'+esc(o.fin||'')+'</td><td>'+esc(fd(o.close))+'</td><td>'+esc(o.st||'')+'</td>';
+        tbl.append(tr)});
+      if(!contract.offers.length){const tr=el('tr');tr.innerHTML='<td colspan="7" class="small">No offers yet.</td>';tbl.append(tr)}
+      tb.append(tbl);box.append(tb);
+      if(agent){const a=el('button','btn ghost','+ Add an offer');a.type='button';a.disabled=!contract.on;a.onclick=()=>{contract.offers.push({d:'',who:'',price:'',fin:'',close:'',st:'Received'});save2();render()};box.append(a);const b=incBox('c-offers');if(b)box.append(b)}
+      w.append(box)}
+    // accepted terms
+    if(agent||isIn('c-terms')){const box=el('div','kbox');box.append(el('h3',null,'The accepted offer'));const T=contract.terms;
+      const F=[['price','Sale price'],['fin','Financing'],['emd','Earnest money'],['conc','Seller concessions'],['insp','Inspection period ends','date'],['mtg','Mortgage commitment due','date'],['close','Closing date','date'],['poss','Possession'],['title','Title company']];
+      const g=el('div','kgrid');F.forEach(f=>{const l=el('label','kf');l.append(el('span',null,f[1]));if(agent)l.append(inp(T[f[0]],f[1],v=>{T[f[0]]=v},f[2]));else l.append(el('b',null,esc(f[2]?fd(T[f[0]]):(T[f[0]]||'—'))));g.append(l)});box.append(g);
+      if(agent){const b=incBox('c-terms');if(b)box.append(b)}w.append(box)}
+    // timeline
+    if(agent||isIn('c-steps')){const box=el('div','kbox');box.append(el('h3',null,'From contract to closing'));
+      const tb=el('div','tbl');const tbl=el('table');tbl.innerHTML='<tr><th>Step</th><th>Date</th><th>Status</th></tr>';
+      CSTEPS.filter(s=>agent||!s[2]).forEach(s=>{const v=contract.steps[s[0]]||(contract.steps[s[0]]={});const tr=el('tr'+'');if(v.status==='Done')tr.className='kdone';
+        if(agent){const a=el('td');a.textContent=s[1]+(s[2]?' (only you)':'');const b=el('td');b.append(inp(v.d,'Date',x=>{v.d=x},'date'));const c=el('td');c.append(sel(v.status||'Not started',KST,x=>{v.status=x}));tr.append(a,b,c)}
+        else tr.innerHTML='<td>'+(v.status==='Done'?'✓ ':'')+esc(s[1])+'</td><td>'+esc(fd(v.d))+'</td><td>'+esc(v.status||'Not started')+'</td>';
+        if(v.status!=='N/A'||agent)tbl.append(tr)});
+      tb.append(tbl);box.append(tb);if(agent){const b=incBox('c-steps');if(b)box.append(b)}w.append(box)}
+    if(agent)w.append(noteBox('contract',''));
+    $('kWrap').append(w)}
+  if(agent&&D.sentlog&&D.sentlog.length){const w=el('section');w.append(el('h2',null,'What '+D.client.first+' has been sent'));w.append(el('p','lead','Each time '+D.client.first+'\'s page is refreshed, what went out is saved here, newest first, so you always know the latest version she has.'));
+    D.sentlog.slice().reverse().forEach(e=>{const d=el('details','sentx');d.append(el('summary',null,esc(e.when)+(e.summary?' · '+esc(e.summary):'')));if(e.rec)d.append(el('div','rect',esc(e.rec)));if(e.questions)d.append(el('p','small','Questions sent: '+esc(e.questions)));w.append(d)});m.append(w)}
+  if(D.links&&D.links.length&&(showAll||isIn('links'))){
+    const w=el('section',agent&&!isIn('links')?'out':'');w.append(el('h2',null,agent?'Listing online':'See your home online'));
+    const bx=el('div','linkrow');D.links.forEach(l=>{const a=el('a','lbtn','<b>'+esc(l.t)+'</b><span>'+esc(l.s||'')+'</span>');a.href=l.url;a.target='_blank';a.rel='noopener';bx.append(a)});w.append(bx);
+    const b=incBox('links');if(b)w.append(b);m.append(w)}
+  if(showAll||isIn('showings')||(isIn('fb-init')&&initfb)){
+    const w=el('section',agent&&!isIn('showings')&&!isIn('fb-init')?'out':'');w.id='showSec';w.append(el('h2',null,'Showings & feedback'));
+    const c=showCounts();w.append(el('p','lead',c.h+' showing'+(c.h===1?'':'s')+' so far'+(c.off?' ('+c.off+' off-market)':'')+(c.sc?', '+c.sc+' more scheduled':'')+'.'));
+    if(agent||(isIn('fb-init')&&initfb)){const fb=el('div','fbinit'+(agent&&!isIn('fb-init')?' out':''));fb.append(el('div','fbl','Initial feedback'));
+      const t=el('div','fbt');t.textContent=initfb;if(agent){t.contentEditable='true';t.dataset.ph='Tap to add first impressions: open house comments, agent and buyer reactions, what to adjust.';
+        t.addEventListener('focus',()=>{editing=true});t.addEventListener('blur',()=>{editing=false;const v=t.innerText.trim();if(v!==initfb){initfb=v;save();spellFix(v,x=>{initfb=x})}})}
+      fb.append(t);if(agent){const b=incBox('fb-init');if(b)fb.append(b)}w.append(fb)}
+    const sw=el('div',agent&&!isIn('showings')?'out':'');w.append(sw);
+    if(agent||(isIn('showings')&&shows.length)){
+      const showWho=agent||isIn('show-agents');const tb=el('div','tbl');const tbl=el('table');tbl.innerHTML='<tr><th>Date</th><th>Time</th>'+(showWho?'<th>Buyer\'s agent</th>':'')+'<th>Status</th><th>Feedback</th>'+(agent?'<th></th>':'')+'</tr>';
+      shows.slice().sort((a,b)=>(a.date||'').localeCompare(b.date||'')).forEach(x=>{const tr=el('tr');
+        if(agent){const cell=(k,ph,type)=>{const td=el('td');const i=el('input','sin');i.type=type||'text';i.value=x[k]||'';i.placeholder=ph;i.setAttribute('aria-label',ph);i.addEventListener('focus',()=>{editing=true});i.addEventListener('blur',()=>{editing=false});i.oninput=()=>{x[k]=i.value.trim();lastLocal=Date.now()};i.onchange=()=>{x[k]=i.value.trim();save()};td.append(i);return td};
+          tr.append(cell('date','Date','date'),cell('time','Time'),cell('who','Agent'));
+          const td=el('td');const sl=el('select','sin');SST.forEach(o=>{const op=el('option',null,o);op.value=o;if(x.status===o)op.selected=true;sl.append(op)});sl.onchange=()=>{x.status=sl.value;save();render()};td.append(sl);const ol=el('label','offck');const oc=el('input');oc.type='checkbox';oc.checked=!!x.off;oc.onchange=()=>{x.off=oc.checked;save();render()};ol.append(oc,document.createTextNode(' Off-market'));td.append(ol);tr.append(td);
+          const tf=el('td','fbcell');const fe=el('div','fbt');fe.contentEditable='true';fe.textContent=x.feedback||'';fe.dataset.ph='Add feedback';fe.addEventListener('focus',()=>{editing=true});fe.addEventListener('blur',()=>{editing=false;const v=fe.innerText.trim();if(v!==(x.feedback||'')){x.feedback=v;save();spellFix(v,y=>{x.feedback=y})}});tf.append(fe);tr.append(tf);
+          const tdx=el('td');const del=el('button','xbtn','×');del.type='button';del.title='Remove this showing';del.onclick=()=>{if(del.dataset.a){shows=shows.filter(y=>y!==x);save();render()}else{del.dataset.a='1';del.textContent='Remove?'}};tdx.append(del);tr.append(tdx)}
+        else{tr.innerHTML='<td>'+(x.date?esc(fmtD(x.date)):'—')+'</td><td>'+esc(x.time||'—')+'</td>'+(showWho?'<td>'+esc(x.who||'')+'</td>':'')+'<td>'+esc(x.status||'')+(x.off?'<br><span class="offtag">Off-market</span>':'')+'</td><td style="white-space:normal">'+esc(x.feedback||'')+'</td>'}
+        tbl.append(tr)});
+      tb.append(tbl);sw.append(tb);
+      if(agent){const add=el('button','btn ghost','+ Add a showing');add.type='button';add.onclick=()=>{shows.push({id:'s'+Date.now().toString(36),date:'',time:'',who:'',status:'Scheduled',feedback:''});save();render()};const add2=el('button','btn ghost','+ Add an off-market showing');add2.type='button';add2.onclick=()=>{shows.push({id:'s'+Date.now().toString(36),date:'',time:'',who:'',status:'Held',off:true,feedback:''});save();render()};const row=el('div','btns');row.append(add,add2);sw.append(row);
+        sw.append(noteBox('showings',D.showNote||''));
+        const ab=incBox('show-agents');if(ab){const r=el('div','agrow');r.append(el('span','small','Buyer\'s agent names:'),ab);sw.append(r)}}}
+    m.append(w)}
+  const ps=$('planSec');ps.innerHTML='';
+  if(D.plans&&D.plans.length&&(showAll||isIn('plans'))){
+    const w=el('section',agent&&!isIn('plans')?'out':'');w.append(el('h2',null,'Floor plan'));
+    const g=el('div','plans');D.plans.forEach(p=>{const f=el('figure','plan');const a=el('a');a.href=p[0];a.target='_blank';a.rel='noopener';const im=el('img');im.src=p[0];im.alt=p[1]+' floor plan';im.loading='lazy';a.append(im);f.append(a,el('figcaption',null,esc(p[1])));g.append(f)});w.append(g);
+    w.append(el('p','small',esc(D.planSrc||'Measurements are approximate.')));
+    const b=incBox('plans');if(b)w.append(b);ps.append(w)}
+  if(D.media&&(showAll||isIn('media'))){
+    const M=D.media;const w=el('section',agent&&!isIn('media')?'out':'');w.append(el('h2',null,'Photos & video'));
+    w.append(el('p','lead',agent?'Tap to open, or send them for a preview.':'Your professional photos and video.'));
+    const bx=el('div','linkrow');(M.items||[]).filter(x=>agent||!x.agentOnly).forEach(l=>{const a=el('a','lbtn media','<b>'+esc(l.t)+'</b><span>'+esc(l.s||'')+'</span>');a.href=l.url;a.target='_blank';a.rel='noopener';bx.append(a)});w.append(bx);
+    if(agent){const share=(M.items||[]).filter(x=>!x.agentOnly);const body=(who)=>'Hi '+who+',\n\nHere are the professional photos and video for '+D.listing.address+' to preview:\n\n'+share.map(x=>x.t+': '+x.url).join('\n')+'\n\nLet me know what you think.\n\nThanks,\nFrank Lucido\n586-419-7607';
+      const subj='Photos & video: '+D.listing.address;const row=el('div','btns');
+      const mk=(label,to,who)=>{const a=el('a','btn',label);a.href='mailto:'+to+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body(who));return a};
+      row.append(mk('Email to '+D.client.first,D.client.email,D.client.greet.replace(/^Hi /,'')));
+      if(M.office)row.append(mk('Email to my office',M.office.email,M.office.greet));
+      const cp=el('button','btn ghost','Copy links');cp.type='button';cp.onclick=()=>{const t=share.map(x=>x.t+': '+x.url).join('\n');(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>{cp.textContent='Copied ✓'},()=>{cp.textContent='Copy not available'})};row.append(cp);
+      w.append(row);w.append(noteBox('media',M.note))}
+    const b=incBox('media');if(b)w.append(b);m.append(w)}
+  D.sections.forEach(sec=>{
+    if(sec.kind==='table'){
+      if(!(showAll||isIn(sec.id)))return;
+      const w=el('section',agent&&!isIn(sec.id)?'out':'');w.append(el('h2',null,esc(sec.title)));
+      if(sec.lead)w.append(el('p','lead',esc(sec.lead)));
+      const t=el('div','tbl');t.innerHTML='<table><tr>'+sec.cols.map(c=>'<th>'+esc(c)+'</th>').join('')+'</tr>'+sec.rows.map(r=>'<tr'+(r.hi?' class="hi"':'')+'>'+r.c.map(v=>'<td>'+esc(v)+'</td>').join('')+'</tr>').join('')+'</table>';w.append(t);
+      if(sec.foot)w.append(el('p','small',esc(sec.foot)));
+      if(sec.id==='online'&&D.traffic)w.append(trafficBox(agent));
+      if(agent)w.append(noteBox(sec.id,sec.note));
+      const b=incBox(sec.id);if(b)w.append(b);
+      m.append(w);return}
+    const its=sec.items.filter(i=>showAll||isIn(i.id));if(!its.length)return;
+    m.append(el('h2',null,esc(sec.title)));
+    if(sec.lead)m.append(el('p','lead',esc(sec.lead)));
+    const ul=el('ul','items '+sec.kind);
+    its.forEach(i=>{const li=el('li','item'+(agent&&!isIn(i.id)?' out':''));
+      if(sec.kind==='prep'){const dn=isDone(i);
+        if(agent){const mk=el('button','mark '+(dn?'ok':'open'),dn?'✓':'');mk.type='button';mk.setAttribute('aria-label',dn?'Mark not done':'Mark done');mk.title=dn?'Tap to mark not done':'Tap to mark done';
+          mk.onclick=()=>{doneOv[i.id]=!dn;save();render()};li.append(mk)}
+        else li.append(el('div','mark '+(dn?'ok':'open'),dn?'✓':''))}
+      else if(sec.kind==='next'||sec.kind==='needed'){const dn=isDone(i);if(dn)li.classList.add('isdone');
+        if(agent){const mk=el('button','mark '+(dn?'ok':''),dn?'✓':MARK[sec.kind]);mk.type='button';mk.setAttribute('aria-label',dn?'Mark not done':'Mark done');mk.title=dn?'Tap to mark not done':'Tap to mark done';
+          mk.onclick=()=>{doneOv[i.id]=!dn;save();render()};li.append(mk)}
+        else li.append(el('div','mark '+(dn?'ok':''),dn?'✓':MARK[sec.kind]))}
+      else li.append(el('div','mark',MARK[sec.kind]||'•'));
+      const b=el('div','body');
+      if(i.date)b.append(el('div','date',esc(i.date)));
+      const tx=el('div',null);const sp=el('span','txt',esc(txt(i)));tx.append(sp);
+      if(i.who)tx.append(el('span','who',esc(i.who)));
+      if(agent){sp.contentEditable='true';sp.spellcheck=true;sp.title='Tap to change the wording';sp.setAttribute('aria-label','Item wording, editable');
+        sp.addEventListener('focus',()=>{editing=true});
+        sp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();sp.blur()}});
+        sp.addEventListener('blur',()=>{editing=false;const v=sp.innerText.replace(/\s+/g,' ').trim();if(v&&v!==txt(i)){textOv[i.id]=v===i.text?undefined:v;if(textOv[i.id]===undefined)delete textOv[i.id];save();if(textOv[i.id])spellFix(v,y=>{textOv[i.id]=y});buildMessages()}})}
+      b.append(tx);
+      if(agent)b.append(noteBox(i.id,i.note));
+      const x=incBox(i.id);if(x)b.append(x);
+      li.append(b);ul.append(li)});
+    m.append(ul)});
+  const P=D.price;
+  if(P&&P.lead&&(showAll||isIn(P.id))){
+    const sec=el('section',agent&&!isIn(P.id)?'out':'');sec.append(el('h2',null,esc(P.title)));
+    if(agent&&!isIn(P.id))sec.append(el('div','agentonly','Not sending to '+D.client.first));
+    sec.append(el('p','lead',esc(P.lead)));
+    const ul=el('ul','why');P.why.forEach(w=>ul.append(el('li',null,esc(w))));sec.append(ul);
+    if(P.ladder){
+    sec.append(el('div','small','Price ladder in $5 per sq ft steps. Outlined: list price and the plan steps.'));
+    const lad=el('div','ladder');const plan=P.steps.map(s=>s.price);
+    for(let p=P.ladder[0];p>=P.ladder[1];p-=5){const v=p*D.listing.sqft;const near=plan.find(x=>Math.abs(x-v)<6000);
+      const r=el('div','rung'+(Math.abs(v-D.listing.price)<6000?' list':'')+(near&&Math.abs(v-D.listing.price)>=6000?(near===P.floor?' floor':' plan'):''));
+      r.append(el('b',null,money(near?near:v)),el('small',null,'$'+p+' / sq ft'+(Math.abs(v-D.listing.price)<6000?' · list':near?' · plan':'')));lad.append(r)}
+    sec.append(lad)}
+    const t1=el('div','tbl');t1.innerHTML='<table><tr><th>When</th><th>Price</th><th>$/sq ft</th><th>What</th></tr>'+P.steps.map(s=>'<tr><td>'+esc(s.when)+'</td><td>'+money(s.price)+'</td><td>'+psf(s.price)+'</td><td style="white-space:normal">'+esc(s.what)+'</td></tr>').join('')+'</table>';sec.append(t1);
+    if(P.comps&&P.comps.length){const t2=el('div','tbl');t2.innerHTML='<table><tr><th>'+esc(P.compTitle||'Unit')+'</th><th>Closed</th><th>Price</th><th>$/sq ft</th><th>Days on market</th></tr>'+P.comps.map(c=>'<tr'+(c.hi?' class="hi"':'')+'><td>'+esc(c.unit)+'</td><td>'+esc(c.date)+'</td><td>'+money(c.price)+'</td><td>'+psf(c.price)+'</td><td>'+esc(c.dom)+'</td></tr>').join('')+'</table>';sec.append(t2)}
+    const b=incBox(P.id);if(b)sec.append(b);
+    m.append(sec)}
+  $('takeSec').hidden=!agent;$('sendSec').hidden=!agent;$('modebar').hidden=MODE!=='agent';$('hint').hidden=!agent;
+  $('src').textContent=agent?'Sources: '+D.sources:'Figures as of '+D.asOf+'.'+(D.clientSrc?' '+D.clientSrc:'');
+  $('sendBar').hidden=MODE!=='agent';
+  if(MODE==='agent')buildMessages();
+}
+
+function trafficBox(agent){const T=D.traffic,box=el('div','trf');const p=s=>{const a=s.split('-');return Date.UTC(+a[0],+a[1]-1,+a[2])};const days=(a,b)=>Math.max(1,Math.round((p(b)-p(a))/864e5));
+  const md=s=>new Date(p(s)).toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'});const usd=n=>'$'+Number(n).toLocaleString('en-US');
+  const ch=pchanges.slice().sort((a,b)=>a.d.localeCompare(b.d));const last=ch[ch.length-1];
+  box.append(el('h3',null,'Views and saves around price changes'));
+  const pct=x=>(x>=0?'+':'')+Math.round(x*100)+'%';
+  let rows='';Object.keys(T.snaps).forEach(site=>{const sn=T.snaps[site].slice().sort((a,b)=>a.d.localeCompare(b.d));const L=sn[sn.length-1];if(!L){rows+='<tr><td>'+esc(site)+'</td><td>Not calculated yet</td><td>—</td><td>—</td><td style="white-space:normal">Fills in once Back At You starts reporting</td></tr>';return}
+    let since='No price change yet';
+    if(last){const pre=sn.filter(x=>x.d<=last.d).pop(),post=sn.filter(x=>x.d>last.d).pop();
+      if(!pre)since='No reading from before the change';else if(!post)since='Waiting for the first reading after the change';
+      else{const rb=pre.v/days(T.live,pre.d),ra=(post.v-pre.v)/days(pre.d,post.d),sb=pre.s/days(T.live,pre.d),sa=(post.s-pre.s)/days(pre.d,post.d);
+        since='Views a day '+pct(rb?ra/rb-1:0)+', saves a day '+(sb?pct(sa/sb-1):(sa>0?'up from none':'no change'))}}
+    rows+='<tr><td>'+esc(site)+'</td><td>'+L.v.toLocaleString('en-US')+'</td><td>'+L.s+'</td><td>'+(L.v/days(T.live,L.d)).toFixed(0)+'</td><td style="white-space:normal">'+esc(since)+'</td></tr>'});
+  const tb=el('div','tbl');tb.innerHTML='<table><tr><th>Site</th><th>Views</th><th>Saves</th><th>Views a day</th><th>Since the last price change</th></tr>'+rows+'</table>';box.append(tb);
+  box.append(el('p','small',last?('Last price change: '+usd(last.p)+' on '+md(last.d)+'. The change compares views and saves a day after it with the pace before it.'):('Starting point: '+usd(T.price)+'. When the price changes, this compares views and saves a day after the change with the pace before it.')));
+  if(agent){const r=el('div','btns');const di=el('input','sin');di.type='date';di.setAttribute('aria-label','Price change date');const pi=el('input','sin');pi.placeholder='New price';pi.setAttribute('aria-label','New price');pi.inputMode='numeric';
+    const add=el('button','btn ghost','Log a price change');add.type='button';add.onclick=()=>{const pv=Number(String(pi.value).replace(/[^0-9]/g,''));if(!di.value||!pv)return;pchanges.push({d:di.value,p:pv});save();render()};r.append(di,pi,add);box.append(r);
+    if(ch.length)box.append(el('p','small','Logged: '+ch.map(c=>usd(c.p)+' on '+md(c.d)).join(' · ')))}
+  return box}
+function picked(sec){const s=D.sections.find(x=>x.id===sec);return s&&s.items?s.items.filter(i=>isIn(i.id)):[]}
+function buildMessages(){
+  const L=[];const st=D.stats.filter(s=>isIn(s.id)&&s.id!=='st-price');
+  L.push(D.client.greet+',','',`Here's where things stand on ${D.listing.address} as of ${D.asOf}.`,'');
+  if(st.length){L.push('THE NUMBERS');st.forEach(s=>L.push(`• ${s.label}: ${s.value} (${s.sub})`));L.push('')}
+  const add=(title,sec)=>{const p=picked(sec);if(!p.length)return;L.push(title);p.forEach(i=>L.push('• '+(i.date?i.date+': ':'')+txt(i)));L.push('')};
+  D.emailSections.forEach(x=>add(x[0],x[1]));
+  if(D.price&&D.price.lead&&isIn(D.price.id)){L.push('PRICE');L.push('• '+D.price.lead);L.push('')}
+  if(D.questions&&isIn('questions')){L.push('QUESTIONS FOR YOU');D.questions.forEach((q,k)=>{L.push((k+1)+'. '+q.q);q.opts.forEach(o=>L.push('   • '+o))});L.push('You can tap your answers on your page, or just reply to this email.','')}
+  if(D.clientUrl)L.push('Your Listing Tracker for '+D.listing.address+', with photos and links:',D.clientUrl,'');
+  L.push('Any questions at all, just call or text me.','','Thanks,','Frank Lucido','Sine & Monaghan Realtors','586-419-7607','frankjr@fjlucido.com');
+  const email=L.join('\n');const subj=`${D.listing.address} update, ${D.asOfShort}`;
+  $('emailText').textContent='To: '+D.client.email+'\nCc: '+D.agentEmail+'\nSubject: '+subj+'\n\n'+email;
+  $('mailLink').href='mailto:'+D.client.email+'?cc='+encodeURIComponent(D.agentEmail)+'&subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(email);
+  const S=[D.client.greet+', quick update on '+D.listing.short+':'];
+  D.sms.forEach(x=>{if(x.ids.every(isIn))S.push(x.text)});
+  if(D.clientUrl)S.push('Your Listing Tracker for '+D.listing.address+': '+D.clientUrl);
+  if(D.questions&&isIn('questions'))S.push('I have '+D.questions.length+' quick question'+(D.questions.length===1?'':'s')+' for you at the top of the page; you can tap your answers there.');
+  S.push('- Frank, 586-419-7607');
+  const sms=S.join(' ');$('smsText').textContent=sms;const smsHref='sms:'+(D.client.cell||'')+'?&body='+encodeURIComponent(sms);$('smsLink').href=smsHref;
+  $('sbText').textContent='Send to '+D.client.first+' by text';$('sbText').href=smsHref;
+  $('sbEmail').textContent='Send to '+D.client.first+' by email';$('sbEmail').href=$('mailLink').href;
+  $('sbTestT').href='sms:'+D.agentCell+'?&body='+encodeURIComponent(sms);
+  $('sbTestE').href='mailto:'+D.agentEmail+'?subject='+encodeURIComponent('TEST: '+subj)+'&body='+encodeURIComponent(email);
+  $('sbNote').textContent='Email copies you ('+D.agentEmail+'). Text opens Messages with the update written out'+(D.client.cell?'.':'; pick '+D.client.first+' as the recipient.')+' Both use what\'s set to send right now.';
+  $('clientLink').innerHTML=D.clientUrl?D.client.first+'\'s page: <a href="'+esc(D.clientUrl)+'" target="_blank" rel="noopener">'+esc(D.clientUrl)+'</a> · it shows the items as of the last update; ask Claude to refresh it after you change checkmarks.':D.client.first+'\'s page link is added after it is published.';
+}
+function copy(id){const t=$(id).textContent;const done=()=>{$('copied').textContent='Copied. Paste it into your email or text.'};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,()=>sel(id))}else sel(id)}
+function sel(id){const r=document.createRange();r.selectNodeContents($(id));const s=getSelection();s.removeAllRanges();s.addRange(r);$('copied').textContent='Text selected. Use Copy from your device menu.'}
+
+$('mClient').textContent=D.client.first+"'s view";
+$('hint').innerHTML='Each item has one switch: <b>Sending to '+esc(D.client.first)+'</b> (goes on their page and in the update) or <b>Not sending to '+esc(D.client.first)+'</b>. Tap it to flip. Tap any line or light-blue note to change it, and tap a circle or arrow to mark it done. Light-blue notes never go to the seller.';
+$('sendTitle').textContent='Send '+D.client.first+"'s update";
+$('photos').innerHTML=(D.photos||[]).map(p=>'<img src="'+esc(p[0])+'" alt="'+esc(p[1])+'">').join('');
+
+let db=null,ref=null,saving=false,pending=false,takeTimer=null;
+let lastLocal=0;
+async function save(){lastLocal=Date.now();if(!ref)return;if(saving){pending=true;return}saving=true;
+  try{await ref.set({data:dataOv,inc:inc,take:$('take').value,done:doneOv,text:textOv,notes:noteOv,shows:shows,initfb:initfb,rec:rec,pchanges:pchanges,contract:contract,sentlog:D.sentlog||[],updated:new Date().toISOString()});$('sync').textContent='Checkmarks saved to all your devices'}
+  catch(e){$('sync').textContent='Could not save just now; your changes stay on this screen'}
+  saving=false;lastLocal=Date.now();if(pending){pending=false;save()}}
+
+if(MODE==='agent'){
+  $('mAgent').onclick=()=>{view='agent';$('mAgent').setAttribute('aria-pressed','true');$('mClient').setAttribute('aria-pressed','false');render()};
+  $('mClient').onclick=()=>{view='client';$('mClient').setAttribute('aria-pressed','true');$('mAgent').setAttribute('aria-pressed','false');render()};
+  $('cpEmail').onclick=()=>copy('emailText');$('cpSms').onclick=()=>copy('smsText');
+  $('take').addEventListener('input',()=>{clearTimeout(takeTimer);takeTimer=setTimeout(save,900)});
+}
+render();
+if(MODE==='agent'&&window.claude&&claude.use){
+  const t=setTimeout(()=>{$('sync').textContent='Showing the default checkmarks (saved ones not reachable yet)'},10000);
+  claude.use('db').then(d=>{if(!d){clearTimeout(t);$('sync').textContent='Checkmarks save on this screen only';return}
+    db=d;ref=db.doc('report/state');
+    ref.onSnapshot(s=>{if(!s.metadata.fromCache)clearTimeout(t);if(s.exists){if(saving||pending||(s.metadata&&s.metadata.hasPendingWrites)||Date.now()-lastLocal<3000)return;const v=s.data();if(v.data&&typeof v.data==='object'){dataOv=v.data;applyData(dataOv)}if(v.inc)inc=Object.assign(defaults(),v.inc);if(v.done)doneOv=Object.assign({},v.done);if(v.text)textOv=Object.assign({},v.text);if(v.notes)noteOv=Object.assign({},v.notes);if(Array.isArray(v.shows))shows=v.shows;if(Array.isArray(v.pchanges))pchanges=v.pchanges;if(v.contract&&typeof v.contract==='object')contract=Object.assign({on:false,offers:[],terms:{},steps:{}},v.contract);if(Array.isArray(v.sentlog))D.sentlog=v.sentlog;if(v.rec&&typeof v.rec==='object'&&v.rec.text)rec=Object.assign({asof:'',text:''},v.rec);if(typeof v.initfb==='string')initfb=v.initfb;if(editing)return;if(typeof v.take==='string'&&document.activeElement!==$('take'))$('take').value=v.take;render()}
+      $('sync').textContent='Checkmarks saved to all your devices'},e=>{clearTimeout(t);$('sync').textContent='Checkmarks save on this screen only'});
+  })} else if(MODE==='agent'){$('sync').textContent='Checkmarks save on this screen only'}
+
+document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href^="sms:"],a[href^="mailto:"]');if(!a)return;
+  a.target='_blank';a.rel='noopener';
+  const h=a.getAttribute('href');const isSms=h.startsWith('sms:');const m=h.match(/[?&]body=([^&]*)/);let body='';try{body=m?decodeURIComponent(m[1]):''}catch(_){}
+  if(body){const msg=isSms?'Opening Messages. If it does not open on this device, the text is copied: paste it into a new message.':'Opening your email. If it does not open, the message is copied: paste it into a new email.';
+    const fb=()=>{try{const ta=document.createElement('textarea');ta.value=body;ta.setAttribute('readonly','');ta.style.cssText='position:fixed;top:-1000px;opacity:0';document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,body.length);const ok=document.execCommand('copy');ta.remove();if(ok)toast(msg)}catch(_){}};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(body).then(()=>toast(msg)).catch(fb)}else fb()}
+},true);
+</script>
+
+
+</body></html>
