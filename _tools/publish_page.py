@@ -1,6 +1,6 @@
 """Put a client page on Frank's site as a home-screen app.
 Usage: python3 _tools/publish_page.py SLUG PAGE.html ASSET_DIR "Home-screen name" "Card title" "Card description" [icon_photo.jpg]
-- copies the page to SLUG/index.html and its img/, photos/, plans/ folders,
+- keeps existing icons unless an icon photo is given; copies the page to SLUG/index.html and its img/, photos/, plans/ folders,
 - adds the home-screen app bits (manifest, icon) and the text-message card tags (SLUG/og.jpg from make_link.py).
 No service worker: the page always loads the latest copy, so it updates as Frank updates."""
 import sys, os, shutil, json, html, re
@@ -12,6 +12,7 @@ for sub in ('img','photos','plans'):
     s=os.path.join(assets,sub)
     if os.path.isdir(s): shutil.copytree(s,os.path.join(d,sub),dirs_exist_ok=True)
 for sz,name in ((180,'apple-touch-icon.png'),(192,'icon-192.png'),(512,'icon-512.png')):
+    if os.path.exists(os.path.join(d,name)) and len(sys.argv)<=7: continue
     im=ImageOps.fit(Image.open(iconsrc).convert('RGB'),(sz,sz),centering=(0.5,0.35)); im.save(os.path.join(d,name))
 url='https://franklucidohomes.github.io/trades/'+slug+'/'
 json.dump({"name":appname,"short_name":appname,"start_url":"./","scope":"./","display":"standalone","background_color":"#ffffff","theme_color":"#0d2a5e",
