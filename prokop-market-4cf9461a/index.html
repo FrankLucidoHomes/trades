@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Market Report"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#0d2a5e"><meta name="robots" content="noindex">
+<meta property="og:title" content="Your market report · Grosse Pointes &amp; St. Clair Shores"><meta property="og:description" content="Prepared for Adam Prokop · Frank Lucido, REALTOR®"><meta property="og:image" content="https://franklucidohomes.github.io/trades/prokop-market-4cf9461a/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:url" content="https://franklucidohomes.github.io/trades/prokop-market-4cf9461a/"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Adam Prokop · Buyer Market Report</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* One branded sheet. Agent copy shows everything; client copy (#client-copy) hides anything marked .agent. */
+:root{color-scheme:light;--navy:#12305a;--blue:#1f6fd0;--soft:#e4eefb;--ink:#0f2238;--mute:#5b6b7f;--line:#d6dee8;--bg:#eef2f7;--good:#1c8a52;--bad:#b83a3a;
+  --display:"Space Grotesk","Segoe UI",system-ui,sans-serif;--body:"Inter","Segoe UI",system-ui,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.45 var(--body)}
+.tools{max-width:8.5in;margin:0 auto;padding:12px 14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tools a,.tools button{font:600 14px var(--body);border-radius:9px;padding:9px 13px;cursor:pointer;text-decoration:none;border:1px solid var(--blue);background:#fff;color:var(--blue)}
+.tools button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.tools span{color:var(--mute);font-size:13px;flex:1 1 200px}
+.share{max-width:8.5in;margin:0 auto 12px;background:#fff;border:2px solid var(--blue);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.share b{font:700 16px var(--display)}.share span{font-size:13.5px;color:var(--mute)}
+.share .row{display:flex;flex-wrap:wrap;gap:8px}
+.share a,.share button{font:600 14px var(--body);border-radius:9px;padding:10px 13px;cursor:pointer;text-decoration:none;border:1px solid var(--blue);background:#fff;color:var(--blue)}
+.share a.go{background:var(--blue);color:#fff}
+.share pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:13.5px/1.45 var(--body);background:var(--soft);border-radius:10px;padding:9px 11px}
+.sheet{max-width:8.5in;margin:0 auto 28px;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.head{background:var(--navy);color:#fff;padding:18px 22px;display:flex;gap:14px;align-items:center}
+.head img.logo{width:54px;height:54px;background:#fff;border-radius:10px;padding:5px;flex:none}
+.head .t{flex:1;min-width:0}
+.head .k{font:600 12px var(--body);letter-spacing:1.4px;text-transform:uppercase;opacity:.85}
+.head h1{font:700 25px/1.15 var(--display);margin:2px 0 3px;text-wrap:balance}
+.head p{margin:0;font-size:14px;opacity:.9}
+.tag{display:none;background:#b83a3a;color:#fff;font:700 11px var(--body);letter-spacing:1px;text-transform:uppercase;border-radius:6px;padding:4px 8px;flex:none}
+body:not(.client) .tag{display:inline-block}
+.body{padding:18px 22px;display:flex;flex-direction:column;gap:16px}
+h2{font:700 13px var(--display);letter-spacing:1px;text-transform:uppercase;color:var(--blue);margin:0 0 6px}
+p{margin:0}
+.lead{font-size:17px;line-height:1.45;border-left:5px solid var(--blue);background:var(--soft);padding:12px 14px;border-radius:0 10px 10px 0}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.fact{border:1px solid var(--line);border-radius:10px;padding:11px 12px}
+.fact b{display:block;font:700 22px var(--display);color:var(--navy);font-variant-numeric:tabular-nums}
+.fact span{font-size:13px;color:var(--mute)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.box{border:1px solid var(--line);border-radius:10px;padding:11px 12px}
+.box h3{font:700 15px var(--display);margin:0 0 6px}
+.box.up{border-top:4px solid var(--good)} .box.dn{border-top:4px solid var(--bad)}
+ul{margin:0;padding-left:18px} li{margin:3px 0}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font:600 11.5px var(--body);letter-spacing:.5px;text-transform:uppercase;color:var(--mute);border-bottom:2px solid var(--navy)}
+tr.me td{background:var(--soft);font-weight:700}
+table.fit th{white-space:normal}
+table.ex{font-size:13px} table.ex th,table.ex td{padding:5px 4px;vertical-align:top} table.ex small{display:block;font-size:11.5px;font-weight:600}
+small.pos{color:var(--good)} small.neg{color:var(--bad)}
+.story{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.step{border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:10px;padding:9px 10px;display:flex;flex-direction:column;gap:1px}
+.step b{font:600 11.5px var(--body);letter-spacing:.4px;text-transform:uppercase;color:var(--mute)}
+.step span{font-size:13px}.step strong{font:700 18px var(--display);color:var(--navy);font-variant-numeric:tabular-nums}
+.step.end{border-top-color:var(--bad);background:var(--soft)}
+td.pos{color:var(--good);font-weight:600} td.neg{color:var(--bad);font-weight:600}
+ol.plan{margin:0;padding-left:20px} ol.plan li{margin:5px 0}
+.agentbox{border:2px solid var(--navy);border-radius:10px;padding:13px 14px;display:flex;flex-direction:column;gap:10px}
+.small{font-size:12.5px;color:var(--mute)}
+.foot{border-top:3px solid var(--navy);padding:14px 22px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.foot img.me{width:62px;height:62px;border-radius:50%;object-fit:cover;flex:none}
+.foot .who{flex:1 1 220px;min-width:0}
+.foot .who b{font:700 17px var(--display);display:block}
+.foot .who span{font-size:13.5px;color:var(--mute);display:block}
+.foot .star{display:flex;align-items:center;gap:8px;font:600 13px var(--body);color:var(--navy)}
+.foot .star img{height:50px}
+body.client .agent{display:none!important}
+@media (max-width:640px){.facts,.cols{grid-template-columns:1fr}.story{grid-template-columns:1fr 1fr}.step.end{grid-column:1/-1}.head{flex-wrap:wrap}.head h1{font-size:21px}.body,.foot,.head{padding-left:14px;padding-right:14px}}
+@page{size:letter;margin:.4in}
+@media print{body{background:#fff}.tools,.share{display:none}.sheet{border:0;border-radius:0;margin:0;max-width:none}.head,.lead,tr.me td,.tag{-webkit-print-color-adjust:exact;print-color-adjust:exact}.box,.fact,.agentbox,table,.story{break-inside:avoid}.step.end{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+.cta{border:2px solid var(--blue);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:9px;background:var(--soft)}
+.cta b{font:700 18px var(--display);display:block}.cta span{font-size:14px;color:var(--mute)}
+.cta a.big{display:block;text-align:center;background:var(--blue);color:#fff;font:700 18px var(--display);text-decoration:none;border-radius:10px;padding:14px 16px}
+.cta a.big.ghost{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+table.vs td:first-child{white-space:normal;min-width:150px}
+table.vs td,table.vs th{white-space:normal;vertical-align:top}
+table.vs th:nth-child(n+2),table.vs td:nth-child(n+2){width:30%}
+td small{display:block;font-size:11.5px;color:var(--mute);font-weight:500}
+td:first-child small{display:inline;margin-left:6px;background:var(--soft);color:var(--navy);border-radius:5px;padding:1px 6px;font-weight:600}
+.share a.go{background:var(--blue);color:#fff}
+@media print{.cta{-webkit-print-color-adjust:exact;print-color-adjust:exact;break-inside:avoid}tr{break-inside:avoid}}
+
+</style>
+</head>
+<body class="client">
+
+<div class="sheet">
+  <div class="head">
+    <img class="logo" src="img/lucido-logo.png" alt="Lucido">
+    <div class="t">
+      <div class="k">Buyer market report</div>
+      <h1>The Grosse Pointes and St. Clair Shores, $300,000 to $430,000</h1>
+      <p>Prepared for Adam Prokop · November 14, 2026</p>
+    </div>
+    
+  </div>
+
+  <div class="body">
+    <div class="cta">
+      <div><b>Your home search</b><span>Single-family homes · 2+ bedrooms · $300,000 to $430,000 · St. Clair Shores and all five Grosse Pointes</span></div>
+      <a id="openSearch" class="big" target="_blank" rel="noopener" href="tel:5864197607">Open your home search →</a>
+      <span class="small" id="searchNote">Opens your private Collaboration Center with Frank: mark homes as Favorite, Possible or Rejected and send Frank a comment on any of them.</span>
+    </div>
+
+    <div>
+      <h2>Your price range today, side by side</h2>
+      <div class="scroll"><table class="vs">
+        <tr><th></th><th>The Grosse Pointes</th><th>St. Clair Shores</th></tr>
+        <tr><td>Homes for sale right now</td><td><strong>34</strong></td><td><strong>29</strong></td></tr>
+        <tr><td>Under contract (pending)</td><td>8</td><td>4</td></tr>
+        <tr><td>Sold in the last 12 months</td><td>169 <small>189 the year before</small></td><td>141 <small>138 the year before</small></td></tr>
+        <tr><td>Average sold price per sq ft</td><td><strong>$232</strong> <small>$227 the year before, up 2.2%</small></td><td><strong>$234</strong> <small>$224 the year before, up 4.5%</small></td></tr>
+        <tr><td>Average asking price per sq ft, homes for sale now</td><td>$232</td><td>$235</td></tr>
+        <tr><td>Middle sold price</td><td>$365,000 <small>$234/sq ft on the typical 1,561 sq ft home</small></td><td>$325,000 <small>$221/sq ft on the typical 1,470 sq ft home</small></td></tr>
+        <tr><td>Sold price compared with asking</td><td>99.7%</td><td>100.9%</td></tr>
+        <tr><td>Sold above asking</td><td>70 of 169 (41%)</td><td>74 of 141 (52%)</td></tr>
+        <tr><td><b>Days on market</b>, homes that sold (middle)</td><td><b>15 days</b></td><td><b>13 days</b></td></tr>
+        <tr><td><b>Days on market</b>, homes for sale now (middle)</td><td><b>57 days</b></td><td><b>44 days</b></td></tr>
+        <tr><td>Supply at the current pace of sales</td><td>2.4 months</td><td>2.5 months</td></tr>
+      </table></div>
+      <p class="small" style="margin-top:6px">Last 12 months is November 14, 2025 to November 14, 2026. Sold figures cover homes that sold between $300,000 and $430,000. Days are cumulative days on market.</p>
+    </div>
+
+    <div>
+      <h2>What the numbers say</h2>
+      <div class="facts">
+        <div class="fact"><b>63 homes</b><span>for sale right now in your range: 34 in the Grosse Pointes and 29 in St. Clair Shores</span></div>
+        <div class="fact"><b>About 2 weeks</b><span>is how long the homes that sold were on the market (middle of 15 days in the Pointes, 13 in St. Clair Shores)</span></div>
+        <div class="fact"><b>$232 to $234</b><span>per square foot is the average sold price in both areas over the last 12 months</span></div>
+      </div>
+    </div>
+
+    <div>
+      <h2>Inside the Grosse Pointes, last 12 months</h2>
+      <div class="scroll"><table>
+        <tr><th>City</th><th>For sale now</th><th>Sold</th><th>Middle sold price</th><th>Avg sold $/sq ft</th><th><b>Days</b></th></tr>
+        <tr><td>Grosse Pointe Woods</td><td>18</td><td>102</td><td>$350,000</td><td>$224</td><td><b>14</b></td></tr>
+        <tr><td>Grosse Pointe Farms</td><td>11</td><td>36</td><td>$386,250</td><td>$254</td><td><b>16</b></td></tr>
+        <tr><td>Grosse Pointe Park</td><td>2</td><td>19</td><td>$375,000</td><td>$227</td><td><b>23</b></td></tr>
+        <tr><td>Grosse Pointe (City)</td><td>3</td><td>11</td><td>$361,000</td><td>$246</td><td><b>27</b></td></tr>
+        <tr><td>Grosse Pointe Shores</td><td>0</td><td>1</td><td>$401,900</td><td>$161</td><td><b>10</b></td></tr>
+        <tr class="me"><td>St. Clair Shores</td><td>29</td><td>141</td><td>$325,000</td><td>$234</td><td><b>13</b></td></tr>
+      </table></div>
+      <p class="small" style="margin-top:6px">Days is the middle number of cumulative days on market for the homes that sold.</p>
+    </div>
+
+    <div>
+      <h2>What your range buys at the average sold price per square foot</h2>
+      <div class="scroll"><table class="fit">
+        <tr><th>Price</th><th>The Grosse Pointes at $232/sq ft</th><th>St. Clair Shores at $234/sq ft</th></tr>
+        <tr><td>$300,000</td><td>about 1,290 sq ft</td><td>about 1,280 sq ft</td></tr>
+        <tr><td>$350,000</td><td>about 1,510 sq ft</td><td>about 1,500 sq ft</td></tr>
+        <tr><td>$400,000</td><td>about 1,720 sq ft</td><td>about 1,710 sq ft</td></tr>
+        <tr><td>$430,000</td><td>about 1,850 sq ft</td><td>about 1,840 sq ft</td></tr>
+      </table></div>
+    </div>
+
+    <div>
+      <h2>For sale right now: the Grosse Pointes (34)</h2>
+      <div class="scroll"><table><tr><th>Address</th><th>City</th><th>Asking</th><th>$/sq ft</th><th>Sq ft</th><th>Bed/bath</th><th>Built</th><th><b>Days</b></th></tr><tr><td>2142 Hawthorne Road</td><td>GP Woods</td><td>$304,900</td><td>$301</td><td>1,014</td><td>3/2</td><td>1958</td><td><b>51</b></td></tr><tr><td>2118 Lennon Street</td><td>GP Woods</td><td>$309,000</td><td>$194</td><td>1,594</td><td>3/2</td><td>1950</td><td><b>113</b></td></tr><tr><td>1725 Brys Drive</td><td>GP Woods</td><td>$310,000</td><td>$223</td><td>1,391</td><td>3/1</td><td>1940</td><td><b>21</b></td></tr><tr><td>1846 Stanhope Street</td><td>GP Woods</td><td>$310,000</td><td>$249</td><td>1,246</td><td>3/3</td><td>1946</td><td><b>114</b></td></tr><tr><td>1210 Roslyn Road</td><td>GP Woods</td><td>$315,000</td><td>$240</td><td>1,311</td><td>3/1</td><td>1949</td><td><b>0</b></td></tr><tr><td>1258 Roslyn Road</td><td>GP Woods</td><td>$315,000</td><td>$247</td><td>1,274</td><td>3/1</td><td>1950</td><td><b>30</b></td></tr><tr><td>1268 Brys Drive</td><td>GP Woods</td><td>$315,000</td><td>$222</td><td>1,416</td><td>3/2</td><td>1950</td><td><b>120</b></td></tr><tr><td>1790 Kenmore Drive</td><td>GP Woods</td><td>$325,000</td><td>$254</td><td>1,278</td><td>3/2</td><td>1950</td><td><b>56</b></td></tr><tr><td>1301 Brys Drive</td><td>GP Woods</td><td>$325,000</td><td>$177</td><td>1,834</td><td>4/2</td><td>1948</td><td><b>9</b></td></tr><tr><td>1465 Maryland Street</td><td>GP Park</td><td>$325,000</td><td>$193</td><td>1,680</td><td>3/2</td><td>1924</td><td><b>413</b></td></tr><tr><td>1992 Oxford Road</td><td>GP Woods</td><td>$325,000</td><td>$203</td><td>1,599</td><td>3/3</td><td>1947</td><td><b>17</b></td></tr><tr><td>1630 Fairholme Road</td><td>GP Woods</td><td>$335,000</td><td>$203</td><td>1,651</td><td>3/3</td><td>1950</td><td><b>10</b></td></tr><tr><td>877 Fisher Road</td><td>GP City</td><td>$349,900</td><td>$290</td><td>1,205</td><td>3/2</td><td>1948</td><td><b>35</b></td></tr><tr><td>434 Moross Road</td><td>GP Farms</td><td>$349,999</td><td>$187</td><td>1,870</td><td>4/3</td><td>1946</td><td><b>109</b></td></tr><tr><td>306 Ridge Road</td><td>GP Farms</td><td>$350,000</td><td>$244</td><td>1,432</td><td>3/2</td><td>1951</td><td><b>101</b></td></tr><tr><td>20631 Wedgewood Drive</td><td>GP Woods</td><td>$358,000</td><td>$188</td><td>1,901</td><td>3/2</td><td>1954</td><td><b>143</b></td></tr><tr><td>479 Belanger Street</td><td>GP Farms</td><td>$369,000</td><td>$191</td><td>1,930</td><td>3/3</td><td>1935</td><td><b>12</b></td></tr><tr><td>470 Allard Road</td><td>GP Farms</td><td>$370,000</td><td>$202</td><td>1,831</td><td>3/2</td><td>1947</td><td><b>109</b></td></tr><tr><td>433 Maison Road</td><td>GP Farms</td><td>$370,000</td><td>$197</td><td>1,875</td><td>3/2</td><td>1942</td><td><b>138</b></td></tr><tr><td>1803 Littlestone Road</td><td>GP Woods</td><td>$380,000</td><td>$215</td><td>1,770</td><td>3/2</td><td>1950</td><td><b>57</b></td></tr><tr><td>1160 Torrey Road</td><td>GP Woods</td><td>$384,900</td><td>$268</td><td>1,435</td><td>3/2</td><td>1952</td><td><b>84</b></td></tr><tr><td>451 Moran Road</td><td>GP Farms</td><td>$385,000</td><td>$260</td><td>1,483</td><td>3/2</td><td>1949</td><td><b>157</b></td></tr><tr><td>168 Kerby Road</td><td>GP Farms</td><td>$389,900</td><td>$198</td><td>1,968</td><td>4/2</td><td>1900</td><td><b>85</b></td></tr><tr><td>476 Touraine Road</td><td>GP Farms</td><td>$389,900</td><td>$260</td><td>1,500</td><td>4/3</td><td>1939</td><td><b>92</b></td></tr><tr><td>19985 E William Court</td><td>GP Woods</td><td>$399,000</td><td>$242</td><td>1,647</td><td>3/3</td><td>1955</td><td><b>3</b></td></tr><tr><td>907 University Place <small>Accepting backups</small></td><td>GP City</td><td>$399,900</td><td>$208</td><td>1,922</td><td>3/2</td><td>1924</td><td><b>101</b></td></tr><tr><td>1220 Elford Court</td><td>GP Woods</td><td>$399,900</td><td>$250</td><td>1,602</td><td>3/2</td><td>1948</td><td><b>63</b></td></tr><tr><td>1023 Wayburn Street</td><td>GP Park</td><td>$400,000</td><td>$206</td><td>1,938</td><td>4/2</td><td>1923</td><td><b>7</b></td></tr><tr><td>628 Notre Dame Street</td><td>GP City</td><td>$414,000</td><td>$370</td><td>1,120</td><td>3/2</td><td>1925</td><td><b>96</b></td></tr><tr><td>470 McKinley Avenue</td><td>GP Farms</td><td>$419,000</td><td>$254</td><td>1,648</td><td>3/2</td><td>1936</td><td><b>12</b></td></tr><tr><td>215 McKinley Avenue</td><td>GP Farms</td><td>$420,000</td><td>$238</td><td>1,766</td><td>3/2</td><td>1940</td><td><b>11</b></td></tr><tr><td>1870 Prestwick Road <small>Accepting backups</small></td><td>GP Woods</td><td>$425,000</td><td>$203</td><td>2,097</td><td>3/3</td><td>1957</td><td><b>24</b></td></tr><tr><td>1837 Brys Drive</td><td>GP Woods</td><td>$429,000</td><td>$262</td><td>1,637</td><td>4/2</td><td>1928</td><td><b>26</b></td></tr><tr><td>475 Bournemouth Circle <small>Coming soon</small></td><td>GP Farms</td><td>$429,900</td><td>$239</td><td>1,796</td><td>4/2</td><td>1948</td><td><b>4</b></td></tr></table></div>
+    </div>
+    <div>
+      <h2>For sale right now: St. Clair Shores (29)</h2>
+      <div class="scroll"><table><tr><th>Address</th><th>Asking</th><th>$/sq ft</th><th>Sq ft</th><th>Bed/bath</th><th>Built</th><th><b>Days</b></th></tr><tr><td>28004 Shock Street</td><td>$309,000</td><td>$309</td><td>1,000</td><td>3/2</td><td>1956</td><td><b>1</b></td></tr><tr><td>22905 Violet Street</td><td>$309,900</td><td>$207</td><td>1,498</td><td>3/2</td><td>1928</td><td><b>44</b></td></tr><tr><td>22832 Violet Street</td><td>$309,900</td><td>$273</td><td>1,137</td><td>3/2</td><td>1964</td><td><b>8</b></td></tr><tr><td>22515 Wildwood Road <small>Coming soon</small></td><td>$309,900</td><td>$200</td><td>1,548</td><td>3/2</td><td>1951</td><td><b>0</b></td></tr><tr><td>22707 Playview Street <small>Contingent, still showing</small></td><td>$309,900</td><td>$281</td><td>1,101</td><td>3/2</td><td>1955</td><td><b>44</b></td></tr><tr><td>24050 Lakewood Street</td><td>$309,999</td><td>$196</td><td>1,581</td><td>3/2</td><td>1967</td><td><b>236</b></td></tr><tr><td>21819 Edgewood Street <small>Accepting backups</small></td><td>$310,000</td><td>$181</td><td>1,713</td><td>3/2</td><td>1950</td><td><b>44</b></td></tr><tr><td>22640 Lakeland Street</td><td>$315,000</td><td>$175</td><td>1,800</td><td>4/2</td><td>1984</td><td><b>4</b></td></tr><tr><td>22502 Beach Street</td><td>$319,900</td><td>$194</td><td>1,650</td><td>3/2</td><td>1940</td><td><b>156</b></td></tr><tr><td>19801 Alger Street</td><td>$319,900</td><td>$228</td><td>1,400</td><td>3/4</td><td>1953</td><td><b>14</b></td></tr><tr><td>31229 Share Street</td><td>$324,900</td><td>$302</td><td>1,077</td><td>3/2</td><td>1956</td><td><b>225</b></td></tr><tr><td>21405 Raymond Street <small>Contingent, still showing</small></td><td>$324,900</td><td>$257</td><td>1,265</td><td>3/3</td><td>1958</td><td><b>24</b></td></tr><tr><td>22935 Allor Street</td><td>$324,999</td><td>$133</td><td>2,443</td><td>3/4</td><td>1958</td><td><b>217</b></td></tr><tr><td>22628 O&#x27;Connor Street <small>Accepting backups</small></td><td>$325,000</td><td>$352</td><td>922</td><td>3/2</td><td>1952</td><td><b>86</b></td></tr><tr><td>20900 Bayside Street</td><td>$329,900</td><td>$253</td><td>1,304</td><td>3/2</td><td>1961</td><td><b>160</b></td></tr><tr><td>22823 Visnaw Street</td><td>$339,900</td><td>$151</td><td>2,250</td><td>4/3</td><td>1927</td><td><b>169</b></td></tr><tr><td>22327 Martin Road</td><td>$349,000</td><td>$189</td><td>1,849</td><td>3/2</td><td>1992</td><td><b>121</b></td></tr><tr><td>22801 Garfield Street</td><td>$349,900</td><td>$268</td><td>1,304</td><td>3/2</td><td>1956</td><td><b>5</b></td></tr><tr><td>30007 Maison Street</td><td>$349,900</td><td>$141</td><td>2,479</td><td>4/2</td><td>1952</td><td><b>169</b></td></tr><tr><td>22623 Barton Street</td><td>$364,900</td><td>$281</td><td>1,300</td><td>2/2</td><td>1952</td><td><b>15</b></td></tr><tr><td>32432 Robeson Street</td><td>$367,000</td><td>$191</td><td>1,917</td><td>4/4</td><td>2006</td><td><b>38</b></td></tr><tr><td>22807 Newberry Street</td><td>$373,400</td><td>$196</td><td>1,903</td><td>4/3</td><td>1969</td><td><b>15</b></td></tr><tr><td>23137 S Rosedale Court</td><td>$374,999</td><td>$235</td><td>1,593</td><td>3/2</td><td>1974</td><td><b>37</b></td></tr><tr><td>22482 Beach Street</td><td>$375,000</td><td>$193</td><td>1,939</td><td>4/2</td><td>1957</td><td><b>136</b></td></tr><tr><td>26360 Jefferson Avenue</td><td>$399,999</td><td>$286</td><td>1,400</td><td>3/2</td><td>1954</td><td><b>191</b></td></tr><tr><td>22501 E 11 Mile Road</td><td>$399,999</td><td>$342</td><td>1,170</td><td>3/2</td><td>1955</td><td><b>59</b></td></tr><tr><td>22319 Ridgeway Street</td><td>$405,000</td><td>$238</td><td>1,700</td><td>3/3</td><td>2026</td><td><b>129</b></td></tr><tr><td>22461 Revere Street</td><td>$412,000</td><td>$342</td><td>1,204</td><td>3/3</td><td>1954</td><td><b>26</b></td></tr><tr><td>22445 Lange Street</td><td>$419,000</td><td>$229</td><td>1,831</td><td>3/2</td><td>1956</td><td><b>191</b></td></tr></table></div>
+    </div>
+
+    <div>
+      <h2>Under contract right now (12)</h2>
+      <div class="scroll"><table><tr><th>Address</th><th>City</th><th>Asking</th><th>$/sq ft</th><th>Sq ft</th><th>Bed/bath</th><th><b>Days</b></th></tr><tr><td>543 Vernier Road</td><td>GP Woods</td><td>$417,900</td><td>$169</td><td>2,470</td><td>3/3</td><td><b>52</b></td></tr><tr><td>1111 S Renaud Road</td><td>GP Woods</td><td>$399,950</td><td>$284</td><td>1,408</td><td>3/3</td><td><b>18</b></td></tr><tr><td>1412 Brys Drive</td><td>GP Woods</td><td>$360,000</td><td>$248</td><td>1,453</td><td>4/2</td><td><b>17</b></td></tr><tr><td>424 McKinley Avenue</td><td>GP Farms</td><td>$380,000</td><td>$219</td><td>1,738</td><td>4/2</td><td><b>7</b></td></tr><tr><td>387 Mount Vernon Street</td><td>GP Farms</td><td>$369,900</td><td>$302</td><td>1,225</td><td>3/3</td><td><b>0</b></td></tr><tr><td>19832 Edshire Lane</td><td>GP Woods</td><td>$425,000</td><td>$182</td><td>2,341</td><td>4/3</td><td><b>0</b></td></tr><tr><td>488 Bournemouth Road</td><td>GP Farms</td><td>$405,000</td><td>$225</td><td>1,802</td><td>3/2</td><td><b>65</b></td></tr><tr><td>456 Manor Street</td><td>GP Farms</td><td>$369,000</td><td>$234</td><td>1,577</td><td>3/1</td><td><b>41</b></td></tr><tr><td>21626 Statler Street</td><td>St. Clair Shores</td><td>$314,900</td><td>$219</td><td>1,441</td><td>3/3</td><td><b>32</b></td></tr><tr><td>23118 Greencrest Street</td><td>St. Clair Shores</td><td>$315,000</td><td>$230</td><td>1,372</td><td>3/3</td><td><b>13</b></td></tr><tr><td>21213 Parkway Street</td><td>St. Clair Shores</td><td>$324,900</td><td>$224</td><td>1,448</td><td>3/2</td><td><b>19</b></td></tr><tr><td>29800 Maison Street</td><td>St. Clair Shores</td><td>$365,000</td><td>$152</td><td>2,400</td><td>3/2</td><td><b>30</b></td></tr></table></div>
+      <p class="small" style="margin-top:6px">Asking prices shown. Sold prices are not public until a home closes.</p>
+    </div>
+
+    <div>
+      <h2>Most recent sales: the Grosse Pointes</h2>
+      <div class="scroll"><table><tr><th>Address</th><th>City</th><th>Sold</th><th>$/sq ft</th><th>Asking</th><th>% of asking</th><th>Sq ft</th><th>Closed</th><th><b>Days</b></th></tr><tr><td>1438 Hawthorne Road</td><td>GP Woods</td><td>$402,000</td><td>$204</td><td>$399,900 <small>$203/sq ft</small></td><td class="pos">101%</td><td>1,970</td><td>11/10</td><td><b>7</b></td></tr><tr><td>1196 Hawthorne Road</td><td>GP Woods</td><td>$350,000</td><td>$234</td><td>$355,000 <small>$237/sq ft</small></td><td class="">99%</td><td>1,495</td><td>11/6</td><td><b>77</b></td></tr><tr><td>1025 Beaconsfield Avenue</td><td>GP Park</td><td>$407,000</td><td>$193</td><td>$415,000 <small>$197/sq ft</small></td><td class="">98%</td><td>2,110</td><td>11/6</td><td><b>97</b></td></tr><tr><td>679 Neff Road</td><td>GP City</td><td>$375,000</td><td>$226</td><td>$389,900 <small>$235/sq ft</small></td><td class="neg">96%</td><td>1,660</td><td>11/5</td><td><b>90</b></td></tr><tr><td>19925 E William Court</td><td>GP Woods</td><td>$335,000</td><td>$122</td><td>$399,000 <small>$145/sq ft</small></td><td class="neg">84%</td><td>2,756</td><td>11/4</td><td><b>39</b></td></tr><tr><td>2100 Fleetwood Drive</td><td>GP Woods</td><td>$331,000</td><td>$212</td><td>$319,000 <small>$204/sq ft</small></td><td class="pos">104%</td><td>1,561</td><td>10/30</td><td><b>9</b></td></tr><tr><td>473 Calvin Avenue</td><td>GP Farms</td><td>$340,000</td><td>$227</td><td>$350,000 <small>$233/sq ft</small></td><td class="">97%</td><td>1,500</td><td>10/30</td><td><b>57</b></td></tr><tr><td>402 Roland Court</td><td>GP Farms</td><td>$400,000</td><td>$190</td><td>$400,000 <small>$190/sq ft</small></td><td class="">100%</td><td>2,106</td><td>10/29</td><td><b>11</b></td></tr><tr><td>1466 Hampton Road</td><td>GP Woods</td><td>$335,000</td><td>$216</td><td>$335,000 <small>$216/sq ft</small></td><td class="">100%</td><td>1,550</td><td>10/28</td><td><b>0</b></td></tr><tr><td>1930 Lochmoor Boulevard</td><td>GP Woods</td><td>$375,875</td><td>$217</td><td>$375,000 <small>$217/sq ft</small></td><td class="pos">100%</td><td>1,732</td><td>10/23</td><td><b>37</b></td></tr><tr><td>1645 Blairmoor Court</td><td>GP Woods</td><td>$365,000</td><td>$202</td><td>$399,000 <small>$221/sq ft</small></td><td class="neg">91%</td><td>1,806</td><td>10/23</td><td><b>178</b></td></tr><tr><td>1595 Ford Court</td><td>GP Woods</td><td>$389,900</td><td>$216</td><td>$389,900 <small>$216/sq ft</small></td><td class="">100%</td><td>1,802</td><td>10/22</td><td><b>4</b></td></tr></table></div>
+    </div>
+    <div>
+      <h2>Most recent sales: St. Clair Shores</h2>
+      <div class="scroll"><table><tr><th>Address</th><th>Sold</th><th>$/sq ft</th><th>Asking</th><th>% of asking</th><th>Sq ft</th><th>Closed</th><th><b>Days</b></th></tr><tr><td>23909 Talbot Street</td><td>$315,000</td><td>$187</td><td>$319,900 <small>$190/sq ft</small></td><td class="">98%</td><td>1,684</td><td>11/9</td><td><b>50</b></td></tr><tr><td>20200 Shores Street</td><td>$300,000</td><td>$203</td><td>$289,900 <small>$196/sq ft</small></td><td class="pos">103%</td><td>1,477</td><td>11/9</td><td><b>62</b></td></tr><tr><td>22444 Wildwood Street</td><td>$312,500</td><td>$260</td><td>$325,000 <small>$271/sq ft</small></td><td class="neg">96%</td><td>1,200</td><td>11/6</td><td><b>79</b></td></tr><tr><td>22587 Kipling Street</td><td>$323,500</td><td>$294</td><td>$299,000 <small>$272/sq ft</small></td><td class="pos">108%</td><td>1,100</td><td>11/4</td><td><b>11</b></td></tr><tr><td>29901 Rosebriar Street</td><td>$305,000</td><td>$305</td><td>$279,900 <small>$280/sq ft</small></td><td class="pos">109%</td><td>1,000</td><td>11/3</td><td><b>6</b></td></tr><tr><td>21223 Briar Court</td><td>$320,000</td><td>$178</td><td>$324,980 <small>$181/sq ft</small></td><td class="">98%</td><td>1,794</td><td>11/3</td><td><b>72</b></td></tr><tr><td>22430 Lakeland Street</td><td>$315,000</td><td>$168</td><td>$315,000 <small>$168/sq ft</small></td><td class="">100%</td><td>1,879</td><td>10/23</td><td><b>6</b></td></tr><tr><td>22404 Edgewood Street</td><td>$310,000</td><td>$238</td><td>$290,000 <small>$223/sq ft</small></td><td class="pos">107%</td><td>1,301</td><td>10/23</td><td><b>8</b></td></tr></table></div>
+    </div>
+
+    <div class="cta">
+      <div><b>Run your own numbers</b><span>Monthly payment and cash to close for any price, city and down payment.</span></div>
+      <a class="big ghost" target="_blank" rel="noopener" href="https://franklucidohomes.github.io/trades/estimator/">Open the Buyer Cost Estimator →</a>
+    </div>
+
+    <p class="small">Source: MiRealSource MLS, pulled November 14, 2026. Single-family homes in Grosse Pointe Woods, Farms, Park, City and Shores, and St. Clair Shores, priced or sold from $300,000 to $430,000. Square feet are above grade, and price per square foot is figured on above-grade square feet only. Days are cumulative days on market. Information is deemed reliable but not guaranteed.</p>
+  </div>
+
+  <div class="foot">
+    <img class="me" src="img/frank.jpg" alt="Frank Lucido">
+    <div class="who"><b>Frank Lucido</b><span>REALTOR® · Sine &amp; Monaghan</span><span>586-419-7607 · frankjr@fjlucido.com</span></div>
+    <div class="star"><img src="img/all-stars.png" alt="Hour Media Real Estate All-Stars"><span>Frank Lucido<br>Top 5% · Hour Detroit<br>Real Estate All-Star</span></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var b=document.getElementById("openSearch"), note=document.getElementById("searchNote"), k="";
+  var h=(location.hash||"").replace("#","");
+  var ok=/^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$/;
+  try{ if(ok.test(h)) localStorage.setItem("search-key",h); k=ok.test(h)?h:(localStorage.getItem("search-key")||""); }catch(e){ k=ok.test(h)?h:""; }
+  if(ok.test(k)){ b.href="https://mimls.paragonrels.com/CCR/SebastianLucido/Account/AutoLogon/"+k; }
+  else{ b.textContent="Call or text Frank for your search link: 586-419-7607"; note.textContent="Your private search link comes in Frank's message to you."; }
+})();
+</script>
+</body>
+</html>
