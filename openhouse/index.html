@@ -65,8 +65,10 @@ p{margin:0;color:#40536b}
 </div>
 
 <div class="card" id="done" hidden>
-  <h2>One more tap</h2>
-  <p>Your text to Frank is ready. If Messages didn't open, use one of these:</p>
+  <h2 id="ty">Thank you!</h2>
+  <p id="tymsg">Thanks for coming to see the home today. I'm glad to answer any questions, and I'll send you updates and homes like it nearby. Frank, 586-419-7607</p>
+  <a class="btn line" id="listing2" href="#" target="_blank" rel="noopener" hidden>See this home's listing</a>
+  <p><b>One more tap:</b> your sign-in text to Frank is ready. If Messages didn't open, use one of these:</p>
   <a class="btn" id="sms" href="#">Open the text to Frank</a>
   <a class="btn line" id="mail" href="#">Email it instead</a>
 </div>
@@ -103,6 +105,10 @@ $('go').addEventListener('click',function(){
     'Heard: '+$('heard').value,'Timeline: '+$('time').value,'Sell first: '+st.sell].join('\n');
   var sms='sms:+15864197607?&body='+encodeURIComponent(body);
   $('sms').href=sms;$('mail').href='mailto:frankjr@fjlucido.com?subject='+encodeURIComponent('Open house sign-in'+(street?': '+street:''))+'&body='+encodeURIComponent(body);
+  $('ty').textContent='Thank you, '+name.split(/\s+/)[0]+'!';
+  if(street)$('tymsg').textContent=$('tymsg').textContent.replace('the home',street);
+  if(st.agent==='Yes')$('tymsg').textContent=$('tymsg').textContent.replace(", and I'll send you updates and homes like it nearby",'');
+  if(!$('listing').hidden){$('listing2').href=$('listing').href;$('listing2').hidden=false}
   $('form').hidden=true;$('done').hidden=false;window.scrollTo(0,0);location.href=sms;
 });
 })();
