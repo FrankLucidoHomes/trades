@@ -27,5 +27,8 @@ if '<!doctype' not in h[:200].lower():
 else:
     h=re.sub(r'(<meta charset=[^>]*>)',lambda m:m.group(1)+head,h,count=1)
 h=h.replace('<meta name="claude','<meta name="x-claude')
+# client pages get a short "keep this on your phone" note above the footer (works only on the live site, not inside Claude)
+SAVE='<p class="small" style="margin:26px 0 0;padding:10px 12px;border:1px solid #d6dce6;border-radius:6px"><b>Keep this page on your phone:</b> iPhone, tap Share then &ldquo;Add to Home Screen.&rdquo; Android, tap &#8942; then &ldquo;Add to Home screen.&rdquo; It updates on its own whenever I update it.</p>'
+if 'Add to Home Screen' not in h and '<footer class="footer">' in h: h=h.replace('<footer class="footer">',SAVE+'<footer class="footer">',1)
 open(os.path.join(d,'index.html'),'w').write(h)
 print(url)
