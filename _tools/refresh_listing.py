@@ -32,7 +32,7 @@ def build(D, state, old_client):
     D["comments"] = [c for c in (state.get("comments") or []) if inc.get("cm-" + str(c.get("id")))]
     if isinstance(state.get("contract"), dict): D["contract"] = state["contract"]
     if isinstance(state.get("pchanges"), list) and D.get("traffic"): D["traffic"]["changes"] = state["pchanges"]
-    if isinstance(state.get("rec"), dict) and state["rec"].get("text"): D["rec"] = state["rec"]
+    if isinstance(state.get("rec"), dict) and (state["rec"].get("text") or state["rec"].get("moved")): D["rec"] = state["rec"]
     for s in D.get("sections", []):
         for i in s.get("items", []):
             if i["id"] in (state.get("done") or {}): i["done"] = bool(state["done"][i["id"]])
