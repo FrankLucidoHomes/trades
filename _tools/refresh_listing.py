@@ -6,7 +6,7 @@ The new seller page = the agent page's code in client mode + the agent's data wi
 everything he marked "Do not send" removed. Never includes his notes, take, price opinion or agent-only items."""
 import json, re, sys
 DRE = r'(<script id="data" type="application/json">)(.*?)(</script>)'
-DATA_KEYS = ['stats','traffic','links','media','showNote','questions','qTitle','qLead','photos','plans','planSrc','showings']
+DATA_KEYS = ['stats','traffic','links','media','showNote','questions','qTitle','qLead','photos','plans','planSrc','showings','market']
 def data(h): return json.loads(re.search(DRE, h, re.S).group(2).replace('<\\/', '</'))
 def defaults(D):
     o = {s["id"]: s.get("inc", False) for s in D.get("stats", [])}
@@ -28,6 +28,12 @@ def build(D, state, old_client):
     for k in ("initfb",):
         if isinstance(state.get(k), str): D[k] = state[k]
     if isinstance(state.get("sentlog"), list): D["sentlog"] = state["sentlog"]
+    # market groups: only the ones he marked Send; never his private note
+    if isinstance(D.get("market"), dict):
+        M = dict(D["market"]); M.pop("note", None)
+        M["tiers"] = [t for t in M.get("tiers", []) if inc.get("mk-" + str(t.get("id")))]
+        if M["tiers"]: D["market"] = M
+        else: D.pop("market", None)
     # Frank's dated comments: only the ones he marked Send
     D["comments"] = [c for c in (state.get("comments") or []) if inc.get("cm-" + str(c.get("id")))]
     if isinstance(state.get("contract"), dict): D["contract"] = state["contract"]
