@@ -6,7 +6,7 @@ The new seller page = the agent page's code in client mode + the agent's data wi
 everything he marked "Do not send" removed. Never includes his notes, take, price opinion or agent-only items."""
 import json, re, sys
 DRE = r'(<script id="data" type="application/json">)(.*?)(</script>)'
-DATA_KEYS = ['stats','traffic','links','media','showNote','questions','qTitle','qLead','photos','plans','planSrc','showings','market']
+DATA_KEYS = ['stats','traffic','links','media','showNote','questions','qTitle','qLead','photos','plans','planSrc','showings','market','estimates']
 def data(h): return json.loads(re.search(DRE, h, re.S).group(2).replace('<\\/', '</'))
 def defaults(D):
     o = {s["id"]: s.get("inc", False) for s in D.get("stats", [])}
@@ -28,6 +28,11 @@ def build(D, state, old_client):
     for k in ("initfb",):
         if isinstance(state.get(k), str): D[k] = state[k]
     if isinstance(state.get("sentlog"), list): D["sentlog"] = state["sentlog"]
+    # website value estimates: only if Frank marked Send; never his private note
+    if isinstance(D.get("estimates"), dict) and inc.get("estimates"):
+        E = dict(D["estimates"]); E.pop("note", None); D["estimates"] = E
+    else:
+        D.pop("estimates", None)
     # market groups: only the ones he marked Send; never his private note
     if isinstance(D.get("market"), dict):
         M = dict(D["market"]); M.pop("note", None)
