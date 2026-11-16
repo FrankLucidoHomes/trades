@@ -28,6 +28,8 @@ def build(D, state, old_client):
     for k in ("initfb",):
         if isinstance(state.get(k), str): D[k] = state[k]
     if isinstance(state.get("sentlog"), list): D["sentlog"] = state["sentlog"]
+    # Frank's dated comments: only the ones he marked Send
+    D["comments"] = [c for c in (state.get("comments") or []) if inc.get("cm-" + str(c.get("id")))]
     if isinstance(state.get("contract"), dict): D["contract"] = state["contract"]
     if isinstance(state.get("pchanges"), list) and D.get("traffic"): D["traffic"]["changes"] = state["pchanges"]
     if isinstance(state.get("rec"), dict) and state["rec"].get("text"): D["rec"] = state["rec"]
