@@ -16,7 +16,7 @@ document.addEventListener('click',function(e){
 function answerOf(q){
   var g=q.querySelector('.ch');
   if(g) return [].map.call(g.querySelectorAll('button.on'),function(b){return b.textContent.trim()}).join(', ');
-  return [].map.call(q.querySelectorAll('input,select,textarea'),function(el){return el.value.trim()}).filter(Boolean).join(' to ');
+  return [].map.call(q.querySelectorAll('input,select,textarea'),function(el){return el.value.trim()}).filter(Boolean).join(q.getAttribute('data-join')||', ');
 }
 
 $('go').addEventListener('click',function(){
