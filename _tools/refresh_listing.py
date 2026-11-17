@@ -48,6 +48,8 @@ def build(D, state, old_client):
         for i in s.get("items", []):
             if i["id"] in (state.get("done") or {}): i["done"] = bool(state["done"][i["id"]])
             if (state.get("text") or {}).get(i["id"]): i["text"] = state["text"][i["id"]]
+    # wording Frank typed over headings, numbers and table cells (keys start with "x:")
+    D["textOv"] = {k: v for k, v in (state.get("text") or {}).items() if str(k).startswith("x:") and v}
     D["include"] = inc
     for s in D.get("sections", []):
         if s.get("kind") == "table": s.pop("note", None)
