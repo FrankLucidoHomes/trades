@@ -9,7 +9,7 @@
 <title>529 Lake Shore · Pricing Opinion</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
-/* One branded sheet. Agent copy shows everything; client copy (#client-copy) hides anything marked .agent. */
+
 :root{color-scheme:light;--navy:#12305a;--blue:#1f6fd0;--soft:#e4eefb;--ink:#0f2238;--mute:#5b6b7f;--line:#d6dee8;--bg:#eef2f7;--good:#1c8a52;--bad:#b83a3a;
   --display:"Space Grotesk","Segoe UI",system-ui,sans-serif;--body:"Inter","Segoe UI",system-ui,sans-serif}
 *{box-sizing:border-box}
@@ -19,6 +19,12 @@ body{background:var(--bg);color:var(--ink);font:15px/1.45 var(--body)}
 .tools a,.tools button{font:600 14px var(--body);border-radius:9px;padding:9px 13px;cursor:pointer;text-decoration:none;border:1px solid var(--blue);background:#fff;color:var(--blue)}
 .tools button[aria-pressed="true"]{background:var(--blue);color:#fff}
 .tools span{color:var(--mute);font-size:13px;flex:1 1 200px}
+.share{max-width:8.5in;margin:0 auto 12px;background:#fff;border:2px solid var(--blue);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.share b{font:700 16px var(--display)}.share span{font-size:13.5px;color:var(--mute)}
+.share .row{display:flex;flex-wrap:wrap;gap:8px}
+.share a,.share button{font:600 14px var(--body);border-radius:9px;padding:10px 13px;cursor:pointer;text-decoration:none;border:1px solid var(--blue);background:#fff;color:var(--blue)}
+.share a.go{background:var(--blue);color:#fff}
+.share pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:13.5px/1.45 var(--body);background:var(--soft);border-radius:10px;padding:9px 11px}
 .sheet{max-width:8.5in;margin:0 auto 28px;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .head{background:var(--navy);color:#fff;padding:18px 22px;display:flex;gap:14px;align-items:center}
 .head img.logo{width:54px;height:54px;background:#fff;border-radius:10px;padding:5px;flex:none}
@@ -69,10 +75,18 @@ ol.plan{margin:0;padding-left:20px} ol.plan li{margin:5px 0}
 body.client .agent{display:none!important}
 @media (max-width:640px){.facts,.cols{grid-template-columns:1fr}.story{grid-template-columns:1fr 1fr}.step.end{grid-column:1/-1}.head{flex-wrap:wrap}.head h1{font-size:21px}.body,.foot,.head{padding-left:14px;padding-right:14px}}
 @page{size:letter;margin:.4in}
-@media print{body{background:#fff}.tools{display:none}.sheet{border:0;border-radius:0;margin:0;max-width:none}.head,.lead,tr.me td,.tag{-webkit-print-color-adjust:exact;print-color-adjust:exact}.box,.fact,.agentbox,table,.story{break-inside:avoid}.step.end{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+@media print{body{background:#fff}.tools,.share{display:none}.sheet{border:0;border-radius:0;margin:0;max-width:none}.head,.lead,tr.me td,.tag{-webkit-print-color-adjust:exact;print-color-adjust:exact}.box,.fact,.agentbox,table,.story{break-inside:avoid}.step.end{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+[data-e][contenteditable]{cursor:text;border-radius:3px}[data-e][contenteditable]:hover{outline:1px dashed #9db0cf}[data-e][contenteditable]:focus{outline:2px solid #1d4f9c;background:#fffbe6}
+[data-e].ed{box-shadow:inset 0 -2px 0 #e0b100}
+#edHint{max-width:880px;margin:10px auto 0;padding:10px 14px;border:1px solid #d6dce6;border-radius:8px;background:#f5f8fd;font-size:13.5px;display:none}
+#edHint b{color:#0d2a5e}#edHint button{margin-left:8px}
+#edToast{position:fixed;left:50%;bottom:76px;transform:translateX(-50%);background:#12305a;color:#fff;padding:10px 16px;border-radius:8px;font-size:14px;z-index:2147483001;max-width:92vw}
+@media print{#edHint,#edToast{display:none!important}[data-e].ed{box-shadow:none}}
 </style>
 </head>
 <body class="client">
+
+
 
 <div class="sheet">
 <div class="head">
@@ -137,9 +151,9 @@ body.client .agent{display:none!important}
 <div>
 <h2>The plan I'd suggest</h2>
 <ol class="plan">
-<li><strong>Price to attract.</strong> Position the home where it's likely to draw the most buyers in the first two weeks, when a listing tends to get its best attention.</li>
+<li><strong>Price to attract.</strong> Position the home where it's likely to draw the most buyers in the first two weeks, when a listing tends to get its best attention. I think anywhere under $2 million is good. </li>
 <li><strong>Sell the view first.</strong> Lead every photo set, video and headline with the lake, then the address, then the house.</li>
-<li><strong>Show what's new.</strong> List every improvement since the August purchase so buyers can see how the home differs from the one offered last summer.</li>
+<li><strong>Show what's new.</strong> Not necessary. Bought well, so can sell it higher.</li>
 <li><strong>Watch the first 14 days.</strong> Views, saves and showings are usually a good early read on whether the price is working. If they're strong, my preference would be to hold the price.</li>
 </ol>
 </div>
@@ -151,6 +165,7 @@ body.client .agent{display:none!important}
 <div class="star"><img alt="Hour Media Real Estate All-Stars" src="img/all-stars.png"/><span>Frank Lucido<br/>Top 5% · Hour Detroit<br/>Real Estate All-Star</span></div>
 </div>
 </div>
+
 
 </body>
 </html>
