@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Home Search · Frank Lucido</title>
+<meta name="description" content="Tell Frank what you are looking for and get new listings by email. Frank Lucido, REALTOR®, Sine & Monaghan.">
+<meta property="og:title" content="Home Search · Frank Lucido">
+<meta property="og:description" content="Tell Frank what you are looking for and get new listings by email. Top 5% · Hour Detroit Real Estate All-Star.">
+<meta property="og:image" content="https://franklucidohomes.github.io/trades/apple-touch-icon.png">
+<meta property="og:url" content="https://franklucidohomes.github.io/trades/search/">
+<meta property="og:type" content="website">
+<meta name="apple-mobile-web-app-title" content="Frank Lucido">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png"><link rel="icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../signin.css">
+</head><body data-form="buyer-search"><div class="in">
+<div class="top"><img class="lg" src="../img/lucido-logo.png" alt="Lucido"><img class="me" src="../img/frank.jpg" alt="Frank Lucido"><div class="who"><b>Frank Lucido</b>REALTOR® · Sine &amp; Monaghan<br>Top 5% · Hour Detroit All-Star</div><img class="st" src="../img/all-stars.png" alt="Hour Detroit Real Estate All-Stars"></div>
+
+<div class="card">
+  <h1>Let's find your home</h1>
+  <p>Tell me what you're looking for and I'll set up a search that emails you new listings that fit. Save my contact card so you have my number.</p>
+  <a class="btn navy" href="../openhouse/frank-lucido.vcf">Save Frank's contact card</a>
+</div>
+
+<div class="card" id="form">
+  <h2>What are you looking for?</h2>
+  <div class="f"><label for="name">First and last name</label><input id="name" autocomplete="name" autocapitalize="words"></div>
+  <div class="f"><label for="phone">Cell phone</label><input id="phone" type="tel" inputmode="tel" autocomplete="tel"></div>
+  <div class="f"><label for="email">Email</label><input id="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none"></div>
+  <div class="f" data-q="When are you looking to buy?"><span class="lab">When are you looking to buy?</span><div class="ch"><button type="button">Right away</button><button type="button">3 to 6 months</button><button type="button">6 to 12 months</button><button type="button">Just looking</button></div></div>
+  <div class="f" data-q="Price range"><span class="lab">Price range</span><div class="two"><select aria-label="Lowest price"><option value="">No minimum</option><option>$100K</option><option>$150K</option><option>$200K</option><option>$250K</option><option>$300K</option><option>$350K</option><option>$400K</option><option>$450K</option><option>$500K</option><option>$600K</option><option>$700K</option><option>$800K</option><option>$900K</option><option>$1M</option><option>$1.25M</option><option>$1.5M</option><option>$2M</option><option>$3M</option></select><select aria-label="Highest price"><option value="">No maximum</option><option>$100K</option><option>$150K</option><option>$200K</option><option>$250K</option><option>$300K</option><option>$350K</option><option>$400K</option><option>$450K</option><option>$500K</option><option>$600K</option><option>$700K</option><option>$800K</option><option>$900K</option><option>$1M</option><option>$1.25M</option><option>$1.5M</option><option>$2M</option><option>$3M</option></select></div></div>
+  <div class="f" data-q="Areas"><span class="lab">Areas <span class="hint">Pick as many as you like</span></span><div class="ch" data-multi><button type="button">Grosse Pointe Woods</button><button type="button">Grosse Pointe Farms</button><button type="button">Grosse Pointe Park</button><button type="button">Grosse Pointe City</button><button type="button">Grosse Pointe Shores</button><button type="button">St. Clair Shores</button><button type="button">Harper Woods</button><button type="button">Macomb</button><button type="button">Royal Oak</button><button type="button">Birmingham</button><button type="button">Bloomfield Hills</button><button type="button">Troy</button></div></div>
+  <div class="f" data-q="Other areas"><label for="other">Other areas</label><input id="other" autocapitalize="words" placeholder="City or neighborhood"></div>
+  <div class="f" data-q="Bedrooms"><span class="lab">Bedrooms</span><div class="ch"><button type="button">Any</button><button type="button">2+</button><button type="button">3+</button><button type="button">4+</button></div></div>
+  <div class="f" data-q="Bathrooms"><span class="lab">Bathrooms</span><div class="ch"><button type="button">Any</button><button type="button">2+</button><button type="button">3+</button><button type="button">4+</button></div></div>
+  <div class="f" data-q="Size"><span class="lab">Size</span><div class="ch"><button type="button">Any</button><button type="button">1,000+ sq ft</button><button type="button">1,500+ sq ft</button><button type="button">2,000+ sq ft</button><button type="button">2,500+ sq ft</button><button type="button">3,000+ sq ft</button></div></div>
+  <div class="f" data-q="Home type"><span class="lab">Home type</span><div class="ch"><button type="button">House</button><button type="button">Condo</button><button type="button">Either</button></div></div>
+  <label class="ok"><input id="consent" type="checkbox" checked> <span>It's OK for Frank Lucido to text and email me about homes that fit my search. Reply STOP at any time to opt out.</span></label>
+  <input id="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <div class="err" id="err" role="alert"></div>
+  <button class="btn" id="go" type="button">Start my search</button>
+</div>
+
+<div class="card" id="done" hidden>
+  <h2 id="ty">Thank you!</h2>
+  <p>I've got your answers and I'm setting up your search. New listings that fit will come to your email. If anything changes, just let me know. Frank, 586-419-7607</p>
+  <div id="fallback" hidden style="display:flex;flex-direction:column;gap:13px">
+    <p><b>One more tap:</b> I couldn't send this automatically, so it's ready as a text to Frank instead.</p>
+    <a class="btn" id="sms" href="#">Open the text to Frank</a>
+    <a class="btn line" id="mail" href="#">Email it instead</a>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Frank's Local Trades</h2>
+  <p>My list of trusted local pros: plumbers, roofers, painters, handymen and more. Open it, then save it to your Home Screen so it's handy all the time.</p>
+  <a class="btn line" href="https://franklucidohomes.github.io/trades/" target="_blank" rel="noopener">Open Local Trades</a>
+</div>
+
+<p class="foot"><b style="color:#fff">Frank Lucido</b> · REALTOR®, Sine &amp; Monaghan<br><a href="tel:5864197607">586-419-7607</a> · <a href="mailto:frankjr@fjlucido.com">frankjr@fjlucido.com</a> · <a href="https://www.franklucidohomes.com">franklucidohomes.com</a></p>
+</div>
+<script src="../signin.js"></script>
+</body></html>

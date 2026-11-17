@@ -1,0 +1,35 @@
+*{box-sizing:border-box}
+body{margin:0;font:17px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#12305a;color:#0f2238}
+.in{max-width:560px;margin:0 auto;padding:16px 14px 28px;display:flex;flex-direction:column;gap:14px}
+.top{display:flex;align-items:center;gap:12px;color:#fff}
+.top .lg{height:46px;width:auto;background:#fff;border-radius:8px;padding:4px 7px}
+.top .me{width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.8)}
+.top .who{flex:1;min-width:0;font-size:14px;line-height:1.3;color:#c8d6ee}
+.top .who b{display:block;font-size:20px;color:#fff}
+.top .st{height:54px;width:auto}
+.card{background:#fff;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:13px}
+h1{margin:0;font-size:26px;line-height:1.15;color:#12305a}
+h2{margin:0;font-size:20px;color:#12305a}
+p{margin:0;color:#40536b}
+.btn{display:block;width:100%;text-align:center;text-decoration:none;font-family:inherit;font-weight:700;font-size:19px;line-height:1.2;padding:15px;border-radius:12px;border:0;background:#1f6fd0;color:#fff;cursor:pointer}
+.btn.navy{background:#12305a}
+.btn.line{background:#fff;color:#12305a;border:2px solid #12305a}
+.btn:disabled{opacity:.6}
+.f{display:flex;flex-direction:column;gap:5px}
+.f label,.f .lab{font-size:15px;font-weight:700;color:#12305a}
+.f .hint{font-size:13px;font-weight:500;color:#5b6b80}
+.f input,.f select,.f textarea{font-family:inherit;font-weight:500;font-size:18px;padding:12px;border:2px solid #c3cfdd;border-radius:10px;background:#fff;color:#0f2238;width:100%}
+.f textarea{min-height:84px;resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{outline:0;border-color:#1f6fd0}
+.two{display:flex;gap:8px}
+.two>*{flex:1;min-width:0}
+.ch{display:flex;gap:8px;flex-wrap:wrap}
+.ch button{flex:1 1 auto;font-family:inherit;font-weight:700;font-size:16px;padding:12px 10px;border-radius:10px;border:2px solid #c3cfdd;background:#fff;color:#12305a;cursor:pointer}
+.ch button.on{background:#12305a;border-color:#12305a;color:#fff}
+.err{color:#b83a3a;font-weight:700}
+.ok{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#40536b}
+.ok input{width:22px;height:22px;flex:none;margin-top:1px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.foot{text-align:center;color:#c8d6ee;font-size:14px}
+.foot a{color:#fff}
+[hidden]{display:none!important}
