@@ -36,6 +36,9 @@ p{margin:0;color:#40536b}
 .ch button{flex:1;font-family:inherit;font-weight:700;font-size:17px;padding:12px 8px;border-radius:10px;border:2px solid #c3cfdd;background:#fff;color:#12305a;cursor:pointer}
 .ch button.on{background:#12305a;border-color:#12305a;color:#fff}
 .err{color:#b83a3a;font-weight:700}
+.ok{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#40536b}
+.ok input{width:22px;height:22px;flex:none;margin-top:1px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .foot{text-align:center;color:#c8d6ee;font-size:14px}
 .foot a{color:#fff}
 [hidden]{display:none!important}
@@ -59,18 +62,21 @@ p{margin:0;color:#40536b}
   <div class="f"><label for="heard">How did you hear about this open house?</label><select id="heard"><option value="">Choose one</option><option>Yard sign</option><option>Zillow</option><option>Realtor.com or Homes.com</option><option>Facebook or Instagram</option><option>Friend or neighbor</option><option>Frank invited me</option><option>Other</option></select></div>
   <div class="f"><label for="time">When are you looking to buy?</label><select id="time"><option value="">Choose one</option><option>Right away</option><option>3 to 6 months</option><option>6 to 12 months</option><option>Just looking</option></select></div>
   <div class="f"><span class="lab">Do you need to sell a home first?</span><div class="ch" data-g="sell"><button type="button" data-v="Yes">Yes</button><button type="button" data-v="No">No</button><button type="button" data-v="Maybe">Maybe</button></div></div>
+  <label class="ok"><input id="consent" type="checkbox" checked> <span>It's OK for Frank Lucido to text and email me about this home and others like it. Reply STOP at any time to opt out.</span></label>
+  <input id="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
   <div class="err" id="err" role="alert"></div>
-  <button class="btn" id="go" type="button">Send my sign-in to Frank</button>
-  <p style="font-size:14px">This opens a text to Frank with your answers filled in. Tap send and you're signed in.</p>
+  <button class="btn" id="go" type="button">Submit my sign-in</button>
 </div>
 
 <div class="card" id="done" hidden>
   <h2 id="ty">Thank you!</h2>
-  <p id="tymsg">Thanks for coming to see the home today. I'm glad to answer any questions, and I'll send you updates and homes like it nearby. Frank, 586-419-7607</p>
+  <p id="tymsg">Thanks for coming to see the home today. You're signed in. If you have any questions on the home, please let me know, and if you'd like regular updates on this one or others, I can keep you informed. Frank, 586-419-7607</p>
   <a class="btn line" id="listing2" href="#" target="_blank" rel="noopener" hidden>See this home's listing</a>
-  <p><b>One more tap:</b> your sign-in text to Frank is ready. If Messages didn't open, use one of these:</p>
-  <a class="btn" id="sms" href="#">Open the text to Frank</a>
-  <a class="btn line" id="mail" href="#">Email it instead</a>
+  <div id="fallback" hidden style="display:flex;flex-direction:column;gap:13px">
+    <p><b>One more tap:</b> I couldn't send your sign-in automatically, so it's ready as a text to Frank instead.</p>
+    <a class="btn" id="sms" href="#">Open the text to Frank</a>
+    <a class="btn line" id="mail" href="#">Email it instead</a>
+  </div>
 </div>
 
 <div class="card">
@@ -91,7 +97,7 @@ var $=function(id){return document.getElementById(id)};
 if(street)$('hello').textContent='Welcome to '+street;
 if(p.k==='condo')$('pitch').textContent=$('pitch').textContent.replace('this home','this condo');
 if(typeof p.l==='string'&&/^https:\/\/[^\s"'<>]+$/.test(p.l)){$('listing').href=p.l;$('listing').hidden=false}
-var st={agent:'',sell:''};
+var st={agent:'',sell:''}, RELAY='https://lucido-signin.frankjr.workers.dev/';
 document.addEventListener('click',function(e){var c=e.target.closest('.ch button');if(!c)return;var g=c.parentNode.getAttribute('data-g');st[g]=c.getAttribute('data-v');
   [].forEach.call(c.parentNode.querySelectorAll('button'),function(b){b.classList.toggle('on',b===c)});if(g==='agent')$('agw').hidden=st.agent!=='Yes'});
 $('go').addEventListener('click',function(){
@@ -105,11 +111,29 @@ $('go').addEventListener('click',function(){
     'Heard: '+$('heard').value,'Timeline: '+$('time').value,'Sell first: '+st.sell].join('\n');
   var sms='sms:+15864197607?&body='+encodeURIComponent(body);
   $('sms').href=sms;$('mail').href='mailto:frankjr@fjlucido.com?subject='+encodeURIComponent('Open house sign-in'+(street?': '+street:''))+'&body='+encodeURIComponent(body);
-  $('ty').textContent='Thank you, '+name.split(/\s+/)[0]+'!';
-  if(street)$('tymsg').textContent=$('tymsg').textContent.replace('the home',street);
-  if(st.agent==='Yes')$('tymsg').textContent=$('tymsg').textContent.replace(", and I'll send you updates and homes like it nearby",'');
-  if(!$('listing').hidden){$('listing2').href=$('listing').href;$('listing2').hidden=false}
-  $('form').hidden=true;$('done').hidden=false;window.scrollTo(0,0);location.href=sms;
+  if(!$('consent').checked){$('err').textContent='Please check the box so Frank can follow up with you.';return}
+  var parts=addr.split(',').map(function(x){return x.trim()}), sz=(parts[2]||'').split(/\s+/);
+  var nm=name.split(/\s+/), agentAns=(st.agent||'')+(st.agent==='Yes'&&$('agent').value.trim()?' ('+$('agent').value.trim()+')':'');
+  var payload={firstName:nm[0],lastName:nm.slice(1).join(' '),phone:phone,email:email,consent:true,website:$('website').value,
+    persona:st.agent==='Yes'?'oh-has-agent':(st.sell==='Yes'?'oh-sell-first':'oh-buyer'),
+    hasAgent:agentAns,heardFrom:$('heard').value,timeline:$('time').value,sellFirst:st.sell,
+    street:street,city:parts[1]||'',state:sz[0]||'',zip:sz[1]||'',listingUrl:$('listing').hidden?'':$('listing').href};
+  function finish(sent){
+    $('ty').textContent='Thank you, '+nm[0]+'!';
+    if(street)$('tymsg').textContent=$('tymsg').textContent.replace('the home today',street+' today');
+    if(!$('listing').hidden){$('listing2').href=$('listing').href;$('listing2').hidden=false}
+    $('fallback').hidden=sent;$('form').hidden=true;$('done').hidden=false;window.scrollTo(0,0);
+    if(!sent)location.href=sms;
+  }
+  var go=$('go');go.disabled=true;go.textContent='Sending...';
+  var ctl=window.AbortController?new AbortController():null, t=setTimeout(function(){if(ctl)ctl.abort()},12000);
+  fetch(RELAY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:ctl?ctl.signal:undefined})
+    .then(function(r){return r.json().then(function(j){return {s:r.status,j:j}})})
+    .then(function(o){clearTimeout(t);
+      if(o.j&&o.j.ok){finish(true);return}
+      if(o.s===400&&o.j&&o.j.error){go.disabled=false;go.textContent='Submit my sign-in';$('err').textContent=o.j.error;return}
+      finish(false)})
+    .catch(function(){clearTimeout(t);finish(false)});
 });
 })();
 </script>
