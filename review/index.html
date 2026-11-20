@@ -141,9 +141,9 @@ textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--blue
   <!-- STEP 3: GOOGLE -->
   <section class="card" id="s3">
     <div class="step"><span class="num" id="gNum">3</span><h2>Post it on Google</h2></div>
-    <a class="btn" id="gBtn" href="https://search.google.com/local/writereview?placeid=ChIJGVSo6f3VJIgRaK_VeL4hbMo" target="_blank" rel="noopener" style="text-decoration:none">
+    <a class="btn" id="gBtn" href="https://search.google.com/local/writereview?placeid=ChIJJaJjoPvVJIgR3S-SLjHOAJQ" target="_blank" rel="noopener" style="text-decoration:none">
       <svg width="44" height="40" viewBox="0 0 44 40" aria-hidden="true"><path d="M22 3 L40 18 Q41 19 41 21 L41 34 Q41 37 38 37 L6 37 Q3 37 3 34 L3 21 Q3 19 4 18 Z" fill="#fff" stroke="#c4d2e8" stroke-width="4" stroke-linejoin="round"/><circle cx="22" cy="17" r="7" fill="#0f2d5c"/><text x="22" y="20" text-anchor="middle" font-size="8" font-weight="700" fill="#fff" font-family="Georgia,serif">LS</text></svg>
-      <span class="t"><b>Copy my review &amp; open Google</b><small>Copies your words, with my name, then opens Google</small></span>
+      <span class="t"><b>Copy my review &amp; open Google</b><small>Copies your words, then opens my Google page</small></span>
     </a>
     <div class="flag" id="gFlag">✓ Copied! Now paste it on Google.</div>
     <div class="how"><b>On Google:</b>
@@ -153,7 +153,7 @@ textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--blue
         <li>Tap the review box, press and hold, then tap <b>Paste</b>.</li>
         <li>Tap <b>Post</b>. That's it!</li>
       </ol>
-      <p class="muted" style="margin-top:6px">This posts on my office's Google page (Sine &amp; Monaghan), so your review includes my name.</p>
+      <p class="muted" style="margin-top:6px">This posts on my own Google business page: Frank Lucido, Sine &amp; Monaghan Realtors.</p>
     </div>
   </section>
 
@@ -224,7 +224,7 @@ function wire(id, flagId, textFn){
   });
 }
 wire("zBtn","zFlag",reviewText);
-wire("gBtn","gFlag",() => { const t=reviewText(); if(!t) return ""; return /frank/i.test(t) ? t : t + " Thank you, Frank Lucido!"; });
+wire("gBtn","gFlag",() => { const t=reviewText(); if(!t) return ""; return t; });
 // keep a draft on this phone in case they switch apps
 const DK="lucido-review-draft";
 function saveDraft(){ try{ localStorage.setItem(DK, document.getElementById("review").value); }catch(_){} }
