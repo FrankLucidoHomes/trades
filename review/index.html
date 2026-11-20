@@ -88,7 +88,7 @@ textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--blue
   <!-- STEP 1 -->
   <section class="card" id="s1">
     <div class="step"><span class="num">1</span><h2>Write your review once</h2></div>
-    <p class="muted">Not sure what to say? Tap a few of these and I'll start it for you. You can change anything.</p>
+    <p class="muted">Just tap what fits. Your review writes itself below, and you can change any of it.</p>
 
     <label class="q">We…</label>
     <div class="chips" data-group="deal" data-single="1">
@@ -110,13 +110,10 @@ textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--blue
       <button class="chip" type="button" data-v="first">First-time buyers</button>
     </div>
 
-    <button class="btn light" type="button" id="startBtn">
-      <svg width="44" height="40" viewBox="0 0 44 40" aria-hidden="true"><path d="M22 3 L40 18 Q41 19 41 21 L41 34 Q41 37 38 37 L6 37 Q3 37 3 34 L3 21 Q3 19 4 18 Z" fill="#fff" stroke="#0f2d5c" stroke-width="4" stroke-linejoin="round"/><circle cx="22" cy="17" r="7" fill="#0f2d5c"/><text x="22" y="20" text-anchor="middle" font-size="8" font-weight="700" fill="#fff" font-family="Georgia,serif">LS</text></svg>
-      <span class="t"><b>Start my review for me</b><small>Fills in the box below from what you tapped</small></span>
-    </button>
+
 
     <label class="q" for="review">Your review</label>
-    <textarea id="review" placeholder="Type your review here, or tap the button above to get started…"></textarea>
+    <textarea id="review" placeholder="Tap the choices above, or type your own words here…"></textarea>
     <p class="muted">Your review stays on your phone until you paste it on Zillow or Google.</p>
   </section>
 
@@ -192,19 +189,23 @@ const lines = {
   connections: "His connections (inspectors, contractors, lenders) made everything go smoothly.",
   first: "As first-time buyers, we really appreciated his patience and guidance."
 };
-document.getElementById("startBtn").addEventListener("click", () => {
+let autoText = "";
+function build(){
   const d = picked("deal")[0];
+  const good = picked("good");
+  if (!d && !good.length) return;
   const open = d === "sold" ? "Frank Lucido helped us sell our home"
              : d === "both" ? "Frank Lucido helped us sell our home and buy our next one"
              : d === "bought" ? "Frank Lucido helped us buy our home"
              : d === "help" ? "Frank Lucido has been a great real estate resource for us"
              : "We worked with Frank Lucido";
-  const body = picked("good").map(k => lines[k]).join(" ");
+  const body = good.map(k => lines[k]).join(" ");
   const text = open + ", and we couldn't be happier. " + (body ? body + " " : "") + "We'd recommend Frank to anyone buying or selling a home!";
   const ta = document.getElementById("review");
-  ta.value = ta.value.trim() ? ta.value.trim() + "\n\n" + text : text;
-  saveDraft();
-});
+  // only replace text we wrote; never overwrite what they typed themselves
+  if (!ta.value.trim() || ta.value === autoText) { ta.value = text; autoText = text; saveDraft(); }
+}
+document.querySelectorAll(".chips").forEach(g => g.addEventListener("click", () => setTimeout(build, 0)));
 function fallbackCopy(t){
   const ta=document.createElement("textarea");ta.value=t;ta.style.position="fixed";ta.style.opacity="0";
   document.body.appendChild(ta);ta.select();try{document.execCommand("copy");}catch(_){}ta.remove();
@@ -217,7 +218,7 @@ function wire(id, flagId, textFn){
   document.getElementById(id).addEventListener("click", e => {
     const t = textFn();
     if (!t) { e.preventDefault(); const ta=document.getElementById("review");
-      ta.placeholder="Please write a few words here first (or tap \u201cStart my review for me\u201d).";
+      ta.placeholder="Please write a few words here first (or tap a few choices above).";
       ta.scrollIntoView({behavior:"smooth",block:"center"}); ta.focus(); return; }
     copyText(t);
     document.getElementById(flagId).classList.add("on");
