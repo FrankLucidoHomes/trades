@@ -22,9 +22,9 @@ textarea{width:100%;font:15px/1.45 inherit;font-family:inherit;border:2px solid 
 </style></head><body><div class="in">
 <a class="home" href="../hq/">&#8962; Home</a>
 <h1>Share Lucido Local Trades</h1>
-<p class="lead">Tap the big button to post the picture with your words. On Facebook, the words are already copied, so just paste them in.</p>
+<p class="lead"><b>Step 1:</b> tap the big button and pick Facebook. The picture goes in. <b>Step 2:</b> tap in the post box and paste. The words are already copied. (Facebook doesn't let any app fill in the words for you.)</p>
 <div class="card"><img class="pic" src="trades-post.png" alt="Lucido Local Trades picture with QR code">
-<button class="btn" id="go" type="button">Share picture + post<small>Opens your phone's share sheet: Facebook, Messages, email and more</small></button>
+<button class="btn" id="go" type="button">Share the picture<small>Pick Facebook, Messages or email, then paste the words</small></button>
 <div class="msg" id="msg" role="status"></div>
 <div class="two"><a class="btn line" href="trades-post.png" download="Lucido Local Trades.png">Save picture<small>To your photos or computer</small></a><button class="btn line" type="button" data-copy="fb">Copy post<small>The Facebook words</small></button></div></div>
 <div class="card"><h2>Facebook / social post</h2><textarea id="fb" rows="12" readonly></textarea><button class="btn line" type="button" data-copy="fb">Copy post</button></div>
@@ -38,12 +38,17 @@ var msg=document.getElementById("msg");function say(t){msg.textContent=t}
 function copy(t){try{if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).catch(function(){fb2(t)});return true}}catch(_){}return fb2(t)}
 function fb2(t){try{var a=document.createElement("textarea");a.value=t;a.setAttribute("readonly","");a.style.cssText="position:fixed;top:-1000px;opacity:0";document.body.appendChild(a);a.select();a.setSelectionRange(0,t.length);var ok=document.execCommand("copy");a.remove();return ok}catch(_){return false}}
 document.addEventListener("click",function(e){var b=e.target.closest("[data-copy]");if(!b)return;var t=b.dataset.copy==="fb"?FB:TX;copy(t);var o=b.innerHTML;b.innerHTML="Copied!";setTimeout(function(){b.innerHTML=o},1600)});
-var file=null;fetch("trades-post.png").then(function(r){return r.blob()}).then(function(b){file=new File([b],"Lucido Local Trades.png",{type:"image/png"})}).catch(function(){});
+var file=null;
+function loadFile(){return fetch("trades-post.png",{cache:"force-cache"}).then(function(r){return r.blob()}).then(function(b){file=new File([b],"Lucido Local Trades.png",{type:"image/png"});return file})}
+loadFile().catch(function(){});
+function sharePic(f){
+  if(!(navigator.share&&navigator.canShare&&navigator.canShare({files:[f]}))){say("This browser can't share pictures. Tap Save picture, then post it in Facebook and paste the words.");return}
+  navigator.share({files:[f]}).then(function(){say("Done! Now tap in the post box and paste the words (they're copied).")},function(e){if(!(e&&e.name==="AbortError"))say("Sharing was blocked. Tap Save picture, then post it in Facebook and paste the words.")});
+}
 document.getElementById("go").addEventListener("click",function(){
   copy(FB);
-  var d={title:"Lucido Local Trades",text:FB};
-  if(file&&navigator.canShare&&navigator.canShare({files:[file]}))d.files=[file];else d.url="https://franklucidohomes.github.io/trades/";
-  if(navigator.share){navigator.share(d).then(function(){say("Shared! The post words are also copied if you need to paste them.")},function(e){if(e&&e.name==="AbortError")say("The post words are copied.");else say("Your phone blocked sharing here. The words are copied: tap Save picture, then post it with the words.")});}
-  else say("The words are copied. Tap Save picture, then post the picture and paste the words.");
+  if(file){sharePic(file);return}
+  say("Getting the picture ready…");
+  loadFile().then(sharePic,function(){say("The picture didn't load. Tap Save picture instead.")});
 });
 </script></body></html>
