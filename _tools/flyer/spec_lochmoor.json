@@ -1,0 +1,19 @@
+{
+ "address": "1065 Lochmoor Blvd",
+ "cityline": "Grosse Pointe Woods, Michigan 48236",
+ "banner": "For Sale",
+ "tagline": "Three bedroom suites on a huge yard",
+ "price": 624900,
+ "facts": [["3","Bedroom suites"],["3.5","Baths"],["2,400","Sq. ft. (approx.)"],["2-car","Attached garage"]],
+ "hero": "/home/claude/trades/lochmoor/photos/twilight.jpg",
+ "photos": ["/home/claude/trades/lochmoor/photos/kitchen.jpg","/home/claude/trades/lochmoor/photos/dining.jpg"],
+ "highlights": [
+  "All three bedrooms act as suites, each with its own full bath",
+  "Newly updated kitchen open to the family room",
+  "Bonus sunroom across the back, plus a huge backyard with hot tub",
+  "Basement bar with a rustic feel; pool table and drink fridge included",
+  "First-floor laundry, circle driveway, attached two-car garage",
+  "Surrounded by high-end homes, a true value play"
+ ],
+ "note": "MLS # 50227266"
+}
