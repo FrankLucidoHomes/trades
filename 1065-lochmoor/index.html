@@ -64,13 +64,27 @@ ul.hl li:before{content:"";position:absolute;left:4px;top:15px;width:10px;height
 .agent a.tel{display:block;color:#fff;font-size:28px;font-weight:800;text-decoration:none;margin-top:4px}
 .legal{font-size:12px;color:#5b6b80;text-align:center;padding:4px 18px}
 .dock{position:fixed;left:0;right:0;bottom:0;background:#fff;box-shadow:0 -4px 16px rgba(0,0,0,.14);padding:10px 12px calc(10px + env(safe-area-inset-bottom));display:flex;gap:8px;z-index:9}
-.dock a,.dock button{flex:1;border:0;border-radius:999px;padding:13px 6px;font:700 16px/1 inherit;font-family:inherit;text-decoration:none;text-align:center;cursor:pointer}
+.dock a,.dock button{flex:1;border:0;border-radius:999px;padding:13px 6px;font:700 15px/1 inherit;font-family:inherit;text-decoration:none;text-align:center;cursor:pointer}
 .dock .c{background:#12305a;color:#fff}.dock .s{background:#1f6fd0;color:#fff}.dock .sh{background:#eef3fa;color:#12305a}
+
+.ask .f{margin-bottom:10px}.ask label,.ask .lab{display:block;font-weight:700;color:#12305a;margin-bottom:4px;font-size:15px}
+.ask input,.ask textarea{width:100%;font:inherit;font-size:17px;padding:12px;border:2px solid #c9d5e6;border-radius:10px}
+.ask textarea{min-height:80px}
+.ch{display:flex;flex-wrap:wrap;gap:8px}.ch button{font:inherit;font-size:15px;font-weight:600;border:2px solid #12305a;background:#fff;color:#12305a;border-radius:999px;padding:9px 14px;cursor:pointer}
+.ch button.on{background:#12305a;color:#fff}
+.ok{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#3b4d64;margin:6px 0 10px}.ok input{width:auto;margin-top:3px}
+.hp{position:absolute;left:-9999px;height:1px;width:1px}
+.err{color:#b3261e;font-weight:700;min-height:1px;margin-bottom:6px}
+.big{display:block;width:100%;border:0;border-radius:999px;padding:15px;font:800 18px/1 inherit;font-family:inherit;background:#1f6fd0;color:#fff;cursor:pointer;text-align:center;text-decoration:none;margin-top:8px}
+.big.line{background:#fff;color:#12305a;border:2px solid #12305a}
+.quick{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.quick a{text-align:center;text-decoration:none;font-weight:800;font-size:16px;border-radius:12px;padding:14px 4px;background:#12305a;color:#fff}
+.quick a small{display:block;font-weight:500;font-size:12px;color:#c8d6ee;margin-top:3px}
 #lb{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:20}
 #lb img{max-width:96vw;max-height:92vh}
 @media (max-width:420px){.facts b{font-size:19px}.pricebox .p{font-size:34px}.agent img.ph{width:105px}}
 </style></head>
-<body>
+<body data-form="buyer-search">
 <div class="wrap">
 <header><img src="img/lucido-logo.png" alt="Lucido Homes"><b>Frank Lucido, REALTOR®<small>Sine &amp; Monaghan · Top 5% in Metro Detroit</small></b><img src="img/logo_c.png" alt="Lucido Homes · Sine &amp; Monaghan Realtors" style="height:44px;background:#fff;border-radius:6px;padding:3px"></header>
 
@@ -85,6 +99,39 @@ ul.hl li:before{content:"";position:absolute;left:4px;top:15px;width:10px;height
   <div><b>3.5</b><span>Baths</span></div>
   <div><b>2,400</b><span>Sq ft (approx.)</span></div>
   <div><b>2-car</b><span>Attached garage</span></div>
+</div>
+
+
+<div class="card ask" id="ask">
+  <h2>Questions? Reach me any way you like</h2>
+  <div class="quick">
+    <a href="tel:+15864197607">Call<small>586-419-7607</small></a>
+    <a href="sms:+15864197607?&body=Hi%20Frank%2C%20I%20have%20a%20question%20about%201065%20Lochmoor.">Text<small>Quick reply</small></a>
+    <a href="mailto:frankjr@fjlucido.com?subject=1065%20Lochmoor%20Blvd">Email<small>Send a note</small></a>
+  </div>
+  <div id="form">
+    <p style="margin:0 0 10px">Or send it here and I'll get right back to you.</p>
+    <div class="f" data-q="Home"><input type="hidden" value="1065 Lochmoor Blvd, Grosse Pointe Woods ($599,900)"></div>
+    <div class="f" data-q="I'd like to"><span class="lab">I'd like to</span><div class="ch" data-multi><button type="button">See it in person</button><button type="button">Ask a question</button><button type="button">Get homes like this</button><button type="button">Know my payment</button></div></div>
+    <div class="f" data-q="Question"><label for="q">Your question (optional)</label><textarea id="q" placeholder="Ask me anything about the home"></textarea></div>
+    <div class="f"><label for="name">Name</label><input id="name" autocomplete="name" autocapitalize="words"></div>
+    <div class="f"><label for="phone">Cell phone</label><input id="phone" type="tel" inputmode="tel" autocomplete="tel"></div>
+    <div class="f"><label for="email">Email</label><input id="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none"></div>
+    <div class="f" data-q="Best way to reach you"><span class="lab">Best way to reach you</span><div class="ch"><button type="button">Call</button><button type="button">Text</button><button type="button">Email</button></div></div>
+    <label class="ok"><input id="consent" type="checkbox" checked> <span>It's OK for Frank Lucido to call, text and email me about homes. Reply STOP at any time to opt out.</span></label>
+    <input id="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="err" id="err" role="alert"></div>
+    <button class="big" id="go" type="button">Send to Frank</button>
+  </div>
+  <div id="done" hidden>
+    <h2 id="ty">Thank you!</h2>
+    <p>Got it. I'll be in touch shortly. Frank, 586-419-7607</p>
+    <div id="fallback" hidden>
+      <p><b>One more tap:</b> it didn't send automatically, so it's ready as a text to me instead.</p>
+      <a class="big" id="sms" href="#">Open the text to Frank</a>
+      <a class="big line" id="mail" href="#">Email it instead</a>
+    </div>
+  </div>
 </div>
 
 <div class="card">
@@ -155,7 +202,8 @@ ul.hl li:before{content:"";position:absolute;left:4px;top:15px;width:10px;height
 
 <div class="dock">
   <a class="c" href="tel:+15864197607">Call Frank</a>
-  <a class="s" href="sms:+15864197607?&body=Hi%20Frank%2C%20I%27d%20like%20a%20private%20showing%20of%201065%20Lochmoor.">Book showing</a>
+  <a class="s" href="sms:+15864197607?&body=Hi%20Frank%2C%20I%27d%20like%20a%20private%20showing%20of%201065%20Lochmoor.">Text Frank</a>
+  <a class="sh" href="#ask">Ask Frank</a>
   <button class="sh" id="share">Share</button>
 </div>
 <div id="lb"><img alt=""></div>
@@ -164,4 +212,5 @@ document.getElementById('share').onclick=function(){var u='https://franklucidoho
  if(navigator.share){navigator.share(d).catch(function(){})}else{try{navigator.clipboard.writeText(u);alert('Link copied')}catch(e){prompt('Copy this link',u)}}};
 var lb=document.getElementById('lb');document.querySelectorAll('.gal img,.plans img').forEach(function(i){i.onclick=function(){lb.querySelector('img').src=i.src;lb.style.display='flex'}});lb.onclick=function(){lb.style.display='none'};
 </script>
+<script src="../signin.js"></script>
 </body></html>
