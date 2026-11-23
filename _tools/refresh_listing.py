@@ -51,6 +51,7 @@ def build(D, state, old_client):
     # wording Frank typed over headings, numbers and table cells (keys start with "x:")
     D["textOv"] = {k: v for k, v in (state.get("text") or {}).items() if str(k).startswith("x:") and v}
     D["include"] = inc
+    if isinstance(state.get("layout"), dict): D["layout"] = state["layout"]   # section order / width / hidden, set on his copy
     for s in D.get("sections", []):
         if s.get("kind") == "table": s.pop("note", None)
         else:
