@@ -30,11 +30,11 @@
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;
   --bg:#0e161d; --surface:#15212b; --sunk:#1b2934; --ink:#e5ecf1; --muted:#95a5b1; --line:#283844;
-  --accent:#9dbde6; --accent-soft:#1b2d45; --blue:#b9cff0; --warn:#e3a066; --warn-soft:#33251a;
+  --accent:#9dbde6; --accent-soft:#1b2d45; --blue:#ffffff; --warn:#e3a066; --warn-soft:#33251a;
   --band:#0b1f40; --band-2:#14305c; --band-ink:#ffffff; --band-muted:#a9bddb; --silver:#8f98a3;}}
 :root[data-theme="dark"]{color-scheme:dark;
   --bg:#0e161d; --surface:#15212b; --sunk:#1b2934; --ink:#e5ecf1; --muted:#95a5b1; --line:#283844;
-  --accent:#9dbde6; --accent-soft:#1b2d45; --blue:#b9cff0; --warn:#e3a066; --warn-soft:#33251a;
+  --accent:#9dbde6; --accent-soft:#1b2d45; --blue:#ffffff; --warn:#e3a066; --warn-soft:#33251a;
   --band:#0b1f40; --band-2:#14305c; --band-ink:#ffffff; --band-muted:#a9bddb; --silver:#8f98a3;}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -200,6 +200,20 @@ form.editor .check input{width:auto}
 
 body{margin:0}[hidden]{display:none!important}img{max-width:100%}
 .line button.act{font:inherit;font-size:14px;font-weight:700;padding:6px 16px;border-radius:999px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}
+/* big search bar */
+.qs{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.qs-t{font-family:var(--display);font-size:22px;font-weight:700;line-height:1.2;color:var(--ink)}
+.qs-box{display:flex;align-items:center;gap:10px;background:var(--surface);border:3px solid var(--accent);border-radius:14px;padding:0 14px;color:var(--accent);box-shadow:0 2px 10px rgba(15,45,92,.12)}
+.qs-box:focus-within{box-shadow:0 0 0 4px var(--accent-soft)}
+.qs-box svg{flex:none}
+.qs-box input{flex:1;min-width:0;font:inherit;font-size:20px;font-weight:600;color:var(--ink);background:transparent;border:0;outline:0;padding:16px 0}
+.qs-box input::placeholder{color:var(--muted);font-weight:500;opacity:1}
+.qs-h{font-size:14.5px;color:var(--muted)}
+.band .meta{color:#fff;font-weight:600}
+.band .meta b{font-weight:700;white-space:nowrap}
+.band .eyebrow{color:#fff}
+@media print{.qs{display:none!important}}
+
 </style>
 </head>
 <body>
@@ -211,7 +225,7 @@ body{margin:0}[hidden]{display:none!important}img{max-width:100%}
       <span class="eyebrow">Metro Detroit</span>
       <h1>Lucido Local Trades</h1>
       <p class="tagline">I&rsquo;ve put this list together to make life easier for you: trusted local pros for anything around the house, your city&rsquo;s info, and help when something breaks. Save it, share it, and call me anytime.</p>
-      <span class="meta">Frank Lucido, REALTOR® · Sine &amp; Monaghan · 586-419-7607</span><span class="upd-top" style="display:inline-block;margin-top:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);border-radius:12px;padding:7px 12px;font-size:14px;line-height:1.35;color:#fff"><b>Updated <span id="updated-top"></span></b> · This list updates on its own twice a week as I add new pros, so it&rsquo;s always current.</span>
+      <span class="meta">Frank Lucido, REALTOR® · Sine &amp; Monaghan · <b>586-419-7607</b></span><span class="upd-top" style="display:inline-block;margin-top:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);border-radius:12px;padding:7px 12px;font-size:14px;line-height:1.35;color:#fff"><b>Updated <span id="updated-top"></span></b> · This list updates on its own twice a week as I add new pros, so it&rsquo;s always current.</span>
       <span style="margin-top:8px;display:grid;gap:8px;align-self:flex-start;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);border-radius:10px;padding:10px 12px;font-size:15px;line-height:1.35;color:var(--band-ink)"><span><b>Thinking of selling or buying?</b> Tap a button and I&rsquo;ll reach out to you personally. Or call <b style="white-space:nowrap;font-variant-numeric:tabular-nums">586-419-7607</b>.</span><span style="display:flex;flex-wrap:wrap;gap:6px"><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%27m%20thinking%20about%20selling%20my%20home%20and%20would%20like%20to%20talk.%20My%20address%20is%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">I&rsquo;m thinking of selling</a><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%27m%20thinking%20about%20buying%20a%20home%20and%20would%20like%20to%20talk.%20I%27m%20looking%20for%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">I&rsquo;m thinking of buying</a><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%27d%20like%20a%20free%20home%20value%20for%20when%20the%20time%20comes.%20My%20address%20is%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">What&rsquo;s my home worth?</a><a class="sig" href="sms:+15864197607?&amp;body=Hi%20Frank%2C%20I%20found%20you%20on%20Lucido%20Local%20Trades.%20I%20have%20a%20real%20estate%20question%3A%20" style="background:#fff;color:#0b2a5b;font-weight:700;text-decoration:none;border-radius:999px;padding:9px 14px;font-size:14px">Real estate questions of any kind</a></span><span id="sig-help" style="font-size:13px;opacity:.85">These buttons open a text on your phone, or an email on your computer, to let Frank know you&rsquo;d like him to reach out. Add your name and number, then hit send.</span><span class="hdr-actions"><a class="fill" href="#lookfor" data-jump="lookfor">Start my home search</a><button class="outline" type="button" data-share>Share this app</button><button class="outline" type="button" data-install>Add to my home screen</button><button class="outline" type="button" data-print>Print or save as PDF</button></span></span>
     </div>
     <div class="top5"><div class="tile stars"><img src="img/all-stars.png" alt="Hour Media Real Estate All-Stars" width="80"></div>Top 5%</div>
@@ -253,7 +267,7 @@ body{margin:0}[hidden]{display:none!important}img{max-width:100%}
     <div class="helpbuild" id="helpbuild"></div>
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px"><button class="btn" type="button" id="shareBtn">Share this list</button><span id="shareMsg" style="font-size:13.5px;color:var(--muted)">Send it to a friend or neighbor by text or email.</span></div>
     <div class="jump" style="display:flex;flex-wrap:wrap;gap:6px;font-size:14px"><span style="color:var(--muted);font-weight:600">Jump to:</span><a href="#season" data-jump="season">Seasonal checklist</a><a href="#city" data-jump="city">Your city info</a><a href="#tips" data-jump="tips">Before you hire</a><a href="#more" data-jump="more">Recommend a pro</a></div>
-    <input id="q-search" type="search" autocomplete="off" placeholder="Search: roof, sewer, painter, a name or a number" aria-label="Search trades" style="font:inherit;font-size:16px;width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)">
+    <label class="qs" for="q-search"><span class="qs-t">Search for a pro</span><span class="qs-box"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><input id="q-search" type="search" autocomplete="off" placeholder="Try: painter, roof, sewer" aria-label="Search trades"></span><span class="qs-h">Type a trade (painter, plumber, inspector), a name or a phone number.</span></label>
     <div class="filters" id="filters" role="group" aria-label="Filter trades"></div>
   </section>
 
@@ -462,12 +476,60 @@ body{margin:0}[hidden]{display:none!important}img{max-width:100%}
     const a=document.createElement('a'); a.href=url; a.download=fname; document.body.appendChild(a); a.click(); a.remove();
     setTimeout(()=>URL.revokeObjectURL(url),4000);
   });
+  // Search helpers: stem() trims word endings so painter / painting / paints all find "paint";
+  // ALSO maps everyday words to the trade words used on the cards.
+  const stem=w=>{for(const s of ['ations','icians','ation','ician','ical','ions','ings','ion','ing','ers','ors','ies','er','or','es','ed','al','s','e','y']){if(w.endsWith(s)&&w.length-s.length>=4) return w.slice(0,-s.length);}return w;};
+  const ALSO=[
+    ['ac air airconditioning conditioning conditioner hvac furnace heat heater boiler cool thermostat','heating cooling furnace hvac boiler'],
+    ['drain clog clogged toilet leak leaky pipe faucet sink backup','plumb sewer drain'],
+    ['lawn mow mower grass yard sod mulch garden gardener landscaper shrub bush outdoor','landscap lawn sod mulch'],
+    ['snow plow plowing shovel salt','snow'],
+    ['electric electrical wiring wire outlet panel breaker lights lighting','electric'],
+    ['roofer shingle shingles','roof'],
+    ['brick bricks tuckpoint tuckpointing mortar','mason tuckpoint brick'],
+    ['cement driveway sidewalk walkway patio slab','concrete'],
+    ['basement waterproof wet flood flooded crack foundation','basement foundation waterproof'],
+    ['bug bugs pest pests mice mouse ant ants termite termites rodent rats bee bees wasp wasps exterminator spider roach','pest exterminat'],
+    ['junk haul hauling trash dumpster debris cleanout garbage','cleanout junk haul removal'],
+    ['move mover movers moving relocate relocating storage','mover moving storage'],
+    ['washer dryer fridge refrigerator oven stove dishwasher freezer microwave','appliance'],
+    ['lock locks key keys locked rekey','locksmith lock'],
+    ['alarm security camera cameras','alarm security'],
+    ['pool spa jacuzzi hottub','pool tub'],
+    ['rug rugs','carpet'],
+    ['wood hardwood refinish refinishing sanding','hardwood floor'],
+    ['grout bathtub reglaze reglazing glaze shower','tile tub glaz'],
+    ['glass pane screen screens','window glass'],
+    ['pressure powerwash powerwashing deck','power washing'],
+    ['remodel remodeler renovate renovation kitchen bath bathroom addition builder contractor construction carpenter carpentry','remodel contractor construction builder renovat'],
+    ['fix fixit odd jobs honeydo repairman','handyman'],
+    ['realtor agent sell selling buy buying house home','realtor'],
+    ['survey property line lines','survey'],
+    ['auction downsizing downsize','estate'],
+    ['curtain curtains drapes shutters','blind shade'],
+    ['stump trimming trim branches','tree'],
+    ['gate fencing','fence'],
+    ['irrigation','sprinkler'],
+    ['dock boat lake shoreline','seawall marine'],
+    ['dig digging grading','excavat'],
+    ['maid housekeeper housekeeping housecleaning','cleaning maid'],
+    ['stain staining wallpaper','paint wallpaper'],
+    ['scope','camera sewer'],
+    ['test testing','mold radon asbestos inspection']
+  ].map(g=>[g[0].split(' '),g[1].split(' ')]);
   const qEl=$('q-search');
   if(qEl) qEl.addEventListener('input',()=>render());
   function matches(t){
     const q=(qEl&&qEl.value||"").trim().toLowerCase(); if(!q) return true;
-    const hay=[t.company,t.contact,t.type,t.type2,t.cat,t.cat2,t.note,t.area,t.email,t.web].join(' ').toLowerCase()+' '+digits(t.phone);
-    return q.split(/\s+/).every(w=>hay.includes(w)||(/\d/.test(w)&&digits(t.phone).includes(digits(w))));
+    const names=[t.company,t.contact].join(' ').toLowerCase();
+    const hw=[names,t.type,t.type2,t.note,t.area,t.email,t.web].join(' ').toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+    return q.split(/\s+/).every(w=>{
+      if((w.length>=3&&names.includes(w))||(/\d/.test(w)&&digits(t.phone).includes(digits(w)))) return true;
+      const c=w.replace(/[^a-z0-9]/g,''); if(c.length<2) return false;
+      const s=stem(c);
+      if(hw.some(x=>x.startsWith(c)||(s.length>=3&&x.startsWith(s)))) return true;
+      return ALSO.some(g=>(g[0].includes(c)||g[0].includes(s))&&hw.some(x=>g[1].some(k=>x.startsWith(k))));
+    });
   }
   function visible(){
     return trades.filter(t=>(isOwner||reachable(t))&&(need?(need.types.includes(t.type)||need.types.includes(t.type2)):(cur==="All"||t.cat===cur||t.cat2===cur))&&matches(t))
