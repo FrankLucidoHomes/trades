@@ -1,0 +1,19 @@
+{
+ "address": "29142 Jefferson Court",
+ "cityline": "St. Clair Shores, Michigan 48081",
+ "banner": "For Sale",
+ "tagline": "Lakefront townhome, Lakeview Club",
+ "price": 875000,
+ "facts": [["3","Bedrooms"],["3.5","Baths"],["2,500","Sq. ft. above grade"],["2-car","Attached garage"]],
+ "hero": "/home/claude/trades/jefferson/img/cover.jpg",
+ "photos": ["/home/claude/trades/jefferson/photos/front.jpg","/home/claude/trades/jefferson/photos/balcony.jpg","/home/claude/trades/jefferson/photos/sunset.jpg"],
+ "highlights": [
+  "Lake St. Clair views from every floor",
+  "Fully renovated: all-new kitchen and every bathroom redone",
+  "Kitchen with quartz counters, gas cooktop and double wall ovens",
+  "Living room with stacked-stone fireplace and a wall of glass to the lake",
+  "Primary suite with two-way fireplace and private balcony over the water",
+  "Walkout lower level with bedroom or office, full bath and brick paver patio",
+  "Built-in dry bar, oak hardwood floors, two-car attached garage"
+ ]
+}
