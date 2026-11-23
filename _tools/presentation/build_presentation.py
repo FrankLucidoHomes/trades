@@ -292,6 +292,8 @@ window.addEventListener('resize',fit);fit();
     for f in os.listdir(os.path.join(T, 'img')): shutil.copy(os.path.join(T, 'img', f), os.path.join(od, 'img', f))
     if S.get('photo'): shutil.copy(S['photo'], os.path.join(od, 'img', 'home.jpg'))
     if S.get('map'): shutil.copy(S['map'], os.path.join(od, 'img', 'map.png'))
+    if copy == 'agent':  # Frank's copy: Home button back to his dashboard (never on client copies)
+        doc = doc.replace('</body>', open(os.path.join(T, 'home_button.html')).read() + '</body>', 1)
     open(os.path.join(od, 'index.html'), 'w').write(doc)
     try:
         from playwright.sync_api import sync_playwright

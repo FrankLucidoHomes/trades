@@ -46,7 +46,7 @@ def build(agent_html, state):
         el.clear()
         for c in list(new.contents): el.append(c)
         applied.append("e%d: %s" % (i, norm(el.get_text())[:90]))
-    for x in soup.select(".agent, .tools, .share, .head .tag, script, #edHint"): x.decompose()
+    for x in soup.select(".agent, .tools, .share, .head .tag, script, #edHint, #hq-back, #hq-back + div"): x.decompose()
     for x in soup.select("[contenteditable]"): del x["contenteditable"]
     body = soup.body; body["class"] = ["client"]
     for st in soup.find_all("style"):
