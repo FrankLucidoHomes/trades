@@ -25,23 +25,25 @@ spec.json keys
   range_note     optional override for "How I set this range"
   pages          list of page ids in any order (they are always put in Cloud CMA order):
                  cover glance about commitment loyalty map comps actives psf value range time
-                 highlow choosing intelligent marketing offer testimonials resume
+                 highlow choosing intelligent marketing ready offer testimonials resume
+                 (ready = the Get Ready to List pages; spec may then also carry prep/skip/intro, see build_ready.py)
                  (map, comps and actives are always included)
   quote          optional cover quote [text, author]
 """
 import sys, os, json, html, shutil, re, datetime, statistics as st
 
 T = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, T)
 E = html.escape
 ORDER = ['cover','glance','about','commitment','loyalty','map','comps','actives','psf','value','range','time',
-         'highlow','choosing','intelligent','marketing1','marketing2','offer','testimonials1','testimonials2','resume']
+         'highlow','choosing','intelligent','marketing1','marketing2','ready','offer','testimonials1','testimonials2','resume']
 ALIAS = {'marketing':['marketing1','marketing2'],'testimonials':['testimonials1','testimonials2'],
          'title':['glance'],'suggested':['range'],'pricepersqft':['psf']}
 TOCNAME = {'about':'About Me','commitment':'My Personal Commitment','loyalty':'Loyalty &amp; Commitment','map':'{area} Map',
            'comps':'Comparable Sales &amp; Actives','psf':'Average Price per Sq. Ft.','value':'The Value of Your Home',
            'range':'Suggested Price Range','time':'Time to Sell','highlow':'High / Low Pricing Strategies',
            'intelligent':'Intelligent Pricing &amp; Timing',
-           'marketing1':'Marketing Action Plan','offer':'Offer Handling Strategy','testimonials1':'Client Testimonials','resume':'Resume'}
+           'marketing1':'Marketing Action Plan','ready':'Get Ready to List','offer':'Offer Handling Strategy','testimonials1':'Client Testimonials','resume':'Resume'}
 
 def money(v): return '${:,.0f}'.format(v)
 def num(v): return '{:,.0f}'.format(v)
@@ -109,7 +111,7 @@ def build(S, copy):
              'suggestedpricerange':'range','timetosell':'time','highlowpricingstrategies':'highlow','intelligentpricingandtiming':'intelligent',
              'marketingactionplan':'marketing','offerhandlingstrategy':'offer','aboutme':'about','personalcommitment':'commitment',
              'mypersonalcommitment':'commitment','loyaltycommitment':'loyalty','clienttestimonials':'testimonials','resume':'resume',
-             'choosingtherightstrategy':'choosing'}.get(k, k)
+             'choosingtherightstrategy':'choosing','getreadytolist':'ready','readytolist':'ready'}.get(k, k)
         want += ALIAS.get(k, [k])
     if 'highlow' in want: want.append('choosing')
     want += ['map', 'comps', 'actives']
@@ -262,6 +264,9 @@ def build(S, copy):
   <div class="card"><b>On the market longer than 2 weeks ({len(slow)} homes)</b><span>Average sold-to-list price <b>{pct(sr) if slow else '—'}</b> · average {avg([r['dom'] for r in slow]):.0f} days</span></div>
 </div>
 <p class="note">Each dot is a {E(area)} sale (numbers match the map and tables). The line marks 100% of list price.</p>''')
+        elif p == 'ready':
+            import build_ready
+            for k, t, c in build_ready.ready_pages(S): P(k, t, c)
         else:
             d = json.load(open(os.path.join(T, 'static', p + '.json')))
             P(d['kicker'], d['title'], d['content'], d.get('cls', ''))

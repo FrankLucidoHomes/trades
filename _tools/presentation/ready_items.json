@@ -1,0 +1,41 @@
+{
+ "timeline": [
+  ["4–6 weeks out", "Walk the home together, set the plan and the price range. Book trades now — good painters and handymen fill up. Start decluttering the rooms you use least, and order a pre-listing inspection if we agree it makes sense."],
+  ["2–3 weeks out", "Repairs, paint and touch-ups. Deep clean begins. Pack up what you won't need until after the move. Gather paperwork: warranties, receipts for updates, utility costs, survey."],
+  ["1 week out", "Finish projects. Windows, carpets and the final deep clean. Curb appeal: mulch, edges, front door, porch light. Fill out your Seller's Disclosure with me."],
+  ["Photo day", "Every light on, blinds open, counters clear, cars out of the driveway, pets and pet things put away. Toilet lids down. I'll walk through with you an hour before."],
+  ["Showings", "Lights on, temperature comfortable, quick tidy, out of the house with your pets. Valuables, medications and mail put away. Feedback comes to you on your seller page."]
+ ],
+ "payoff": [
+  ["Do it — best return", ["Deep clean, top to bottom", "Declutter and depersonalize", "Fresh neutral paint where walls are scuffed, dark or bold", "Small repairs: drips, loose handles, sticky doors, cracked outlet covers", "Bright, matching light bulbs; replace dead ones", "Curb appeal: mulch, trimmed shrubs, clean front door, new house numbers", "Fresh caulk in tubs, showers and sinks", "Service the furnace and A/C and keep the receipt"]],
+  ["Consider — depends on the home", ["Refinish or clean hardwood floors", "Replace worn or stained carpet", "Update dated light fixtures and cabinet hardware", "Pre-listing inspection to find surprises first", "Sewer line scope on older homes", "Professional staging or a staging consult", "Power-wash siding, walks and driveway"]],
+  ["Usually skip — rarely pays back before a sale", ["Full kitchen or bath remodels", "New windows or siding (unless failing)", "Major landscaping projects", "Bold or personal design choices", "Anything we can instead price for — let's talk first"]]
+ ],
+ "sections": [
+  {"id": "outside", "kicker": "The Checklist", "title": "Outside &amp; Curb Appeal", "lead": "Buyers decide in the first 30 seconds — most of them from a photo before they ever visit.", "groups": [
+   ["Front of the home", [["Clean or paint the front door; polish or replace the hardware", ""], ["New, easy-to-read house numbers", ""], ["Working porch light with a clean fixture", ""], ["New doormat; one or two potted plants by the door", "Seasonal: mums in fall, evergreen pots in winter"], ["Clean windows, screens and storm doors", ""]]],
+   ["Yard &amp; landscaping", [["Fresh mulch and edged beds", ""], ["Trim shrubs off windows and walks; cut back dead plants", ""], ["Mow, edge and rake; fill bare spots", ""], ["Clear gutters and downspouts", ""], ["Winter: shoveled, salted walks and a clear driveway every day", "Snowy photos — I can use summer exterior shots if we have them"]]],
+   ["Structure &amp; surfaces", [["Power-wash siding, walks, patio and deck", ""], ["Touch up peeling trim and fix loose railings", ""], ["Repair cracked or missing screens and broken glass", ""], ["Tidy the garage exterior; door opens and closes smoothly", ""], ["Store or neatly stage patio furniture, hoses and toys", ""]]]
+  ]},
+  {"id": "inside", "kicker": "The Checklist", "title": "Inside — the Whole House", "lead": "The goal is simple: buyers should be able to picture their own life here.", "groups": [
+   ["Declutter &amp; depersonalize", [["Pack away family photos, collections and keepsakes", ""], ["Clear at least a third of every closet and cabinet", "Buyers open them — roomy storage sells"], ["Clear counters, tabletops and the top of the fridge", ""], ["Remove extra furniture so rooms feel bigger", ""], ["Rent a storage pod or use the garage for packed boxes", ""]]],
+   ["Clean, then clean again", [["Professional deep clean, including baseboards and vents", ""], ["Windows inside and out; clean light fixtures and fans", ""], ["Carpets shampooed; hardwoods cleaned and buffed", ""], ["Fresh-smelling home: no strong air fresheners, cooking or smoke", "Pet odors are the #1 thing buyers mention"], ["Fresh towels and bedding for photos and showings", ""]]],
+   ["Paint, light &amp; small fixes", [["Neutral paint where walls are scuffed, dark or bold", ""], ["Patch nail holes and dings", ""], ["Matching, bright bulbs in every fixture", "Same color temperature in each room"], ["Fix drips, running toilets, sticky doors and loose handles", ""], ["Replace cracked switch plates and outlet covers", ""]]]
+  ]},
+  {"id": "rooms", "kicker": "The Checklist", "title": "Room by Room", "lead": "Kitchens and baths sell homes. Bedrooms and basements need to feel calm and roomy.", "groups": [
+   ["Kitchen", [["Clear counters except one or two nice pieces", ""], ["Clean appliances inside and out, including the oven", ""], ["Organize the pantry and under the sink", ""], ["Fresh caulk at the sink and backsplash", ""]]],
+   ["Bathrooms", [["Re-caulk tubs, showers and sinks; clean or regrout", ""], ["New shower curtain and matching white towels", ""], ["Clear counters; hide toiletries", ""], ["Fix running toilets and slow drains", ""]]],
+   ["Bedrooms &amp; living areas", [["Make beds hotel-style; neutral bedding", ""], ["Thin out furniture; create clear walkways", ""], ["Open blinds and curtains; clean windows", ""], ["Kids' rooms tidy, with toys in bins", ""]]],
+   ["Basement, laundry &amp; garage", [["Dry, bright and organized — run a dehumidifier", "Buyers here worry about water first"], ["Clean the furnace area; label the electrical panel", ""], ["Clear the laundry; wipe down the machines", ""], ["Sweep the garage; hang or shelve what stays", ""]]]
+  ]},
+  {"id": "systems", "kicker": "The Checklist", "title": "Systems, Paperwork &amp; Peace of Mind", "lead": "This is the stuff that keeps a deal together after we accept an offer.", "groups": [
+   ["Systems", [["Furnace and A/C serviced — keep the receipt", ""], ["Water heater, sump pump and backup tested", ""], ["Smoke and carbon monoxide detectors working on every level", ""], ["Sewer line scope on older homes", "Clay and cast-iron lines are common in the Pointes"], ["Roof and gutters checked for obvious issues", ""]]],
+   ["Paperwork to gather", [["Receipts and dates for updates: roof, furnace, A/C, water heater, windows", "Buyers pay more for documented updates"], ["Warranties and manuals for appliances and systems", ""], ["A year of utility costs (gas, electric, water)", ""], ["Survey, permits for past work, HOA documents if any", ""], ["Extra keys, garage remotes and alarm codes for closing", ""]]],
+   ["Disclosures &amp; city requirements", [["Seller's Disclosure Statement — we fill it out together", "Required in Michigan"], ["Lead-based paint disclosure for homes built before 1978", ""], ["Your city's point-of-sale or occupancy inspection, if it requires one", "I'll confirm the rules for your city"], ["Pre-listing inspection (optional) — fix or disclose findings", ""]]]
+  ]},
+  {"id": "showready", "kicker": "The Checklist", "title": "Photo Day &amp; Showing Ready", "lead": "Photos are your first showing. These lists take about 20 minutes once the home is prepped.", "groups": [
+   ["Photo day", [["Every light on, including lamps and under-cabinet lights", ""], ["All blinds open to the same height", ""], ["Counters, sinks and tub ledges completely clear", ""], ["Toilet lids down; towels folded and matching", ""], ["Cars out of the driveway; trash cans out of sight", ""], ["Pets, pet beds and bowls put away", ""], ["Ceiling fans off; TVs off", ""], ["Fresh flowers or a bowl of green apples on the island", ""]]],
+   ["Before every showing", [["Lights on and blinds open", ""], ["Comfortable temperature (68–72°)", ""], ["Quick tidy: beds made, dishes away, trash out", ""], ["Valuables, medications, mail and keys put away", ""], ["Pets out of the home or crated with a note", ""], ["Leave 10 minutes early and give buyers space", ""], ["Snow and ice cleared from walks and steps", ""]]]
+  ]}
+ ]
+}
