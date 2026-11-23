@@ -438,13 +438,17 @@ body{margin:0}[hidden]{display:none!important}img{max-width:100%}
   });
   const SHARE_URL="https://franklucidohomes.github.io/trades/";
   const SHARE_TEXT="Here's Frank Lucido's list of local trades: plumbers, roofers, painters and more, all in one place. Save it to your home screen and it updates on its own:";
+  function copyText(t){try{const a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.style.cssText='position:fixed;top:-1000px;opacity:0';document.body.appendChild(a);a.select();a.setSelectionRange(0,t.length);const ok=document.execCommand('copy');a.remove();return ok}catch(_){return false}}
   async function doShare(btn){
-    const msg=$('shareMsg');
+    const msg=$('shareMsg'), full=SHARE_TEXT+" "+SHARE_URL, say=t=>{if(msg)msg.textContent=t};
+    let framed=false; try{framed=window.self!==window.top}catch(_){framed=true}
+    if(framed){ /* inside the dashboard or claude.ai, phones block sharing: open the live page in its own tab */
+      copyText(full); window.open(SHARE_URL+"share/","_blank","noopener");
+      say("Opened your share page in a new tab. The link is also copied."); return; }
     try{ if(navigator.share){ await navigator.share({title:"Lucido Local Trades",text:SHARE_TEXT,url:SHARE_URL}); return; } }
     catch(e){ if(e&&e.name==="AbortError") return; }
-    const full=SHARE_TEXT+" "+SHARE_URL;
-    try{ await navigator.clipboard.writeText(full); if(msg) msg.textContent="Copied. Paste it into a text or email."; }
-    catch(_){ window.prompt("Copy this and paste it into a text or email:",full); }
+    let ok=false; try{ await navigator.clipboard.writeText(full); ok=true; }catch(_){ ok=copyText(full); }
+    say(ok?"Copied. Paste it into a text or email.":"Copy this link: "+SHARE_URL);
     if(btn&&btn!==$('shareBtn')){const t=btn.textContent;btn.textContent="Link copied";setTimeout(()=>btn.textContent=t,1800);}
   }
   document.addEventListener('click',e=>{const b=e.target.closest('#shareBtn,[data-share]');if(b){e.preventDefault();doShare(b);}});
