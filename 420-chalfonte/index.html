@@ -30,6 +30,29 @@ h1{font:700 clamp(28px,5.4vw,40px)/1.08 var(--sans);margin:0}
 .seg button{font:500 14px var(--sans);border:0;background:transparent;color:var(--navy);padding:8px 16px;cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--navy);color:var(--paper)}
 .sync{font-size:13px;color:var(--soft)}
+/* Arrange sections: drag on the page, Full / ½ / ⅓ width, Sending on/off */
+.arrbox{display:flex;flex-wrap:wrap;column-gap:24px;align-items:flex-start}
+.arrbox>*{flex:1 1 100%;min-width:0;max-width:100%}
+.arrbox>.sz-half{flex:1 1 calc(50% - 12px);max-width:calc(50% - 12px)}
+.arrbox>.sz-third{flex:1 1 calc(33.333% - 16px);max-width:calc(33.333% - 16px)}
+@media (max-width:640px){.arrbox>.sz-half,.arrbox>.sz-third{flex-basis:100%;max-width:100%}}
+.arr{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:20px 0 -12px;padding:5px 6px;background:#eef4fc;border:1px dashed #8fb0dc;border-radius:10px;font:600 13px/1.2 var(--sans);color:#12305a}
+.arr button{font:700 13px/1 var(--sans);color:#12305a;background:#fff;border:1px solid #9db8dd;border-radius:8px;padding:8px 10px;cursor:pointer}
+.arr .arr-g{background:#12305a;color:#fff;border-color:#12305a;cursor:grab;touch-action:none;padding:8px 14px}
+.arr .arr-n{display:none;font-weight:700;font-size:15px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1 1 0}
+.arr-w{display:inline-flex}.arr-w button{border-radius:0;margin-left:-1px;min-width:40px}.arr-w button:first-child{border-radius:8px 0 0 8px;margin-left:0}.arr-w button:last-child{border-radius:0 8px 8px 0}
+.arr-w button.on{background:#12305a;color:#fff;border-color:#12305a}
+.arr .arr-s{margin-left:auto;background:#e7f5ec;border-color:#9fd2b2;color:#17602f}.arr .arr-s.no{background:#fdecea;border-color:#efb8b0;color:#9b2c22}
+.arr .arr-p{margin-left:auto;color:#5a6782;font-weight:600}
+.arrbox>.secoff>:not(.arr){opacity:.5}
+.arrbox.arranging>*>:not(.arr){display:none!important}
+.arrbox.arranging>*>.arr{margin:5px 0;border-style:solid}
+.arrbox.arranging .arr-n{display:block}
+.arrbox.arranging .arr-w,.arrbox.arranging .arr-s,.arrbox.arranging .arr-p{display:none}
+.arrbox.arranging>.dragging>.arr{background:#fff3c4;border:2px dashed #2f6db5}
+.arr-ghost{position:fixed;left:0;top:0;z-index:2147483002;pointer-events:none;background:#12305a;color:#fff;padding:10px 14px;border-radius:10px;font:700 14px var(--sans);box-shadow:0 8px 24px rgba(0,0,0,.35);max-width:70vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.arr-on{user-select:none;-webkit-user-select:none}
+@media print{.arr,.arr-ghost{display:none!important}.arrbox>.secoff{display:none!important}}
 h2{font:600 22px/1.3 var(--sans);color:var(--blue);margin:30px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:6px}
 .stat{border:2px solid var(--navy);border-top:4px solid var(--blue);border-radius:6px;padding:10px 12px;display:grid;gap:2px}
@@ -110,13 +133,14 @@ ul.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px}
   <div class="modebar" id="modebar" hidden><div class="seg"><button type="button" id="mAgent" aria-pressed="true">My copy</button><button type="button" id="mClient" aria-pressed="false"></button></div><button class="btn ghost" type="button" id="mEdit">Edit deal</button><span class="sync" id="sync"></span></div>
   <div class="quick" id="quick" hidden></div>
   <div class="edit" id="editsec" hidden></div>
-  <div class="stats" id="stats"></div>
+  <div id="blocks" class="arrbox"><section id="b-glance" data-t="At a glance: countdown, next up, progress"><div class="stats" id="stats"></div>
   <div class="nextup" id="nextup"></div>
   <div class="keyprog"><svg viewBox="0 0 320 110" role="img" aria-label="Progress to your keys"><defs><clipPath id="keyclip"><path fill-rule="evenodd" clip-rule="evenodd" d="M55 10a45 45 0 1 1 0 90a45 45 0 1 1 0-90zM55 38a17 17 0 1 0 0 34a17 17 0 1 0 0-34zM96 44h214v22H296v26h-18V66h-14v18h-18V66H96z"/></clipPath></defs><g clip-path="url(#keyclip)"><rect width="320" height="110" fill="#e7ece6"/><rect id="keyfill" width="0" height="110" fill="#2e9e4f"/></g><path fill="none" stroke="#12305a" stroke-width="3" stroke-linejoin="round" fill-rule="evenodd" d="M55 10a45 45 0 1 1 0 90a45 45 0 1 1 0-90zM55 38a17 17 0 1 0 0 34a17 17 0 1 0 0-34zM96 44h214v22H296v26h-18V66h-14v18h-18V66H96z"/></svg><div class="kp" id="keypct"></div></div><p class="small" id="progtxt"></p>
-  <h2>The deal</h2><div class="terms" id="terms"></div>
-  <h2>Every step until closing</h2><p class="small" id="stepsnote"></p><ul class="steps" id="steps"></ul><div id="addStepBox"></div>
-  <h2 id="needH">What we need from you</h2><ul class="steps" id="need"></ul>
-  <h2>Who's who</h2><div class="people" id="people"></div>
+  </section>
+  <section id="b-deal"><h2>The deal</h2><div class="terms" id="terms"></div></section>
+  <section id="b-steps"><h2>Every step until closing</h2><p class="small" id="stepsnote"></p><ul class="steps" id="steps"></ul><div id="addStepBox"></div></section>
+  <section id="b-need" data-t="What we need from you"><h2 id="needH">What we need from you</h2><ul class="steps" id="need"></ul></section>
+  <section id="b-who"><h2>Who's who</h2><div class="people" id="people"></div></section></div>
   <div class="sendsec" id="sendsec" hidden>
     <h2 id="sendH"></h2>
     <div class="sendbar"><button class="btn" type="button" id="pvText"></button><button class="btn" type="button" id="pvEmail"></button><a class="btn ghost" id="pvTest" data-test="1" href="#">Text me a test</a></div>
@@ -146,6 +170,56 @@ const fmtDT=v=>{if(!v)return '';const[dd,tt]=v.split('T');let r=fmt(dd);if(tt){c
 function shown(s){return view==='agent'||(!s.agent&&st.inc[s.id]!==false)}
 function steps(){return D.steps.filter(shown)}
 function nextSteps(){return steps().filter(s=>{const x=stepOf(s).status;return x!=='Done'&&x!=='N/A'})}
+/* Arrange sections (his copy only): hold "Drag" on a section and move it. While dragging, the page shrinks to section titles so the whole layout fits on screen; let go and it drops into place. Full / ½ / ⅓ width puts sections side by side. "Sending" switches a section on or off the client's page. */
+const ARR_SZ=[['full','Full'],['half','½'],['third','⅓']];
+function secName(x){const h=x.querySelector('h2');return x.dataset.t||(h&&h.textContent.trim())||'Section'}
+function arrange(box,agent,L,setL,who,priv){
+  if(!box)return;priv=priv||[];L=L||{};
+  const kids=[...box.children].filter(x=>x.id);const pos=new Map(kids.map((x,i)=>[x.id,i]));const ord=L.order||[];
+  const rank=x=>{const i=ord.indexOf(x.id);return i<0?1000+pos.get(x.id):i};
+  kids.slice().sort((a,b)=>rank(a)-rank(b)).forEach(x=>box.append(x));
+  kids.forEach(x=>{const k=x.id,sz=(L.size||{})[k]||'full',hid=!!(L.hide||{})[k];
+    x.classList.remove('sz-half','sz-third');if(sz!=='full')x.classList.add('sz-'+sz);
+    const old=x.querySelector(':scope>.arr');if(old)old.remove();
+    x.hidden=!agent&&hid;x.classList.toggle('secoff',agent&&hid);
+    if(!agent)return;
+    const mk=(cls,txt,title)=>{const b=document.createElement('button');b.type='button';if(cls)b.className=cls;b.textContent=txt;if(title)b.title=title;return b};
+    const bar=document.createElement('div');bar.className='arr';
+    const g=mk('arr-g','⠿ Drag','Hold and drag this section to a new spot');
+    const nm=document.createElement('span');nm.className='arr-n';nm.textContent=secName(x);
+    const w=document.createElement('span');w.className='arr-w';w.setAttribute('role','group');w.setAttribute('aria-label','Section width');
+    ARR_SZ.forEach(([v,l])=>{const b=mk(v===sz?'on':'',l,v==='full'?'Full width':v==='half'?'Half width: sits beside another section':'Third width: three across');
+      b.onclick=()=>{const Z=Object.assign({},L.size);if(v==='full')delete Z[k];else Z[k]=v;setL(Object.assign({},L,{size:Z}))};w.append(b)});
+    bar.append(g,nm,w);
+    if(priv.includes(k)){const p=document.createElement('span');p.className='arr-p';p.textContent='Only you see this';bar.append(p)}
+    else{const s=mk('arr-s'+(hid?' no':''),hid?'✗ Not sending to '+who:'✓ Sending to '+who,'Tap to switch');
+      s.onclick=()=>{const H=Object.assign({},L.hide);if(hid)delete H[k];else H[k]=true;setL(Object.assign({},L,{hide:H}))};bar.append(s)}
+    x.prepend(bar);
+    g.addEventListener('pointerdown',e=>arrDrag(e,box,x,L,setL));
+  });
+}
+function arrDrag(e,box,x,L,setL){if(e.button>0)return;e.preventDefault();
+  const top0=x.getBoundingClientRect().top;
+  box.classList.add('arranging');x.classList.add('dragging');document.body.classList.add('arr-on');
+  scrollBy(0,x.getBoundingClientRect().top-top0);   /* keep the grabbed section under the finger once the page shrinks */
+  const gh=document.createElement('div');gh.className='arr-ghost';gh.textContent='⠿ '+secName(x);document.body.append(gh);
+  let px=e.clientX,py=e.clientY,raf=0;
+  const step=()=>{raf=0;gh.style.transform='translate('+Math.round(px+14)+'px,'+Math.round(py-22)+'px)';
+    const H=innerHeight,edge=py<90||py>H-90;if(py<90)scrollBy(0,-18);else if(py>H-90)scrollBy(0,18);
+    let t=document.elementFromPoint(px,py);while(t&&t.parentNode!==box)t=t.parentNode;
+    if(t&&t!==x&&t.id){const r=t.getBoundingClientRect();const side=r.width<box.clientWidth*.8;const aft=side?px>r.left+r.width/2:py>r.top+r.height/2;
+      if(aft){if(t.nextSibling!==x)box.insertBefore(x,t.nextSibling)}else if(t.previousSibling!==x)box.insertBefore(x,t)}
+    if(edge)raf=requestAnimationFrame(step)};
+  step();
+  const mv=ev=>{ev.preventDefault();px=ev.clientX;py=ev.clientY;if(!raf)raf=requestAnimationFrame(step)};
+  const tm=ev=>ev.preventDefault();
+  const end=()=>{removeEventListener('pointermove',mv);removeEventListener('pointerup',end);removeEventListener('pointercancel',end);removeEventListener('touchmove',tm);
+    if(raf)cancelAnimationFrame(raf);gh.remove();box.classList.remove('arranging');x.classList.remove('dragging');document.body.classList.remove('arr-on');
+    const o=[...box.children].filter(c=>c.id).map(c=>c.id),k=x.id;
+    if(o.join()!==(L.order||[]).join())setL(Object.assign({},L,{order:o}));
+    requestAnimationFrame(()=>{const y=document.getElementById(k);if(y)y.scrollIntoView({block:'start',behavior:'smooth'})})};
+  /* listen on the whole window: moving the section drops the button's pointer capture */
+  addEventListener('pointermove',mv,{passive:false});addEventListener('pointerup',end);addEventListener('pointercancel',end);addEventListener('touchmove',tm,{passive:false})}
 function render(){
   $('addr').textContent=D.address;$('city').textContent=D.city;$('prep').textContent='Prepared for '+D.buyers;
   const close=pd(D.close),days=close?Math.round((close-today())/DAY):null;
@@ -170,6 +244,7 @@ function render(){
     $('sendsec').hidden=false;$('pvTest').href=smsHref(D.agentCell,'TEST: '+msgs().text);$('sendH').textContent='Send '+D.first+' an update';$('pvText').textContent='Send to '+D.first+' by text';$('pvEmail').textContent='Send to '+D.first+' by email';$('logH').textContent='What '+D.first+' has been sent';
     $('sentlog').innerHTML=(st.sentlog||[]).slice().reverse().map(l=>'<li><b>'+esc(new Date(l.when).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}))+'</b> · '+esc(l.how)+': '+esc(l.summary)+'</li>').join('')||'<li>Nothing sent yet.</li>';
     if(document.activeElement!==$('notes'))$('notes').value=st.notes||''}
+  arrange($('blocks'),MODE==='agent'&&view==='agent',D.layout,L=>{st.data=st.data||{};st.data.layout=L;changed()},D.first,[]);
 }
 function addDays(s,n){const d=pd(s);if(!d)return '';d.setDate(d.getDate()+n);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
 function inspEnd(){return addDays(D.accepted,Number(D.inspDays)||7)}
