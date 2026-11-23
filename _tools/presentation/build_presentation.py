@@ -23,11 +23,13 @@ spec.json keys
   match_beds     bedroom count for the "closest match" table (default subject beds)
   range          [low, high]  suggested price range (agent copy only)
   range_note     optional override for "How I set this range"
-  pages          list of page ids in any order (they are always put in Cloud CMA order):
+  pages          list of page ids (put in Cloud CMA order unless keep_order is true):
                  cover glance about commitment loyalty map comps actives psf value range time
                  highlow choosing intelligent marketing ready offer testimonials resume
                  (ready = the Get Ready to List pages; spec may then also carry prep/skip/intro, see build_ready.py)
                  (map, comps and actives are always included)
+  keep_order     true = keep the pages in the order listed (Frank arranges them by dragging on his dashboard);
+                 "comps" (or the name "Comp map, comparable sales & actives") marks where map/comps/actives go
   quote          optional cover quote [text, author]
 """
 import sys, os, json, html, shutil, re, datetime, statistics as st
@@ -38,7 +40,7 @@ E = html.escape
 ORDER = ['cover','glance','about','commitment','loyalty','map','comps','actives','psf','value','range','time',
          'highlow','choosing','intelligent','marketing1','marketing2','ready','offer','testimonials1','testimonials2','resume']
 ALIAS = {'marketing':['marketing1','marketing2'],'testimonials':['testimonials1','testimonials2'],
-         'title':['glance'],'suggested':['range'],'pricepersqft':['psf']}
+         'title':['glance'],'suggested':['range'],'pricepersqft':['psf'],'comps':['map','comps','actives']}
 TOCNAME = {'about':'About Me','commitment':'My Personal Commitment','loyalty':'Loyalty &amp; Commitment','map':'{area} Map',
            'comps':'Comparable Sales &amp; Actives','psf':'Average Price per Sq. Ft.','value':'The Value of Your Home',
            'range':'Suggested Price Range','time':'Time to Sell','highlow':'High / Low Pricing Strategies',
@@ -111,12 +113,21 @@ def build(S, copy):
              'suggestedpricerange':'range','timetosell':'time','highlowpricingstrategies':'highlow','intelligentpricingandtiming':'intelligent',
              'marketingactionplan':'marketing','offerhandlingstrategy':'offer','aboutme':'about','personalcommitment':'commitment',
              'mypersonalcommitment':'commitment','loyaltycommitment':'loyalty','clienttestimonials':'testimonials','resume':'resume',
-             'choosingtherightstrategy':'choosing','getreadytolist':'ready','readytolist':'ready'}.get(k, k)
+             'choosingtherightstrategy':'choosing','getreadytolist':'ready','readytolist':'ready',
+             'compmapcomparablesalesactives':'comps','compmap':'comps'}.get(k, k)
         want += ALIAS.get(k, [k])
-    if 'highlow' in want: want.append('choosing')
-    want += ['map', 'comps', 'actives']
+    if 'highlow' in want: want.insert(want.index('highlow') + 1, 'choosing')
+    if 'comps' not in want:                      # map, comps and actives are always included
+        later = [i for i, w in enumerate(want) if w in ('psf', 'value', 'range', 'time')]
+        at = later[0] if later else len(want)
+        want[at:at] = ['map', 'comps', 'actives']
     if not agent: want = [w for w in want if w != 'range']
-    pages = [p for p in ORDER if p in want]
+    if S.get('keep_order'):
+        pages = []
+        for w in want:
+            if w in ORDER and w not in pages: pages.append(w)
+    else:
+        pages = [p for p in ORDER if p in want]
 
     # numbers
     sp = [r['sp'] for r in sold]; spsf = [psf(r['sp'], r['sf']) for r in sold]; lpsf = [psf(r['lp'], r['sf']) for r in sold]
