@@ -6,7 +6,7 @@ The new seller page = the agent page's code in client mode + the agent's data wi
 everything he marked "Do not send" removed. Never includes his notes, take, price opinion or agent-only items."""
 import json, re, sys
 DRE = r'(<script id="data" type="application/json">)(.*?)(</script>)'
-DATA_KEYS = ['stats','traffic','links','media','showNote','questions','qTitle','qLead','photos','plans','planSrc','showings','market','estimates']
+DATA_KEYS = ['stats','traffic','links','media','showNote','questions','qTitle','qLead','photos','plans','planSrc','showings','market','estimates','asofs','studies']
 def data(h): return json.loads(re.search(DRE, h, re.S).group(2).replace('<\\/', '</'))
 def defaults(D):
     o = {s["id"]: s.get("inc", False) for s in D.get("stats", [])}
@@ -39,6 +39,9 @@ def build(D, state, old_client):
         M["tiers"] = [t for t in M.get("tiers", []) if inc.get("mk-" + str(t.get("id")))]
         if M["tiers"]: D["market"] = M
         else: D.pop("market", None)
+    # listing-specific studies: only the ones he marked Send; never his private note
+    if isinstance(D.get("studies"), list):
+        D["studies"] = [{k: v for k, v in x.items() if k != "note"} for x in D["studies"] if inc.get("sd-" + str(x.get("id")))]
     # Frank's dated comments: only the ones he marked Send
     D["comments"] = [c for c in (state.get("comments") or []) if inc.get("cm-" + str(c.get("id")))]
     if isinstance(state.get("contract"), dict): D["contract"] = state["contract"]
@@ -66,8 +69,8 @@ def build(D, state, old_client):
     D["price"] = {"id": "price", "inc": False, "title": "", "lead": "", "why": [], "steps": [], "comps": []}
     D["sources"] = ""
     for k in ("take", "notes"): D.pop(k, None)
-    for k, v in old_client.items():          # keep seller-page-only keys (its own link etc.)
-        if k not in D: D[k] = v
+    for k, v in old_client.items():          # keep seller-page-only keys (its own link etc.), never ones Frank chose not to send
+        if k not in D and k not in ("studies", "estimates", "market", "take", "notes", "sugg"): D[k] = v
     return D
 def main(a, c, s, out):
     A = open(a).read(); C = open(c).read(); S = json.load(open(s))
@@ -76,6 +79,7 @@ def main(a, c, s, out):
     h = A
     h = h.replace('const MODE="agent"', 'const MODE="client"', 1)
     assert 'const MODE="client"' in h, "mode marker not found"
+    h = re.sub(r'const PUSH=\{.*?\};let pushId', lambda _: 'const PUSH={};let pushId', h, count=1, flags=re.S)  # agent-only pending edits never ride along
     h = re.sub(r'<a id="hq-back".*?</a><div aria-hidden="true" style="height:64px"></div>', '', h, flags=re.S)
     h = re.sub(r'<title>.*?</title>', lambda _: re.search(r'<title>.*?</title>', C).group(0), h, count=1)
     js = json.dumps(D, ensure_ascii=False).replace("</", "<\\/")
