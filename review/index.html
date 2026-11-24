@@ -67,6 +67,15 @@ textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--blue
 .foot{text-align:center;font-size:14px;color:var(--muted)}
 .foot a{color:var(--blue);font-weight:700;text-decoration:none}
 .hide{display:none!important}
+.again{font:inherit;font-size:15px;font-weight:700;background:none;border:1.5px solid var(--navy);color:var(--navy);border-radius:10px;padding:8px 12px;cursor:pointer;align-self:flex-start}
+.ov{position:fixed;inset:0;background:rgba(15,45,92,.55);display:none;align-items:center;justify-content:center;padding:18px;z-index:50}
+.ov.on{display:flex}
+.ovbox{background:#fff;border-radius:18px;max-width:460px;width:100%;padding:22px;display:flex;flex-direction:column;gap:14px;box-shadow:0 12px 40px rgba(0,0,0,.25)}
+.ovbox h2{font-size:24px;color:var(--ok)}
+.ovbox ol{margin:0;padding-left:22px;font-size:18px}
+.ovbox li{margin:6px 0}
+.ovclose{font:inherit;background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:15px}
+.big{font-size:24px;font-weight:700;color:#fff;text-decoration:none}
 </style>
 </head>
 <body>
@@ -125,6 +134,7 @@ textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--blue
       <span class="t"><b>Copy my review &amp; open Zillow</b><small>Copies your words, then opens my Zillow review page</small></span>
     </a>
     <div class="flag" id="zFlag">✓ Copied! Now paste it on Zillow.</div>
+    <button class="again" type="button" data-again>Copy my review again</button>
     <div class="how"><b>On Zillow:</b>
       <ol>
         <li>Sign in or create a free account if it asks.</li>
@@ -143,6 +153,7 @@ textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--blue
       <span class="t"><b>Copy my review &amp; open Google</b><small>Copies your words, then opens my Google page</small></span>
     </a>
     <div class="flag" id="gFlag">✓ Copied! Now paste it on Google.</div>
+    <button class="again" type="button" data-again>Copy my review again</button>
     <div class="how"><b>On Google:</b>
       <ol>
         <li>Sign in with your Google/Gmail account if it asks.</li>
@@ -159,7 +170,36 @@ textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--blue
     <p class="muted">If you ever need anything, from a contractor to a market update, just call or text me.</p>
   </section>
 
+  <section class="card" id="keep">
+    <h2>Keep me handy</h2>
+    <a class="btn" href="frank-lucido.vcf" style="text-decoration:none"><svg width="44" height="40" viewBox="0 0 44 40" aria-hidden="true"><path d="M22 3 L40 18 Q41 19 41 21 L41 34 Q41 37 38 37 L6 37 Q3 37 3 34 L3 21 Q3 19 4 18 Z" fill="#fff" stroke="#c4d2e8" stroke-width="4" stroke-linejoin="round"/><circle cx="22" cy="17" r="7" fill="#0f2d5c"/><text x="22" y="20" text-anchor="middle" font-size="8" font-weight="700" fill="#fff" font-family="Georgia,serif">LS</text></svg><span class="t"><b>Save my contact</b><small>Puts my cell and my office line in your phone under my name</small></span></a>
+    <button class="btn" type="button" id="shareBtn"><svg width="44" height="40" viewBox="0 0 44 40" aria-hidden="true"><path d="M22 3 L40 18 Q41 19 41 21 L41 34 Q41 37 38 37 L6 37 Q3 37 3 34 L3 21 Q3 19 4 18 Z" fill="#fff" stroke="#c4d2e8" stroke-width="4" stroke-linejoin="round"/><circle cx="22" cy="17" r="7" fill="#0f2d5c"/><text x="22" y="20" text-anchor="middle" font-size="8" font-weight="700" fill="#fff" font-family="Georgia,serif">LS</text></svg><span class="t"><b>Share Frank's info</b><small>Know someone buying or selling? Send them my info in one tap</small></span></button>
+    <div class="flag" id="shareFlag">✓ Link copied. Paste it in a text or email.</div>
+    <a class="btn light" href="../" style="text-decoration:none"><svg width="44" height="40" viewBox="0 0 44 40" aria-hidden="true"><path d="M22 3 L40 18 Q41 19 41 21 L41 34 Q41 37 38 37 L6 37 Q3 37 3 34 L3 21 Q3 19 4 18 Z" fill="#fff" stroke="#c4d2e8" stroke-width="4" stroke-linejoin="round"/><circle cx="22" cy="17" r="7" fill="#0f2d5c"/><text x="22" y="20" text-anchor="middle" font-size="8" font-weight="700" fill="#fff" font-family="Georgia,serif">LS</text></svg><span class="t"><b>Lucido Local Trades</b><small>Pros I trust for work around the house. Save it to your home screen like an app.</small></span></a>
+    <p class="muted">Texts from <b>586-551-7715</b> are me too. That's my office line, which keeps everything organized and tracked.</p>
+  </section>
+
+  <section class="card" style="background:var(--navy);border:0;text-align:center">
+    <p style="color:#c4d2e8;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:13px">Call or text Frank</p>
+    <a class="big" href="tel:5864197607">586-419-7607</a>
+  </section>
+
   <p class="foot">Frank Lucido, REALTOR® · <a href="tel:5864197607">586-419-7607</a> · <a href="mailto:frankjr@fjlucido.com">frankjr@fjlucido.com</a></p>
+</div>
+
+<div class="ov" id="ov" role="dialog" aria-modal="true" aria-labelledby="ovT">
+  <div class="ovbox">
+    <h2 id="ovT">✓ Your review is copied!</h2>
+    <p><b>On the next screen:</b></p>
+    <ol>
+      <li>Sign in if it asks.</li>
+      <li>Tap the <b>stars</b>.</li>
+      <li><b>Press and hold</b> in the review box, then tap <b>Paste</b>.</li>
+      <li>Tap <b id="ovPost">Post</b>.</li>
+    </ol>
+    <a class="btn" id="ovGo" href="#" target="_blank" rel="noopener" style="text-decoration:none"><svg width="44" height="40" viewBox="0 0 44 40" aria-hidden="true"><path d="M22 3 L40 18 Q41 19 41 21 L41 34 Q41 37 38 37 L6 37 Q3 37 3 34 L3 21 Q3 19 4 18 Z" fill="#fff" stroke="#c4d2e8" stroke-width="4" stroke-linejoin="round"/><circle cx="22" cy="17" r="7" fill="#0f2d5c"/><text x="22" y="20" text-anchor="middle" font-size="8" font-weight="700" fill="#fff" font-family="Georgia,serif">LS</text></svg><span class="t"><b id="ovGoT">Got it, take me there</b><small>Your words are ready to paste</small></span></a>
+    <button class="ovclose" type="button" id="ovClose">Not yet, go back</button>
+  </div>
 </div>
 
 <script>
@@ -207,25 +247,49 @@ function build(){
 }
 document.querySelectorAll(".chips").forEach(g => g.addEventListener("click", () => setTimeout(build, 0)));
 function fallbackCopy(t){
-  const ta=document.createElement("textarea");ta.value=t;ta.style.position="fixed";ta.style.opacity="0";
-  document.body.appendChild(ta);ta.select();try{document.execCommand("copy");}catch(_){}ta.remove();
+  const ta=document.createElement("textarea");ta.value=t;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.top="0";ta.style.opacity="0";
+  document.body.appendChild(ta);ta.focus();ta.select();try{ta.setSelectionRange(0,t.length);}catch(_){}
+  let ok=false;try{ok=document.execCommand("copy");}catch(_){}ta.remove();return ok;
 }
 function copyText(t){
-  try{ navigator.clipboard.writeText(t).catch(()=>fallbackCopy(t)); }catch(_){ fallbackCopy(t); }
+  // copy right away inside the tap (works on iPhone), then the modern way as a backup
+  fallbackCopy(t);
+  try{ if(navigator.clipboard) navigator.clipboard.writeText(t).catch(()=>{}); }catch(_){}
 }
 const reviewText = () => document.getElementById("review").value.trim();
-function wire(id, flagId, textFn){
+const ov=document.getElementById("ov");
+function needText(){ const ta=document.getElementById("review");
+  ta.placeholder="Please write a few words here first (or tap a few choices above).";
+  ta.scrollIntoView({behavior:"smooth",block:"center"}); ta.focus(); }
+function wire(id, flagId, site, postWord){
   document.getElementById(id).addEventListener("click", e => {
-    const t = textFn();
-    if (!t) { e.preventDefault(); const ta=document.getElementById("review");
-      ta.placeholder="Please write a few words here first (or tap a few choices above).";
-      ta.scrollIntoView({behavior:"smooth",block:"center"}); ta.focus(); return; }
+    e.preventDefault();
+    const t = reviewText();
+    if (!t) { needText(); return; }
     copyText(t);
     document.getElementById(flagId).classList.add("on");
+    const go=document.getElementById("ovGo");
+    go.href=document.getElementById(id).href;
+    document.getElementById("ovGoT").textContent="Got it, take me to "+site;
+    document.getElementById("ovPost").textContent=postWord;
+    ov.classList.add("on");
   });
 }
-wire("zBtn","zFlag",reviewText);
-wire("gBtn","gFlag",() => { const t=reviewText(); if(!t) return ""; return t; });
+wire("zBtn","zFlag","Zillow","Submit");
+wire("gBtn","gFlag","Google","Post");
+document.getElementById("ovGo").addEventListener("click",()=>{ const t=reviewText(); if(t) copyText(t); setTimeout(()=>ov.classList.remove("on"),400); });
+document.getElementById("ovClose").addEventListener("click",()=>ov.classList.remove("on"));
+document.querySelectorAll("[data-again]").forEach(b=>b.addEventListener("click",()=>{
+  const t=reviewText(); if(!t){needText();return;} copyText(t);
+  const old=b.textContent; b.textContent="✓ Copied. Press and hold, then Paste"; setTimeout(()=>b.textContent=old,3500);
+}));
+const SHARE_URL="https://franklucidohomes.github.io/trades/meet-frank/";
+const SHARE_TEXT="If you're thinking about buying or selling a home, call or text Frank Lucido at 586-419-7607. He's great to work with.";
+document.getElementById("shareBtn").addEventListener("click",()=>{
+  const d={title:"Frank Lucido, REALTOR®",text:SHARE_TEXT,url:SHARE_URL};
+  if(navigator.share){ navigator.share(d).catch(()=>{}); return; }
+  copyText(SHARE_TEXT+" "+SHARE_URL); document.getElementById("shareFlag").classList.add("on");
+});
 // keep a draft on this phone in case they switch apps
 const DK="lucido-review-draft";
 function saveDraft(){ try{ localStorage.setItem(DK, document.getElementById("review").value); }catch(_){} }
