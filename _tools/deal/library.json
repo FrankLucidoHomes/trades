@@ -1,0 +1,60 @@
+{
+ "_about": "Frank's deal tracker step library. 'core' steps go on every deal; each add-on switches on only when the deal needs it. rel = [base date, days]: base is accepted, close or insp (end of inspection period). Words in {first}, {title}, {price} fill in from the deal.",
+ "core": [
+  {"id":"accept","t":"Offer accepted","who":"Frank","rel":["accepted",0],"what":"The sellers accepted your offer. This page shows every step from here to keys in your hand."},
+  {"id":"title","t":"Title ordered with {title}","who":"Frank","rel":["accepted",1],"what":"{title} handles the title search and the closing. I'll add the closer's name and contact info here."},
+  {"id":"emd","t":"Earnest money delivered to Sine & Monaghan","who":"You ({first})","rel":["accepted",2],"what":"Check made out to Sine & Monaghan. I'll get it deposited into the escrow account and send the listing agent proof of the deposit. It's credited toward your purchase at closing."},
+  {"id":"inspect","t":"Home inspection","who":"You and Frank","rel":["insp",0],"what":"Unless you have an inspector you prefer, I'll recommend one, schedule it and meet them there."},
+  {"id":"inspresp","t":"Inspection response to the sellers","who":"Frank","rel":["insp",0],"what":"Once we have the inspection report, we decide together: move forward, ask for repairs or a credit, or walk away. I send our response before the deadline."},
+  {"id":"titlecommit","t":"Title commitment received and reviewed","who":"Title and Frank","rel":["accepted",11],"what":"The title company confirms clear ownership. I look it over and flag anything unusual."},
+  {"id":"insurance","t":"Homeowner's insurance in place","who":"You ({first})","rel":["close",-7],"what":"Ask your insurance agent for a policy starting on the closing day and send the declarations page to the title company."},
+  {"id":"utilities","t":"Utilities set up in your name","who":"You ({first})","rel":["close",-2],"what":"Electric (DTE), gas, internet and cable starting the day you get the keys."},
+  {"id":"funds","t":"Closing statement and funds to title","who":"You ({first})","rel":["close",-1],"what":"The title company sends the final closing numbers. Before wiring anything, call the title company at a number you already know to confirm the wiring instructions. Never use wiring instructions sent by email alone."},
+  {"id":"walk","t":"Final walk-through","who":"You and Frank","rel":["close",0],"what":"We check that the home is as agreed, right before closing. It's your choice whether to do it."},
+  {"id":"close","t":"Closing at {title}","who":"You, Frank and title","rel":["close",0],"what":"Place and time to be set with the title company."},
+  {"id":"keys","t":"Keys and possession","who":"Frank","rel":["close",0],"what":"Possession at closing, so the keys are yours that day."},
+  {"id":"a-bm","agent":true,"t":"Brokermint: rename the file to the address; upload the signed purchase agreement, buyer agency agreement and escrow deposit receipt; add the title contact","who":"Frank","rel":["accepted",2],"what":""},
+  {"id":"a-board","agent":true,"t":"Closing Board entry and goal tracker updated","who":"Frank","rel":["accepted",1],"what":""},
+  {"id":"a-emdproof","agent":true,"t":"Send the listing agent proof of the earnest money deposit","who":"Frank","rel":["accepted",3],"what":""},
+  {"id":"a-water","agent":true,"t":"Final water bill ordered","who":"Listing Agent","rel":["close",-5],"what":""},
+  {"id":"a-comm","agent":true,"t":"Commission request to Annmarie","who":"Frank","rel":["close",-7],"what":"Copy the last request exactly with this deal's info."},
+  {"id":"a-gift","agent":true,"t":"Closing gift ordered and logged","who":"Frank","rel":["close",-2],"what":""},
+  {"id":"a-after","agent":true,"t":"After closing: thank-you card, review request, new address in Outlook and Follow Up Boss, anniversary saved","who":"Frank","rel":["close",2],"what":""}
+ ],
+ "addons": [
+  {"key":"financing","label":"Financing","desc":"Loan application, appraisal, mortgage commitment, Closing Disclosure","steps":[
+    {"id":"f-apply","t":"Mortgage application submitted to the lender","who":"You ({first})","rel":["accepted",5],"what":"Apply with your lender and send them the signed purchase agreement. I'll make sure they have everything from our side."},
+    {"id":"f-appraisal","t":"Appraisal","who":"Lender","rel":["accepted",21],"what":"The lender orders the appraisal. I meet the appraiser and share the comps that support the price."},
+    {"id":"f-commit","t":"Mortgage commitment received","who":"Lender","rel":["close",-10],"what":"The lender's written approval of your loan. Once it's in, the financing contingency is satisfied."},
+    {"id":"f-cd","t":"Closing Disclosure received (3 days before closing)","who":"You ({first})","rel":["close",-3],"what":"Your lender sends the final loan numbers at least 3 business days before closing. Look it over and ask me anything."}]},
+  {"key":"condo","label":"Condo","desc":"Condo documents, review period, HO-6, association rules","steps":[
+    {"id":"condodocs","t":"Condo documents delivered by the seller","who":"Seller","rel":["accepted",3],"what":"Master deed, bylaws, rules, budget and association details. I forward everything to you as soon as it arrives."},
+    {"id":"condoreview","t":"Condo document review complete","who":"You ({first})","rel":["accepted",8],"what":"You have a set number of days after delivery to read the documents. Let me know of any questions before this date."},
+    {"id":"pets","t":"Check the association's pet and move-in rules","who":"Frank","rel":["accepted",8],"what":"Noting any pet, move-in, parking or transfer-fee rules."},
+    {"id":"c-ho6","t":"Condo (HO-6) insurance policy","who":"You ({first})","rel":["close",-7],"what":"Ask your insurance agent for a condo HO-6 policy starting on the closing day."}]},
+  {"key":"sale","label":"Sale of buyer's home","desc":"Your current home has to sell first","steps":[
+    {"id":"s-list","t":"Your current home listed for sale","who":"You and Frank","rel":["accepted",7],"what":"Your purchase depends on selling your current home, so we get it on the market right away."},
+    {"id":"s-accept","t":"Offer accepted on your current home","who":"You and Frank","rel":["close",-30],"what":"Once it's under contract, I let the sellers here know."},
+    {"id":"s-close","t":"Closing on your current home","who":"You and Frank","rel":["close",0],"what":"Usually the same day or just before this closing."}]},
+  {"key":"occupancy","label":"Sellers stay after closing","desc":"Seller occupancy, escrow held, move-out and keys","steps":[
+    {"id":"o-escrow","t":"Occupancy escrow held at closing","who":"Title","rel":["close",0],"what":"Money is held from the sellers' proceeds until they move out and hand over the keys."},
+    {"id":"o-moveout","t":"Sellers move out and hand over the keys","who":"Sellers","rel":["close",30],"what":"I confirm the move-out date with the listing agent."},
+    {"id":"o-walk","t":"Move-out walk-through and escrow released","who":"You and Frank","rel":["close",30],"what":"We check the home after they leave; then the escrow is released."}]},
+  {"key":"early","label":"Early possession","desc":"Buyers move in before closing","steps":[
+    {"id":"e-agree","t":"Early possession agreement signed","who":"You and Frank","rel":["close",-10],"what":"Spells out the move-in date, insurance and any daily charge before closing."}]},
+  {"key":"cofo","label":"City C of O / city inspection","desc":"e.g., Grosse Pointe Farms","steps":[
+    {"id":"city","t":"City inspection (Certificate of Occupancy)","who":"City","rel":["accepted",10],"what":"The City's required inspection. The title company needs it passed before closing. I'll let you know what the City finds."},
+    {"id":"cityfix","t":"City-required repairs done or escrowed","who":"Sellers","rel":["close",-5],"what":"Anything the City requires gets fixed before closing or money is held to cover it."}]},
+  {"key":"lead","label":"Lead paint (pre-1978)","desc":"Lead-based paint disclosure and pamphlet","steps":[
+    {"id":"lead","t":"Lead-based paint disclosure and pamphlet signed","who":"You ({first})","rel":["accepted",0],"what":"Required for homes built before 1978. Signed with the offer."}]},
+  {"key":"repairs","label":"Repairs or credit from inspection","desc":"Repair agreement and proof the work was done","steps":[
+    {"id":"r-agree","t":"Repair or credit agreement signed","who":"You and Frank","rel":["insp",3],"what":"What the sellers agreed to fix or credit, in writing."},
+    {"id":"r-verify","t":"Repairs checked, with receipts","who":"Frank","rel":["close",-2],"what":"I get the receipts and we check the work at the walk-through."}]},
+  {"key":"warranty","label":"Home warranty","desc":"Ordered and paid at closing","steps":[
+    {"id":"w-order","t":"Home warranty ordered (paid at closing)","who":"Frank","rel":["close",-7],"what":"Covers major systems and appliances for the first year."}]},
+  {"key":"survey","label":"Survey","desc":"Ordered and reviewed before closing","steps":[
+    {"id":"sv-order","t":"Survey ordered","who":"Title","rel":["accepted",5],"what":"Confirms the lot lines and that nothing crosses them."},
+    {"id":"sv-review","t":"Survey reviewed","who":"Frank","rel":["close",-10],"what":"I look it over and flag anything unusual."}]}
+ ],
+ "titles": ["ATA Title","Synergy Title","Primary Title","Premier Title","Liberty Title"]
+}

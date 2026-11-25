@@ -1,0 +1,458 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>__TITLE__</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+/* Layout: navy branded band, countdown stat strip, "next up" callout, then one column: the deal, every step to closing, what we need from you, who's who. Agent copy adds status/notes and a send panel. */
+:root{--navy:#0d2a5e;--blue:#2f6fb0;--ink:#1b2333;--soft:#5a6476;--line:#d6dce6;--paper:#fff;--tint:#f3f6fb;--note:#e8f1fb;--noteline:#b9d0ec;--good:#1f7a4d;--warn:#a4560c;--warnbg:#fdf3e7;--band:#0d2a5e;--bandsoft:#c8d6ee;--sans:Poppins,"Helvetica Neue",Arial,sans-serif;--serif:Lora,Georgia,serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--navy:#9fbcea;--blue:#7fb0e8;--ink:#e7ecf4;--soft:#a6b0c2;--line:#2c3850;--paper:#111826;--tint:#172135;--note:#16263f;--noteline:#2d4a72;--good:#5cc495;--warn:#f0a65a;--warnbg:#2b2114;--band:#0b1f45;--bandsoft:#aec2e4;color-scheme:dark}}
+:root[data-theme="dark"]{--navy:#9fbcea;--blue:#7fb0e8;--ink:#e7ecf4;--soft:#a6b0c2;--line:#2c3850;--paper:#111826;--tint:#172135;--note:#16263f;--noteline:#2d4a72;--good:#5cc495;--warn:#f0a65a;--warnbg:#2b2114;--band:#0b1f45;--bandsoft:#aec2e4;color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font:400 15px/1.6 var(--sans);margin:0}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band{background:var(--band);color:#fff}
+.band .inner{display:flex;gap:18px;align-items:flex-end;flex-wrap:wrap;padding-block:24px 0}
+.band .left{flex:1 1 320px;min-width:0;padding-bottom:22px;display:grid;gap:6px}
+.eyebrow{font:500 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--bandsoft)}
+h1{font:700 clamp(28px,5.4vw,40px)/1.08 var(--sans);margin:0}
+.city{color:var(--bandsoft)}.prepfor{font-weight:600;margin-top:4px}
+.k{font:italic 400 22px/1.2 var(--serif);margin-top:6px}.ksub{color:var(--bandsoft);max-width:34em}
+.brandrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.brandrow .logo{width:132px;background:#fff;border-radius:6px;padding:6px}
+.badge{display:flex;gap:8px;align-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:6px;padding:4px 10px 4px 4px}
+.badge img{width:46px;height:46px;object-fit:contain;background:#fff;border-radius:4px}.badge span{font:600 12px/1.25 var(--sans)}
+.head{flex:0 1 210px;max-width:210px;display:block}
+.stripe{height:6px;display:flex}.stripe span{background:var(--blue);width:22%}.stripe i{background:#222;flex:1}
+.contact{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:14px;color:var(--soft);padding-block:12px;border-bottom:1px solid var(--line)}.contact b{color:var(--ink)}
+.modebar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding-block:14px}
+.seg{display:inline-flex;border:1.5px solid var(--navy);border-radius:999px;overflow:hidden}
+.seg button{font:500 14px var(--sans);border:0;background:transparent;color:var(--navy);padding:8px 16px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--navy);color:var(--paper)}
+.sync{font-size:13px;color:var(--soft)}.sync.ok{color:var(--good);font-weight:600}
+.pvsend{border:2px solid var(--navy);border-radius:10px;padding:12px;margin:0 0 14px;display:grid;gap:8px;background:var(--tint)}.pvsend .sendbar .btn{flex:1 1 160px}
+.savebar{border-radius:8px;padding:10px 12px;margin:0 0 12px;font-weight:600}.savebar.wait{background:var(--note);border:1.5px solid var(--noteline);color:var(--navy)}.savebar.bad{background:#fdecea;border:2px solid #c0392b;color:#8e1b10}
+body.locked .ctl,body.locked #editsec,body.locked #addStepBox,body.locked #mEdit,body.locked #mQs,body.locked #mWc,body.locked #mPush{pointer-events:none;opacity:.45}
+/* Arrange sections: drag on the page, Full / ½ / ⅓ width, Sending on/off */
+.arrbox{display:flex;flex-wrap:wrap;column-gap:24px;align-items:flex-start}
+.arrbox>*{flex:1 1 100%;min-width:0;max-width:100%}
+.arrbox>.sz-half{flex:1 1 calc(50% - 12px);max-width:calc(50% - 12px)}
+.arrbox>.sz-third{flex:1 1 calc(33.333% - 16px);max-width:calc(33.333% - 16px)}
+@media (max-width:640px){.arrbox>.sz-half,.arrbox>.sz-third{flex-basis:100%;max-width:100%}}
+.arr{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:20px 0 -12px;padding:5px 6px;background:#eef4fc;border:1px dashed #8fb0dc;border-radius:10px;font:600 13px/1.2 var(--sans);color:#12305a}
+.arr button{font:700 13px/1 var(--sans);color:#12305a;background:#fff;border:1px solid #9db8dd;border-radius:8px;padding:8px 10px;cursor:pointer}
+.arr .arr-g{background:#12305a;color:#fff;border-color:#12305a;cursor:grab;touch-action:none;padding:8px 14px}
+.arr .arr-n{display:none;font-weight:700;font-size:15px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1 1 0}
+.arr-w{display:inline-flex}.arr-w button{border-radius:0;margin-left:-1px;min-width:40px}.arr-w button:first-child{border-radius:8px 0 0 8px;margin-left:0}.arr-w button:last-child{border-radius:0 8px 8px 0}
+.arr-w button.on{background:#12305a;color:#fff;border-color:#12305a}
+.arr .arr-s{margin-left:auto;background:#e7f5ec;border-color:#9fd2b2;color:#17602f}.arr .arr-s.no{background:#fdecea;border-color:#efb8b0;color:#9b2c22}
+.arr .arr-p{margin-left:auto;color:#5a6782;font-weight:600}
+.arrbox>.secoff>:not(.arr){opacity:.5}
+.arrbox.arranging>*>:not(.arr){display:none!important}
+.arrbox.arranging>*>.arr{margin:5px 0;border-style:solid}
+.arrbox.arranging .arr-n{display:block}
+.arrbox.arranging .arr-w,.arrbox.arranging .arr-s,.arrbox.arranging .arr-p{display:none}
+.arrbox.arranging>.dragging>.arr{background:#fff3c4;border:2px dashed #2f6db5}
+.arr-ghost{position:fixed;left:0;top:0;z-index:2147483002;pointer-events:none;background:#12305a;color:#fff;padding:10px 14px;border-radius:10px;font:700 14px var(--sans);box-shadow:0 8px 24px rgba(0,0,0,.35);max-width:70vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.arr-on{user-select:none;-webkit-user-select:none}
+@media print{.arr,.arr-ghost{display:none!important}.arrbox>.secoff{display:none!important}}
+textarea.ie,input.ie{display:block;width:100%;box-sizing:border-box;font:inherit;color:inherit;background:transparent;border:0;border-bottom:1px dashed var(--noteline);border-radius:0;padding:2px 0;margin-top:2px;resize:none;field-sizing:content;min-height:1.6em;-webkit-appearance:none;appearance:none}textarea.ie:focus,input.ie:focus{background:var(--note);border-bottom:2px solid var(--blue);outline:0}.term textarea.ie{font-weight:600}input.iet{font-weight:600}
+h2{font:600 22px/1.3 var(--sans);color:var(--blue);margin:30px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:6px}
+.stat{border:2px solid var(--navy);border-top:4px solid var(--blue);border-radius:6px;padding:10px 12px;display:grid;gap:2px}
+.stat .l{font:500 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+.stat .v{font:600 26px/1.15 var(--sans);color:var(--navy);font-variant-numeric:tabular-nums}.stat .s{font-size:12.5px;color:var(--soft)}
+.nextup{background:var(--note);border:2px solid var(--navy);border-left:6px solid var(--blue);border-radius:6px;padding:12px 14px;margin-top:14px}
+.nextup b{color:var(--navy)}
+.keyprog{display:flex;align-items:center;gap:14px;margin-top:14px}.keyprog svg{width:min(320px,70vw);height:auto;flex:0 0 auto}.keyprog .kp{font:700 28px var(--sans);color:#1f8a3e;line-height:1}.keyprog .kp small{display:block;font:500 13px var(--sans);color:var(--soft);margin-top:4px}
+.terms{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
+.term{border:2px solid var(--navy);border-radius:6px;padding:8px 10px}.term .l{font:500 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}.term .v{font-weight:600}
+ul.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.step{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding:10px 12px;border:2px solid var(--navy);border-radius:6px}
+.step .mark{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font:700 12px var(--sans);margin-top:2px;background:var(--paper);color:var(--soft);border:2px solid var(--line)}
+.tapmark{cursor:pointer;padding:0;width:30px!important;height:30px!important}.tapmark:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.step.st-done .mark{background:var(--good);border-color:var(--good);color:#fff}
+.step.st-next .mark{background:var(--blue);border-color:var(--blue);color:#fff}
+.step.st-done{opacity:.8}
+.step .t{font-weight:600}.step .meta{font-size:13px;color:var(--soft)}.step .what{font-size:14px}
+.when{font-weight:600;color:var(--navy)}
+.who{display:inline-block;font:600 11px var(--sans);letter-spacing:.04em;text-transform:uppercase;border-radius:3px;padding:0 6px;background:var(--tint);border:1px solid var(--line);color:var(--navy)}
+.who.you{background:var(--warnbg);color:var(--warn);border-color:var(--warn)}
+.ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:6px}
+.ctl select,.ctl input[type=date],.ctl input[type=text],textarea{font:inherit;font-size:14px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:6px 8px}
+.ctl input[type=text]{flex:1 1 200px;min-width:0}
+.inc{display:inline-flex;gap:6px;align-items:center;font-size:13px;color:var(--soft);cursor:pointer}
+.agentonly{font:600 10.5px var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--warn)}
+.people{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.person{border:2px solid var(--navy);border-radius:6px;padding:10px 12px}.person b{display:block}.person .r{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft)}
+.btn{font:600 14px var(--sans);background:var(--navy);color:var(--paper);border:0;border-radius:8px;padding:10px 14px;cursor:pointer;text-decoration:none;display:inline-block;text-align:center}
+.btn.ghost{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
+.sendbar{display:flex;flex-wrap:wrap;gap:8px}.sendbar .btn{flex:1 1 200px}
+.pv{border:2px solid var(--navy);border-radius:10px;padding:12px;background:var(--tint);display:grid;gap:10px;margin-top:10px}
+.bubble{background:#1f6fd0;color:#fff;border-radius:16px 16px 4px 16px;padding:10px 14px;white-space:pre-wrap;max-width:420px;justify-self:end}
+.mail{background:var(--paper);border:2px solid var(--navy);border-radius:8px;padding:12px;white-space:pre-wrap;font-size:14px}
+.small{font-size:13px;color:var(--soft)}
+.log li{margin-bottom:6px}
+.foot{background:var(--band);color:#fff;margin-top:36px;padding-block:18px}.foot .wrap{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.foot img.h{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid #fff}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--navy);color:var(--paper);padding:10px 16px;border-radius:8px;font-size:14px;z-index:50;max-width:92vw}
+[hidden]{display:none!important}
+/* Questions / What changed? panels (his copy only): tap-to-answer chips */
+.qpanel{border:2px solid var(--navy);border-radius:10px;padding:12px 14px;margin-bottom:14px;background:var(--tint)}
+.qpanel h3{margin:0 0 4px;font:700 17px var(--sans);color:var(--navy)}
+.qrow{padding:10px 0;border-bottom:1px solid var(--line)}.qrow:last-child{border-bottom:0}.qrow>b{display:block;margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:600 14px var(--sans);border:1.5px solid var(--navy);background:var(--paper);color:var(--navy);border-radius:999px;padding:8px 14px;min-height:40px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.chip.on{background:var(--navy);color:var(--paper)}
+.chip input[type=date]{font:inherit;border:0;background:transparent;color:inherit}
+.addon{display:flex;gap:10px;align-items:flex-start;padding:8px 0}.addon input{margin-top:5px;width:18px;height:18px}.addon .small{display:block}
+body.locked .qpanel{pointer-events:none;opacity:.45}
+@media print{.qpanel{display:none!important}}
+.edit{border:2px dashed var(--navy);border-radius:10px;padding:12px;margin-bottom:12px;background:var(--tint)}
+.edit h3{margin:14px 0 6px;font:600 15px var(--sans)}.edit h3:first-child{margin-top:0}
+.erow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:6px}
+.erow input,.erow textarea,.estep input,.estep textarea{font:15px var(--sans);padding:7px 8px;border:1px solid var(--line);border-radius:6px;min-width:0;flex:1 1 140px;box-sizing:border-box}
+.erow label{font-size:13px;color:var(--soft);flex:0 0 130px}
+.x{background:none;border:1px solid #c0392b;color:#c0392b;border-radius:6px;padding:5px 9px;cursor:pointer;font-weight:700}
+.mv{background:none;border:1px solid var(--line);border-radius:6px;padding:5px 9px;cursor:pointer}
+.quick{border:2px solid var(--navy);border-radius:10px;padding:10px 12px;margin-bottom:14px;display:grid;gap:8px}.quick .q{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}.quick .q .r{font:600 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--soft);flex:0 0 100%}.quick a{font-weight:600}
+.estep{display:grid;gap:6px;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+@media print{.modebar,.sendsec,.ctl{display:none!important}}
+/* Print / Save as PDF: US Letter, nothing cut off or split; light colors; buttons and editing hidden */
+@page{size:letter;margin:.45in .4in}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  :root,:root[data-theme="dark"],:root:not([data-theme="light"]){--navy:#0d2a5e;--blue:#2f6fb0;--ink:#1b2333;--soft:#5a6476;--line:#d6dce6;--paper:#fff;--tint:#f3f6fb;--note:#e8f1fb;--noteline:#b9d0ec;--good:#1f7a4d;--warn:#a4560c;--warnbg:#fdf3e7;--band:#0d2a5e;--bandsoft:#c8d6ee;--sans:Poppins,"Helvetica Neue",Arial,sans-serif;--serif:Lora,Georgia,serif;color-scheme:light}
+  html,body{background:#fff!important;font-size:11.5px;line-height:1.45}
+  .wrap{max-width:none!important;padding-left:0!important;padding-right:0!important}
+  .step,.estep,.stat,.term,.person,.nextup,.quick,.keyprog,.bubble,.people>*,.terms>*,.stats>*,tr,img,svg{break-inside:avoid;page-break-inside:avoid}
+  h2,h3{break-after:avoid;page-break-after:avoid}
+  .terms{grid-template-columns:repeat(4,1fr)!important}
+  .stats{grid-template-columns:repeat(4,1fr)!important}
+  .people{grid-template-columns:repeat(3,1fr)!important}
+  .modebar,.sendsec,.sendbar,.savebar,.ctl,.toast,.btn,.edit,.erow,.inc,.pvsend,.bad,.tapmark,.seg,.sync,#hq-back,#hq-back+div,button:not(.mark){display:none!important}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+<div class="band"><div class="wrap inner">
+  <div class="left">
+    <div class="eyebrow" id="eyebrow">Under contract · what happens now</div>
+    <h1 id="addr"></h1><div class="city" id="city"></div>
+    <div class="prepfor" id="prep"></div>
+    <div class="k">This is what happens now</div>
+    <div class="ksub">A living page that shows where we are and every step from accepted offer to keys in your hand. I keep it up to date as each step gets done.</div>
+    <div class="brandrow"><img class="logo" src="img/logo_c.png" alt="Lucido Sales · Sine &amp; Monaghan Realtors"><div class="badge"><img src="img/all-stars.png" alt="Hour Detroit Real Estate All-Stars"><span>Frank Lucido<br>Top 5% · Hour Detroit All-Star</span></div></div>
+  </div>
+  <img class="head" src="img/photo_crop.png" alt="Frank Lucido">
+</div><div class="stripe"><span></span><i></i></div></div>
+<div class="wrap">
+  <div class="contact"><span><b>Frank Lucido</b>, REALTOR® · Sine &amp; Monaghan</span><span>Cell <b>586-419-7607</b></span><span><b>frankjr@fjlucido.com</b></span><span>franklucidohomes.com</span></div>
+  <div class="modebar" id="modebar" hidden><div class="seg"><button type="button" id="mAgent" aria-pressed="true">My copy</button><button type="button" id="mClient" aria-pressed="false"></button></div><button class="btn" type="button" id="mQs">Answer questions</button><button class="btn" type="button" id="mWc">What changed?</button><button class="btn ghost" type="button" id="mEdit">Edit deal</button><button class="btn" type="button" id="mPush"></button><span class="sync" id="sync"></span></div>
+  <div class="savebar wait" id="savebar" hidden></div>
+  <div class="pvsend" id="pvSend" hidden></div>
+  <div class="qpanel" id="qsec" hidden></div>
+  <div class="qpanel" id="wcsec" hidden></div>
+  <div class="quick" id="quick" hidden></div>
+  <div class="edit" id="editsec" hidden></div>
+  <div id="blocks" class="arrbox"><section id="b-glance" data-t="At a glance: countdown, next up, progress"><div class="stats" id="stats"></div>
+  <div class="nextup" id="nextup"></div>
+  <div class="keyprog"><svg viewBox="0 0 320 110" role="img" aria-label="Progress to your keys"><defs><clipPath id="keyclip"><path fill-rule="evenodd" clip-rule="evenodd" d="M55 10a45 45 0 1 1 0 90a45 45 0 1 1 0-90zM55 38a17 17 0 1 0 0 34a17 17 0 1 0 0-34zM96 44h214v22H296v26h-18V66h-14v18h-18V66H96z"/></clipPath></defs><g clip-path="url(#keyclip)"><rect width="320" height="110" fill="#e7ece6"/><rect id="keyfill" width="0" height="110" fill="#2e9e4f"/></g><path fill="none" stroke="#12305a" stroke-width="3" stroke-linejoin="round" fill-rule="evenodd" d="M55 10a45 45 0 1 1 0 90a45 45 0 1 1 0-90zM55 38a17 17 0 1 0 0 34a17 17 0 1 0 0-34zM96 44h214v22H296v26h-18V66h-14v18h-18V66H96z"/></svg><div class="kp" id="keypct"></div></div><p class="small" id="progtxt"></p>
+  </section>
+  <section id="b-deal"><h2>The deal</h2><div class="terms" id="terms"></div></section>
+  <section id="b-steps"><h2>Every step until closing</h2><p class="small" id="stepsnote"></p><ul class="steps" id="steps"></ul><div id="addStepBox"></div></section>
+  <section id="b-need" data-t="What we need from you"><h2 id="needH">What we need from you</h2><ul class="steps" id="need"></ul></section>
+  <section id="b-who"><h2>Who's who</h2><div class="people" id="people"></div></section></div>
+  <div class="sendsec" id="sendsec" hidden>
+    <h2 id="sendH"></h2>
+    <div class="sendbar"><button class="btn" type="button" id="pvText"></button><button class="btn" type="button" id="pvEmail"></button><a class="btn ghost" id="pvTest" data-test="1" href="#">Text me a test</a></div>
+    <div id="pvBox"></div>
+    <h2 id="logH"></h2><ul class="log small" id="sentlog"></ul>
+    <h2>My notes</h2><textarea id="notes" rows="4" style="width:100%;box-sizing:border-box" placeholder="Only you see this"></textarea>
+  </div>
+</div>
+<div class="foot"><div class="wrap"><img class="h" src="img/head_s.jpg" alt=""><div><b>Frank Lucido</b> · REALTOR® · Sine &amp; Monaghan<br>586-419-7607 · frankjr@fjlucido.com · franklucidohomes.com<br><span class="small" style="color:#c8d6ee">Hour Detroit Real Estate All-Star · Top 5% in Metro Detroit</span></div></div></div>
+<script type="application/json" id="data">__DATA__</script>
+<script type="application/json" id="lib">__LIB__</script>
+<script>
+(function(){"use strict";
+const D0=JSON.parse(document.getElementById('data').textContent);let D=D0;let editing=false;const MODE='__MODE__';
+const $=id=>document.getElementById(id);const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let st=Object.assign({steps:{},inc:{},notes:'',sentlog:[],data:{}},D0.state||{});
+function applyData(){D=Object.assign({},D0,st.data||{})}applyData();
+function M(k){st.data=st.data||{};if(st.data[k]===undefined)st.data[k]=JSON.parse(JSON.stringify(D[k]));return st.data[k]}
+function changed(){applyData();render();save()}let view=MODE;let db=null,ref=null,saving=false,lastLocal=0;
+const ST=['To do','Scheduled','Waiting','Done','N/A'];
+const DAY=864e5;const today=()=>{const t=new Date();t.setHours(0,0,0,0);return t};
+const pd=s=>{if(!s)return null;const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)};
+const fmt=s=>{const d=pd(s);return d?d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}):''};
+const money=n=>'$'+Number(n||0).toLocaleString('en-US');
+function stepOf(s){const o=st.steps[s.id]||{};return {status:o.status||s.status||'To do',d:o.d||s.d||'',note:o.note||'',sched:o.sched||''}}
+const SCHED=['inspect','walk','close'];const TIMES=[['','Time']];for(let m=6*60;m<=21*60;m+=15){const h=Math.floor(m/60),mm=m%60;TIMES.push([String(h).padStart(2,'0')+':'+String(mm).padStart(2,'0'),((h%12)||12)+':'+String(mm).padStart(2,'0')+(h<12?' AM':' PM')])}const isSched=s=>(D.schedIds||SCHED).includes(s.id);
+const fmtDT=v=>{if(!v)return '';const[dd,tt]=v.split('T');let r=fmt(dd);if(tt){const[h,m]=tt.split(':').map(Number);r+=', '+((h%12)||12)+(m?':'+String(m).padStart(2,'0'):'')+(h<12?' AM':' PM')}return r};
+const packOn=s=>!s.pack||!!(D.addons||{})[s.pack];
+function shown(s){return packOn(s)&&(view==='agent'||(!s.agent&&st.inc[s.id]!==false))}
+function steps(){return D.steps.filter(shown)}
+function nextSteps(){return steps().filter(s=>{const x=stepOf(s).status;return x!=='Done'&&x!=='N/A'})}
+/* Arrange sections (his copy only): hold "Drag" on a section and move it. While dragging, the page shrinks to section titles so the whole layout fits on screen; let go and it drops into place. Full / ½ / ⅓ width puts sections side by side. "Sending" switches a section on or off the client's page. */
+const ARR_SZ=[['full','Full'],['half','½'],['third','⅓']];
+function secName(x){const h=x.querySelector('h2');return x.dataset.t||(h&&h.textContent.trim())||'Section'}
+function arrange(box,agent,L,setL,who,priv){
+  if(!box)return;priv=priv||[];L=L||{};
+  const kids=[...box.children].filter(x=>x.id);const pos=new Map(kids.map((x,i)=>[x.id,i]));const ord=L.order||[];
+  const rank=x=>{const i=ord.indexOf(x.id);return i<0?1000+pos.get(x.id):i};
+  kids.slice().sort((a,b)=>rank(a)-rank(b)).forEach(x=>box.append(x));
+  kids.forEach(x=>{const k=x.id,sz=(L.size||{})[k]||'full',hid=!!(L.hide||{})[k];
+    x.classList.remove('sz-half','sz-third');if(sz!=='full')x.classList.add('sz-'+sz);
+    const old=x.querySelector(':scope>.arr');if(old)old.remove();
+    x.hidden=!agent&&hid;x.classList.toggle('secoff',agent&&hid);
+    if(!agent)return;
+    const mk=(cls,txt,title)=>{const b=document.createElement('button');b.type='button';if(cls)b.className=cls;b.textContent=txt;if(title)b.title=title;return b};
+    const bar=document.createElement('div');bar.className='arr';
+    const g=mk('arr-g','⠿ Drag','Hold and drag this section to a new spot');
+    const nm=document.createElement('span');nm.className='arr-n';nm.textContent=secName(x);
+    const w=document.createElement('span');w.className='arr-w';w.setAttribute('role','group');w.setAttribute('aria-label','Section width');
+    ARR_SZ.forEach(([v,l])=>{const b=mk(v===sz?'on':'',l,v==='full'?'Full width':v==='half'?'Half width: sits beside another section':'Third width: three across');
+      b.onclick=()=>{const Z=Object.assign({},L.size);if(v==='full')delete Z[k];else Z[k]=v;setL(Object.assign({},L,{size:Z}))};w.append(b)});
+    bar.append(g,nm,w);
+    if(priv.includes(k)){const p=document.createElement('span');p.className='arr-p';p.textContent='Only you see this';bar.append(p)}
+    else{const s=mk('arr-s'+(hid?' no':''),hid?'✗ Not sending to '+who:'✓ Sending to '+who,'Tap to switch');
+      s.onclick=()=>{const H=Object.assign({},L.hide);if(hid)delete H[k];else H[k]=true;setL(Object.assign({},L,{hide:H}))};bar.append(s)}
+    x.prepend(bar);
+    g.addEventListener('pointerdown',e=>arrDrag(e,box,x,L,setL));
+  });
+}
+function arrDrag(e,box,x,L,setL){if(e.button>0)return;e.preventDefault();
+  const top0=x.getBoundingClientRect().top;
+  box.classList.add('arranging');x.classList.add('dragging');document.body.classList.add('arr-on');
+  scrollBy(0,x.getBoundingClientRect().top-top0);   /* keep the grabbed section under the finger once the page shrinks */
+  const gh=document.createElement('div');gh.className='arr-ghost';gh.textContent='⠿ '+secName(x);document.body.append(gh);
+  let px=e.clientX,py=e.clientY,raf=0;
+  const step=()=>{raf=0;gh.style.transform='translate('+Math.round(px+14)+'px,'+Math.round(py-22)+'px)';
+    const H=innerHeight,edge=py<90||py>H-90;if(py<90)scrollBy(0,-18);else if(py>H-90)scrollBy(0,18);
+    let t=document.elementFromPoint(px,py);while(t&&t.parentNode!==box)t=t.parentNode;
+    if(t&&t!==x&&t.id){const r=t.getBoundingClientRect();const side=r.width<box.clientWidth*.8;const aft=side?px>r.left+r.width/2:py>r.top+r.height/2;
+      if(aft){if(t.nextSibling!==x)box.insertBefore(x,t.nextSibling)}else if(t.previousSibling!==x)box.insertBefore(x,t)}
+    if(edge)raf=requestAnimationFrame(step)};
+  step();
+  const mv=ev=>{ev.preventDefault();px=ev.clientX;py=ev.clientY;if(!raf)raf=requestAnimationFrame(step)};
+  const tm=ev=>ev.preventDefault();
+  const end=()=>{removeEventListener('pointermove',mv);removeEventListener('pointerup',end);removeEventListener('pointercancel',end);removeEventListener('touchmove',tm);
+    if(raf)cancelAnimationFrame(raf);gh.remove();box.classList.remove('arranging');x.classList.remove('dragging');document.body.classList.remove('arr-on');
+    const o=[...box.children].filter(c=>c.id).map(c=>c.id),k=x.id;
+    if(o.join()!==(L.order||[]).join())setL(Object.assign({},L,{order:o}));
+    requestAnimationFrame(()=>{const y=document.getElementById(k);if(y)y.scrollIntoView({block:'start',behavior:'smooth'})})};
+  /* listen on the whole window: moving the section drops the button's pointer capture */
+  addEventListener('pointermove',mv,{passive:false});addEventListener('pointerup',end);addEventListener('pointercancel',end);addEventListener('touchmove',tm,{passive:false})}
+function render(){
+  $('addr').textContent=D.address;$('city').textContent=D.city;$('prep').textContent='Prepared for '+D.buyers;
+  const close=pd(D.close),days=close?Math.round((close-today())/DAY):null;
+  const ins=D.steps.find(s=>s.id==='inspect');const insD=ins?stepOf(ins).d:'';const insS=ins?stepOf(ins).sched:'';
+  const all=steps(),done=all.filter(s=>['Done','N/A'].includes(stepOf(s).status)).length;
+  $('stats').innerHTML=[['Purchase price',money(D.price),((D.terms.find(t=>t[0]==='Financing')||[])[1]||'')],['Closing',days==null?'':(days>0?days+' days':days===0?'Today':'Closed'),fmt(D.close)],['Inspection',insS?fmtDT(insS):'Not scheduled yet',insD?'Due by '+fmt(insD):''],['Steps done',done+' of '+all.length,'']].map(x=>'<div class="stat"><span class="l">'+x[0]+'</span><span class="v">'+esc(x[1])+'</span><span class="s">'+esc(x[2])+'</span></div>').join('');
+  const nx=nextSteps();
+  $('nextup').innerHTML=nx.length?'<b>Next up:</b> '+esc(nx[0].t)+(stepOf(nx[0]).d?' · <span class="when">by '+esc(fmt(stepOf(nx[0]).d))+'</span>':'')+'<br><span class="small">'+esc(nx[0].what||'')+'</span>'+(nx[1]?'<br><span class="small">Then: '+esc(nx[1].t)+(stepOf(nx[1]).d?' ('+esc(fmt(stepOf(nx[1]).d))+')':'')+'</span>':''):'<b>Everything is done.</b> Enjoy your new home.';
+  const pct=all.length?Math.round(done/all.length*100):0;$('keyfill').setAttribute('width',String(Math.round(pct/100*320)));$('keypct').innerHTML=pct+'%<small>of the way to your keys</small>';$('progtxt').textContent=done+' of '+all.length+' steps done';
+  $('terms').innerHTML=D.terms.map((t0,i)=>{const t=autoTerm(t0);const auto=t!==t0;return '<div class="term"><div class="l">'+esc(t[0])+'</div>'+(view==='agent'&&!auto?'<textarea class="ie" rows="1" data-tr="'+i+'" data-tk="1">'+esc(t[1])+'</textarea>':'<div class="v">'+esc(t[1])+'</div>'+(view==='agent'&&auto?'<div class="small">Changes with the dates in Edit deal</div>':''))+'</div>'}).join('');
+  $('stepsnote').textContent=view==='agent'?'Tap a step’s circle to mark it done (tap again to undo), or change its status or date. Everything saves as you go. Steps marked "only you" never go to '+D.first+'. On every other step, check Send or Do not send. Type right in any light-blue box to change the wording; it saves when you tap out. Edit deal has the names, dates and contacts.':'Dates are targets and can shift a day or two; I will keep you posted.';
+  const firstOpen=nx[0]&&nx[0].id;
+  $('steps').innerHTML=all.map((s,i)=>{const o=stepOf(s);const cls=o.status==='Done'||o.status==='N/A'?'st-done':s.id===firstOpen?'st-next':'';
+    return '<li class="step '+cls+'">'+(view==='agent'?'<button type="button" class="mark tapmark" data-done="'+s.id+'" title="Tap to mark '+(cls==='st-done'?'not done':'done')+'" aria-label="Mark '+esc(s.t)+(cls==='st-done'?' not done':' done')+'">'+(cls==='st-done'?'✓':(i+1))+'</button>':'<span class="mark">'+(cls==='st-done'?'✓':(i+1))+'</span>')+'<div><div class="t">'+(view==='agent'&&!editing?'<input class="ie iet" data-sx="'+s.id+'" data-sk="t" value="'+esc(s.t)+'">':esc(s.t))+(s.agent?' <span class="agentonly">only you</span>':'')+'</div><div class="meta">'+(isSched(s)?(o.d?'<span class="when">Due by '+esc(fmt(o.d))+'</span> · ':'')+(o.sched?'<b>Scheduled '+esc(fmtDT(o.sched))+'</b> · ':'<i>Not scheduled yet</i> · '):(o.d?'<span class="when">'+esc(fmt(o.d))+'</span> · ':''))+'<span class="who'+(/^You/.test(s.who)?' you':'')+'">'+esc(s.who)+'</span> · '+esc(o.status)+'</div>'+(view==='agent'&&!editing?'<textarea class="ie what" rows="2" data-sx="'+s.id+'" data-sk="what" placeholder="What this step means (they see this)">'+esc(s.what||'')+'</textarea>':(s.what?'<div class="what">'+esc(s.what)+'</div>':''))+(o.note&&view==='agent'?'<div class="small">Note: '+esc(o.note)+'</div>':'')+
+     (view==='agent'?'<div class="ctl"><select data-k="status" data-id="'+s.id+'">'+ST.map(x=>'<option'+(x===o.status?' selected':'')+'>'+x+'</option>').join('')+'</select><input type="date" data-k="d" data-id="'+s.id+'" value="'+esc(o.d)+'" title="'+(isSched(s)?'Due by':'Date')+'">'+(isSched(s)?'<span class="inc"><b>Scheduled</b> <input type="date" data-sd="'+s.id+'" value="'+esc((o.sched||'').split('T')[0])+'" aria-label="Scheduled day"> <select data-stm="'+s.id+'" aria-label="Scheduled time">'+TIMES.map(x=>'<option value="'+x[0]+'"'+(x[0]===((o.sched||'').split('T')[1]||'')?' selected':'')+'>'+x[1]+'</option>').join('')+'</select></span>':'')+'<input type="text" data-k="note" data-id="'+s.id+'" value="'+esc(o.note)+'" placeholder="Note (only you)">'+(s.agent?'<span class="inc" style="font-weight:600;color:#9b2c22">Only you: never sent to '+esc(D.first)+'</span>':'<span class="inc" style="display:inline-flex;gap:14px;flex-wrap:wrap;font-weight:600"><label style="color:#17602f"><input type="checkbox" data-inc="'+s.id+'" data-v="1"'+(st.inc[s.id]!==false?' checked':'')+'> Send to '+esc(D.first)+'</label><label style="color:#9b2c22"><input type="checkbox" data-inc="'+s.id+'" data-v="0"'+(st.inc[s.id]===false?' checked':'')+'> Do not send to '+esc(D.first)+'</label></span>')+'</div>':'')+(editing?'<div class="estep"><input data-sx="'+s.id+'" data-sk="t" value="'+esc(s.t)+'" placeholder="Step"><input data-sx="'+s.id+'" data-sk="who" value="'+esc(s.who)+'" placeholder="Who (start with You for the buyer)"><textarea data-sx="'+s.id+'" data-sk="what" rows="2" placeholder="What it means">'+esc(s.what||'')+'</textarea><div class="erow"><label style="flex:1"><input type="checkbox" data-sag="'+s.id+'"'+(s.agent?' checked':'')+'> Only me (never on '+esc(D.first)+'’s page)</label><button class="mv" data-mv="'+s.id+'" data-dir="-1" type="button">↑</button><button class="mv" data-mv="'+s.id+'" data-dir="1" type="button">↓</button><button class="x" data-sdel="'+s.id+'" type="button">Delete step</button></div></div>':'')+'</div></li>'}).join('');
+  $('addStepBox').innerHTML=editing?'<button class="btn ghost" type="button" data-add="steps">+ Add a step</button>':'';
+  $('editsec').hidden=!editing;if(editing)renderEdit();
+  const need=all.filter(s=>/^You/.test(s.who)&&!['Done','N/A'].includes(stepOf(s).status));
+  $('needH').hidden=!need.length;$('need').innerHTML=need.map(s=>'<li class="step"><span class="mark">!</span><div><div class="t">'+esc(s.t)+'</div><div class="meta">'+(stepOf(s).d?'<span class="when">by '+esc(fmt(stepOf(s).d))+'</span>':'')+'</div><div class="what">'+esc(s.what||'')+'</div></div></li>').join('');
+  $('people').innerHTML=D.people.filter(p=>view==='agent'||!p.mine).map(p=>'<div class="person"><span class="r">'+esc(p.role)+(p.mine?' <span class="agentonly">only you</span>':'')+'</span><b>'+esc(p.name)+'</b>'+(p.org?esc(p.org)+'<br>':'')+(p.phone?'<a href="tel:'+esc(p.phone.replace(/\D/g,''))+'">'+esc(p.phone)+'</a><br>':'')+(p.email?'<a href="mailto:'+esc(p.email)+'">'+esc(p.email)+'</a>':'')+'</div>').join('');
+  if(MODE==='agent'){$('modebar').hidden=false;$('quick').hidden=view!=='agent';if(view==='agent')$('quick').innerHTML='<b>Quick contacts</b>'+(D.sellers?'<div class="q"><span class="r">Seller'+(/ and |&|,/.test(D.sellers)?'s':'')+'</span>'+esc(D.sellers)+'</div>':'')+D.people.filter(p=>!/your agent/i.test(p.role)).map(p=>'<div class="q"><span class="r">'+esc(p.role)+'</span><b>'+esc(p.name)+'</b>'+(p.phone?'<a href="tel:'+esc(p.phone.replace(/\D/g,''))+'">'+esc(p.phone)+'</a>':'')+(p.email?'<a href="mailto:'+esc(p.email)+'">'+esc(p.email)+'</a>':'')+'</div>').join('');$('mEdit').textContent=editing?'Done editing':'Edit deal';$('mEdit').hidden=view!=='agent';
+    const ps=$('pvSend');ps.hidden=view==='agent';if(view!=='agent'){const m=msgs();const upd=pushedAt&&Date.now()-pushedAt<240000;
+      ps.innerHTML='<b>This is exactly what '+esc(D.first)+' see'+(/ and /.test(D.first)?'':'s')+'.</b><span class="small">'+(upd?'Their page is updating with your changes now (about 3 minutes). Their link always shows the latest, so you can send it now.':'Tap <b>Update Page</b> first if you just made changes, so their page has them.')+'</span><div class="sendbar">'+D.phones.map(p=>'<a class="btn" data-log="text" href="'+esc(smsHref(p.num,m.text))+'">Text it to '+esc(p.name)+'</a>').join('')+'<a class="btn" data-log="email" href="mailto:'+D.emails.join(',')+'?cc='+encodeURIComponent(D.agentEmail)+'&subject='+encodeURIComponent(m.subj)+'&body='+encodeURIComponent(m.body)+'">Email it to '+esc(D.first)+'</a></div>'}$('mPush').hidden=view!=='agent';if(!pushing)$('mPush').textContent='Update Page';$('mClient').textContent=D.first+'’s view';$('mAgent').setAttribute('aria-pressed',view==='agent');$('mClient').setAttribute('aria-pressed',view!=='agent');
+    $('sendsec').hidden=false;$('pvTest').href=smsHref(D.agentCell,msgs().text);$('sendH').textContent='Send '+D.first+' an update';$('pvText').textContent='Send to '+D.first+' by text';$('pvEmail').textContent='Send to '+D.first+' by email';$('logH').textContent='What '+D.first+' has been sent';
+    $('sentlog').innerHTML=(st.sentlog||[]).slice().reverse().map(l=>'<li><b>'+esc(new Date(l.when).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}))+'</b> · '+esc(l.how)+': '+esc(l.summary)+'</li>').join('')||'<li>Nothing sent yet.</li>';
+    if(document.activeElement!==$('notes'))$('notes').value=st.notes||''}
+  if(MODE==='agent'){$('mQs').hidden=$('mWc').hidden=view!=='agent';$('mQs').textContent=qOpen?'Close questions':'Answer questions';$('mWc').textContent=wcOpen?'Close What changed?':'What changed?';$('qsec').hidden=!(qOpen&&view==='agent');$('wcsec').hidden=!(wcOpen&&view==='agent');if(qOpen&&view==='agent')renderQs();if(wcOpen&&view==='agent')renderWc()}
+  arrange($('blocks'),MODE==='agent'&&view==='agent',D.layout,L=>{st.data=st.data||{};st.data.layout=L;changed()},D.first,[]);
+}
+function addDays(s,n){const d=pd(s);if(!d)return '';d.setDate(d.getDate()+n);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function inspEnd(){return addDays(D.accepted,Number(D.inspDays)||7)}
+function autoTerm(t){const l=(t[0]||'').toLowerCase();
+  if(l==='offer accepted'&&D.accepted)return [t[0],fmt(D.accepted)+', '+pd(D.accepted).getFullYear()];
+  if(l==='inspection period'&&D.accepted)return [t[0],(Number(D.inspDays)||7)+' days (through '+fmt(inspEnd())+')'];
+  if(l==='closing'&&D.close)return [t[0],'On or before '+fmt(D.close)];return t}
+/* contract dates follow the acceptance and closing dates; a date you typed on a step yourself still wins */
+function redate(){const R=D.rel||{};const a=M('steps');const moved=[];
+  a.forEach(s=>{const r=R[s.id];if(!r||!D[r[0]])return;const nd=addDays(D[r[0]],(r[1]==='insp'?(Number(D.inspDays)||7):r[1])+(Number(r[2])||0));if(nd&&nd!==s.d){s.d=nd;const own=(st.steps[s.id]||{}).d;if(!own||own===nd)moved.push(s.t.split(' (')[0]+' → '+fmt(nd))}});
+  return moved}
+function inp(attr,v,ph,type){return '<input '+attr+(type?' type="'+type+'"':'')+' value="'+esc(v==null?'':v)+'" placeholder="'+esc(ph||'')+'">'}
+function renderEdit(){
+  const B=[['buyers','Prepared for'],['sellers','Sellers (only you see)'],['first','First names (in texts)'],['price','Price','number'],['accepted','Offer accepted','date'],['close','Closing date','date'],['inspDays','Inspection days','number']];
+  let h='<p class="small">Changes save as you go and show on your page right away. '+esc(D.first)+'’s page picks them up at the next refresh.</p><h3>The basics</h3>'+B.map(b=>'<div class="erow"><label>'+b[1]+'</label>'+inp('data-f="'+b[0]+'"',D[b[0]],'',b[2])+'</div>').join('');
+  h+='<div class="erow"><label>Client emails</label>'+inp('data-f="emails"',(D.emails||[]).join(', '),'one, two')+'</div>';
+  h+='<h3>Text numbers</h3>'+(D.phones||[]).map((p,i)=>'<div class="erow">'+inp('data-ph="'+i+'" data-pk="name"',p.name,'Name')+inp('data-ph="'+i+'" data-pk="num"',p.num,'Cell','tel')+'<button class="x" type="button" data-del="phones" data-i="'+i+'">✕</button></div>').join('')+'<button class="btn ghost" type="button" data-add="phones">+ Add a number</button>';
+  h+='<h3>The deal terms</h3>'+D.terms.map((t,i)=>'<div class="erow">'+inp('data-tr="'+i+'" data-tk="0"',t[0],'Label')+inp('data-tr="'+i+'" data-tk="1"',t[1],'Value')+'<button class="x" type="button" data-del="terms" data-i="'+i+'">✕</button></div>').join('')+'<button class="btn ghost" type="button" data-add="terms">+ Add a term</button>';
+  h+='<h3>Who’s who</h3>'+D.people.map((p,i)=>'<div class="erow">'+['role','name','org','phone','email'].map(k=>inp('data-pp="'+i+'" data-pk="'+k+'"',p[k],k==='org'?'Company / address':k[0].toUpperCase()+k.slice(1))).join('')+'<label style="flex:0 0 auto"><input type="checkbox" data-pmine="'+i+'"'+(p.mine?' checked':'')+'> Only me</label><button class="x" type="button" data-del="people" data-i="'+i+'">✕</button></div>').join('')+'<button class="btn ghost" type="button" data-add="people">+ Add a person</button>';
+  h+='<p class="small">Step names, who and what: edit them right in the step list below.</p>';
+  $('editsec').innerHTML=h}
+function msgs(){
+  const nx=nextSteps().filter(s=>!s.agent&&st.inc[s.id]!==false);const all=D.steps.filter(s=>packOn(s)&&!s.agent&&st.inc[s.id]!==false);const done=all.filter(s=>['Done','N/A'].includes(stepOf(s).status));
+  const close=pd(D.close),days=close?Math.round((close-today())/DAY):0;
+  const need=nx.filter(s=>/^You/.test(s.who));
+  const text=clientLink();
+  const subj=D.short+': where we are and what happens next';
+  const body='Hi '+D.first+',\n\nHere is where we stand on '+D.address+', '+D.city+'. We are '+done.length+' of '+all.length+' steps in, with closing set for '+fmt(D.close)+' ('+days+' days away).\n\n'+
+   (done.length?'DONE SO FAR\n'+done.map(s=>'- '+s.t).join('\n')+'\n\n':'')+
+   'COMING UP\n'+nx.slice(0,5).map(s=>'- '+s.t+(stepOf(s).d?' (by '+fmt(stepOf(s).d)+')':'')+' · '+s.who).join('\n')+'\n\n'+
+   (need.length?'WHAT WE NEED FROM YOU\n'+need.map(s=>'- '+s.t+(stepOf(s).d?' by '+fmt(stepOf(s).d):'')+': '+(s.what||'')).join('\n')+'\n\n':'')+
+   'Your page with every step, date and contact, always up to date:\n'+clientLink()+'\n\nAny questions at all, just call or text me.\n\nThanks,\nFrank Lucido\nREALTOR® | Sine & Monaghan\nHour Detroit Real Estate All-Star, Top 5% in Metro Detroit\n586-419-7607 | frankjr@fjlucido.com\nwww.franklucidohomes.com';
+  return {text,subj,body,summary:done.length+' of '+all.length+' done; next: '+(nx[0]?nx[0].t:'none')};
+}
+/* texts go through a small send page on Frank's site: the app garbles a direct sms: link (spaces arrive as %20), Safari does not */
+function b64u(s){const b=new TextEncoder().encode(s);let x='';b.forEach(c=>x+=String.fromCharCode(c));return btoa(x).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}
+const SEND='https://franklucidohomes.github.io/trades/next/send.html';
+function smsHref(num,body){return 'sms:'+(num||'')+'?&body='+(/^https?:\/\/\S+$/.test(body)?body:encodeURIComponent(body))}
+/* the link clients get: a page on Frank's site that shows his photo in the text preview and forwards to their page */
+function clientLink(){if(D.link)return D.link;const m=/artifact\/([A-Za-z0-9]+)/.exec(D.clientUrl||'');return m?'https://franklucidohomes.github.io/trades/next/#'+m[1]:D.clientUrl}
+function preview(kind){const m=msgs();const box=$('pvBox');
+  if(kind==='text'){box.innerHTML='<div class="pv"><b>What '+esc(D.first)+' will get by text</b><div class="bubble">'+(D.link?'<img src="'+esc(D.link)+'og.jpg" alt="" style="display:block;width:100%;border-radius:10px;margin-bottom:6px">':'')+esc(m.text)+'</div><div class="sendbar">'+D.phones.map(p=>'<a class="btn" data-log="text" href="'+smsHref(p.num,m.text)+'">Send text to '+esc(p.name)+'</a>').join('')+'<button class="btn ghost" type="button" data-copy="text">Copy text</button></div><p class="small">Just the link, so it arrives as your branded card. They can save it to their home screen and it updates as you update it. A text can’t copy you, so it will show in your sent messages.</p></div>'}
+  else{box.innerHTML='<div class="pv"><b>What '+esc(D.first)+' will get by email</b><div class="small">To: '+esc(D.emails.join(', '))+' · Cc: '+esc(D.agentEmail)+'<br>Subject: <b>'+esc(m.subj)+'</b></div><div class="mail">'+esc(m.body)+'</div><div class="sendbar"><a class="btn" data-log="email" href="mailto:'+D.emails.join(',')+'?cc='+encodeURIComponent(D.agentEmail)+'&subject='+encodeURIComponent(m.subj)+'&body='+encodeURIComponent(m.body)+'">Send email</a><button class="btn ghost" type="button" data-copy="email">Copy email</button></div><p class="small">Opens your email with this filled in and you copied; you hit send there.</p></div>'}
+  box.scrollIntoView({behavior:'smooth',block:'nearest'})}
+function confirmDel(b){if(b.dataset.sure)return true;b.dataset.sure='1';const o=b.textContent;b.textContent='Tap again to delete';setTimeout(()=>{delete b.dataset.sure;b.textContent=o},3000);return false}
+/* "Update their page now": runs Frank's refresh task (copies his saved edits to the buyers' page and their home-screen link) through the Claude Code Remote connector */
+let pushedAt=0;const REFRESH_TASK='trig_01PziVuq8NsycmNK2gKGYCEB';let pushing=false;
+/* read every box on screen into the saved copy, so nothing typed is ever missed */
+function harvest(){let n=0;document.querySelectorAll('[data-sd]').forEach(x=>{if(setSched(x.dataset.sd))n++});document.querySelectorAll('[data-id][data-k]').forEach(t=>{if(!('value' in t))return;const id=t.dataset.id,k=t.dataset.k;const cur=(st.steps[id]||{})[k]||'';if(t.value!==cur){const o=st.steps[id]=Object.assign({},st.steps[id]||{});o[k]=t.value;if(k==='sched'&&t.value&&(!o.status||o.status==='To do'))o.status='Scheduled';n++}});return n}
+async function pushNow(){const b=$('mPush');if(pushing)return;try{if(harvest()){render();await save()}}catch(e){}pushing=true;b.disabled=true;b.textContent='Starting…';
+  const done=(msg,keep)=>{toast(msg);setTimeout(()=>{pushing=false;b.disabled=false;b.textContent='Update Page';render()},keep?240000:1500)};
+  try{await save()}catch(_){}
+  let mcp=null;try{mcp=window.claude&&window.claude.use?await window.claude.use('mcp'):null}catch(_){}
+  if(!mcp){done('This button needs the Claude app. Ask me in chat to update '+D.first+'’s page.');return}
+  try{await mcp.callTool('Claude Code Remote','fire_trigger',{trigger_id:REFRESH_TASK,text:'Frank tapped "Update '+D.first+'’s page now" on the '+D.short+' page. Run the refresh for '+D.short+' now.'},{cache:false});
+    b.textContent='Updating…';pushedAt=Date.now();done('Saved. '+D.first+'’s page is updating (about 3 minutes). Here’s what they’ll see; send it from the top.',true);view='client';editing=false;render();$('modebar').scrollIntoView({behavior:'smooth',block:'start'})}
+  catch(e){const c=e&&e.code;done(c==='not_granted'?'Tap Allow when Claude asks, then try again.':c==='rate_limited'?'Too many tries just now. Try again in a minute.':'That didn’t start. Ask me in chat to update '+D.first+'’s page.')}}
+function toast(t){let x=$('toast');if(x)x.remove();x=document.createElement('div');x.className='toast';x.id='toast';x.textContent=t;document.body.append(x);setTimeout(()=>x.remove(),4000)}
+function copy(t){const fb=()=>{const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;top:-1000px';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');toast('Copied')}catch(_){}ta.remove()};if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(()=>toast('Copied'),fb);else fb()}
+function backup(){try{localStorage.setItem(BK,JSON.stringify({at:new Date().toISOString(),st:st}))}catch(_){}}
+function clearBackup(){try{localStorage.removeItem(BK)}catch(_){}}
+function bar(kind,msg){const b=$('savebar');if(!kind){b.hidden=true;return}b.hidden=false;b.className='savebar '+kind;b.textContent=msg}
+async function save(){backup();if(!ref||!ready){if(MODE==='agent')bar('bad','Not saved yet: this page hasn’t connected to your saved copy. Keep this page open; your change is kept on this device until it connects.');return}saving=true;lastLocal=Date.now();$('sync').textContent='Saving…';try{const doc={steps:st.steps,inc:st.inc,notes:st.notes,sentlog:st.sentlog||[],data:st.data||{},updated:new Date().toISOString()};lastKey=JSON.stringify(Object.assign({},doc,{updated:0}));await ref.set(doc);$('sync').textContent='Saved ✓ '+new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});$('sync').className='sync ok';clearBackup();bar()}catch(e){$('sync').textContent='Could not save';$('sync').className='sync';bar('bad','Your last change did NOT save. Check your connection and change it again, or tell me in chat.')}saving=false}
+/* every box saves itself: on change, on input for dropdowns/dates/checkboxes, and when you leave a text box (the app's frame doesn't always pass 'change' along) */
+const seen=new WeakMap();const valOf=t=>t.type==='checkbox'?String(t.checked):t.value;
+window.addEventListener('error',e=>{try{bar('bad','Page problem: '+e.message)}catch(_){}});window.addEventListener('unhandledrejection',e=>{try{bar('bad','Save problem: '+((e.reason&&(e.reason.message||e.reason.code))||e.reason))}catch(_){}});
+function onChg(e){const t=e.target;if(!t||!t.dataset)return;const v=valOf(t);if(t.type==='date'&&v&&+v.slice(0,4)<2020)return;if(e.type==='input'&&t.type==='date'&&document.activeElement===t){clearTimeout(t._dt);t._dt=setTimeout(()=>{if(document.activeElement!==t)return;const w=valOf(t);if(w&&+w.slice(0,4)>=2020&&seen.get(t)!==w){seen.set(t,w);quietChg(t)}},1500);return}if(seen.get(t)===v)return;seen.set(t,v);chg(t)}
+/* while you're still in a date box, save without redrawing so your typing isn't interrupted */
+function quietChg(t){if(t.dataset.sd){if(setSched(t.dataset.sd))save()}else if(t.dataset.id&&t.dataset.k){const o=st.steps[t.dataset.id]=Object.assign({},st.steps[t.dataset.id]||{});o[t.dataset.k]=t.value;save()}else chg(t)}
+document.addEventListener('focusin',e=>{const t=e.target;if(t&&t.dataset&&/^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName))seen.set(t,valOf(t))},true);
+document.addEventListener('change',onChg,true);
+document.addEventListener('input',e=>{const t=e.target;if(t&&(t.tagName==='SELECT'||/^(date|datetime-local|checkbox|number)$/.test(t.type)))onChg(e)},true);
+document.addEventListener('focusout',e=>{const t=e.target;if(t&&/^(INPUT|TEXTAREA)$/.test(t.tagName)&&t.type!=='checkbox')onChg(e)},true);
+function setSched(id){const d=document.querySelector('[data-sd="'+id+'"]'),tm=document.querySelector('[data-stm="'+id+'"]');const v=d&&d.value?d.value+(tm&&tm.value?'T'+tm.value:''):'';const o=st.steps[id]=Object.assign({},st.steps[id]||{});if((o.sched||'')===v)return false;o.sched=v;if(v&&(!o.status||o.status==='To do'))o.status='Scheduled';return true}
+function chg(t){if(t.dataset.sd||t.dataset.stm){if(setSched(t.dataset.sd||t.dataset.stm)){render();save();toast('Inspection time saved ✓')}return}
+  if(t.dataset.id&&t.dataset.k){const o=st.steps[t.dataset.id]=Object.assign({},st.steps[t.dataset.id]||{});o[t.dataset.k]=t.value;if(t.dataset.k==='sched'&&t.value&&(!o.status||o.status==='To do'))o.status='Scheduled';render();save()}else if(t.dataset.inc){st.inc[t.dataset.inc]=t.dataset.v?t.dataset.v==='1':t.checked;render();save()}else if(t.id==='notes'){st.notes=t.value;save()}
+  else if(t.dataset.f){const k=t.dataset.f;st.data=st.data||{};st.data[k]=k==='emails'?t.value.split(/[,;\s]+/).filter(Boolean):(t.type==='number'?Number(t.value):t.value);applyData();if(['accepted','close','inspDays'].includes(k)){if(k==='accepted'){const o=st.steps.accept;if(o)delete o.d}const mv=redate();applyData();if(mv.length)toast('Dates moved: '+mv.slice(0,4).join('; ')+(mv.length>4?' and '+(mv.length-4)+' more':''))}changed()}
+  else if(t.dataset.ph){M('phones')[+t.dataset.ph][t.dataset.pk]=t.value;changed()}
+  else if(t.dataset.tr){M('terms')[+t.dataset.tr][+t.dataset.tk]=t.value;changed()}
+  else if(t.dataset.pmine){M('people')[+t.dataset.pmine].mine=t.checked;changed()}
+  else if(t.dataset.pp){M('people')[+t.dataset.pp][t.dataset.pk]=t.value;changed()}
+  else if(t.dataset.sx){const x=M('steps').find(s=>s.id===t.dataset.sx);if(x){x[t.dataset.sk]=t.value;changed()}}
+  else if(t.dataset.sag){const x=M('steps').find(s=>s.id===t.dataset.sag);if(x){x.agent=t.checked;changed()}}}
+document.addEventListener('click',e=>{const t=e.target;
+  if(t.id==='mAgent'){view='agent';render()}else if(t.id==='mClient'){view='client';editing=false;render()}
+  else if(t.dataset&&t.dataset.done){const id=t.dataset.done;const o=st.steps[id]=Object.assign({},st.steps[id]||{});const cur=stepOf(D.steps.find(x=>x.id===id)).status;o.status=(cur==='Done'||cur==='N/A')?'To do':'Done';render();save();toast(o.status==='Done'?'Marked done ✓ and saved':'Marked not done and saved')}
+  else if(t.id==='mPush'){pushNow()}
+  else if(t.id==='mEdit'){editing=!editing;render();if(editing)$('editsec').scrollIntoView({behavior:'smooth',block:'start'})}
+  else if(t.dataset&&t.dataset.add){const k=t.dataset.add,a=M(k);a.push(k==='terms'?['','']:k==='people'?{role:'',name:'',org:'',phone:'',email:''}:k==='phones'?{name:'',num:''}:{id:'x'+Date.now().toString(36),t:'New step',who:'Frank',what:'',d:''});changed()}
+  else if(t.dataset&&t.dataset.del){if(!confirmDel(t))return;M(t.dataset.del).splice(+t.dataset.i,1);changed()}
+  else if(t.dataset&&t.dataset.sdel){if(!confirmDel(t))return;const a=M('steps'),i=a.findIndex(s=>s.id===t.dataset.sdel);if(i>-1)a.splice(i,1);changed()}
+  else if(t.dataset&&t.dataset.mv){const a=M('steps'),i=a.findIndex(s=>s.id===t.dataset.mv),j=i+Number(t.dataset.dir);if(i>-1&&j>=0&&j<a.length){const x=a[i];a[i]=a[j];a[j]=x;changed()}}
+  else if(t.id==='pvText')preview('text');else if(t.id==='pvEmail')preview('email');
+  else if(t.dataset&&t.dataset.copy){const m=msgs();copy(t.dataset.copy==='text'?m.text:m.subj+'\n\n'+m.body)}
+},false);
+/* text and email links open outside the app's frame; the wording is copied too in case nothing opens; each send is logged */
+document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href^="sms:"],a[href^="https://franklucidohomes.github.io/trades/next/send"],a[href^="mailto:"]');if(!a)return;a.target='_blank';a.rel='noopener';
+  if(a.dataset.test){a.href=smsHref(D.agentCell,msgs().text);copy(msgs().text);toast('Opening Messages to text yourself. Also copied, in case it does not open.')}
+  if(a.dataset.log){const m=msgs();copy(a.dataset.log==='text'?m.text:m.subj+'\n\n'+m.body);st.sentlog=(st.sentlog||[]).concat([{when:new Date().toISOString(),how:a.dataset.log==='text'?'Text':'Email',summary:m.summary}]);render();save();toast('Opening '+(a.dataset.log==='text'?'Messages':'your email')+'. Also copied, in case it does not open. Logged.')}},true);
+/* ---- One template for every deal: core steps + add-ons, set up by tap-to-answer questions ---- */
+const LIB=JSON.parse(document.getElementById('lib').textContent||'{}');let qOpen=false,wcOpen=false;
+const firstShort=()=>String(D.first||'').replace(/ and /g,' & ');
+function titleName(){const a=(D.answers||{}).title;if(a&&a!=='other')return a;const t=(D.terms||[]).find(x=>/^title company/i.test(x[0]));return t?String(t[1]).split(/[(,;]/)[0].trim():'the title company'}
+const fill=x=>String(x||'').replace(/\{first\}/g,firstShort()).replace(/\{title\}/g,titleName());
+function relOf(r){return r[0]==='insp'?['accepted','insp',r[1]||0]:[r[0],r[1]]}
+function dateOf(r){const R=relOf(r);return addDays(D[R[0]],(R[1]==='insp'?(Number(D.inspDays)||7):R[1])+(Number(R[2])||0))}
+/* switch an add-on on: its steps join the list in date order (steps already there keep their wording, dates and notes) */
+function ensurePack(key){const p=(LIB.addons||[]).find(a=>a.key===key);if(!p)return 0;const a=M('steps');const rel=M('rel');let n=0;
+  p.steps.forEach(x=>{const have=a.find(s=>s.id===x.id);if(have){if(!have.pack)have.pack=key;return}
+    const s={id:x.id,t:fill(x.t),who:fill(x.who),what:fill(x.what),d:dateOf(x.rel),pack:key};rel[x.id]=relOf(x.rel);
+    const i=a.findIndex(y=>!y.agent&&y.d&&s.d&&y.d>s.d&&y.id!=='accept');if(i<0){const j=a.findIndex(y=>y.agent);if(j<0)a.push(s);else a.splice(j,0,s)}else a.splice(i,0,s);n++});return n}
+function setAddon(key,on){st.data=st.data||{};const A=Object.assign({},D.addons||{});if(on)A[key]=true;else delete A[key];st.data.addons=A;applyData();if(on)ensurePack(key);applyData()}
+function setTerm(label,val){const T=M('terms');const i=T.findIndex(t=>(t[0]||'').toLowerCase()===label.toLowerCase());if(i>-1)T[i][1]=val;else T.push([label,val])}
+const YN=[['yes','Yes'],['no','No']];
+function QS(){const cityGuess=/grosse pointe farms/i.test(D.city||'');return [
+  {k:'pay',q:'How are they paying?',o:[['cash','Cash'],['fin','Financing'],['tbd','Not decided yet']]},
+  {k:'condo',q:'Is it a condo?',o:YN},
+  {k:'pre78',q:'Built before 1978?',o:YN},
+  {k:'cofo',q:'City C of O / city inspection needed?'+(cityGuess?' (Grosse Pointe Farms usually does)':''),o:YN},
+  {k:'sale',q:'Do they have to sell a home first?',o:YN},
+  {k:'poss',q:'Possession',o:[['close','At closing'],['stay','Sellers stay after closing'],['early','Early possession']]},
+  {k:'insp',q:'Inspection period',o:[['5','5 days'],['7','7 days'],['10','10 days'],['14','14 days']]},
+  {k:'close',q:'Closing date',date:1},
+  {k:'title',q:'Title company',o:(LIB.titles||[]).map(x=>[x,x]).concat([['other','Other (type it in The deal)']])},
+  {k:'repairs',q:'Repairs or a credit from the inspection?',o:[['yes','Yes'],['no','No'],['tbd','Not yet']]},
+  {k:'warranty',q:'Home warranty?',o:YN},
+  {k:'survey',q:'Survey?',o:YN}]}
+/* what each question's answer looks like right now (from the deal itself when he hasn't answered yet) */
+function cur(k){const A=D.answers||{},O=D.addons||{};if(A[k]!=null)return String(A[k]);
+  const fin=((D.terms||[]).find(t=>/^financing/i.test(t[0]))||[])[1]||'';
+  switch(k){case 'pay':return /deciding|undecided|or financ/i.test(fin)?'tbd':/cash/i.test(fin)?'cash':fin?'fin':'';
+    case 'condo':return O.condo?'yes':'';case 'pre78':return O.lead?'yes':'';case 'cofo':return O.cofo?'yes':'';case 'sale':return O.sale?'yes':'';
+    case 'poss':return O.occupancy?'stay':O.early?'early':'';case 'insp':return String(D.inspDays||'');case 'close':return D.close||'';
+    case 'repairs':return O.repairs?'yes':'';case 'warranty':return O.warranty?'yes':'';case 'survey':return O.survey?'yes':'';case 'title':return '';}return ''}
+function answer(k,v){st.data=st.data||{};st.data.answers=Object.assign({},D.answers||{},{[k]:v});applyData();let moved=[];
+  if(k==='pay'){setAddon('financing',v==='fin');setTerm('Financing',v==='cash'?'Cash':v==='fin'?'Financing':'Cash or financing (still deciding)')}
+  else if(k==='condo')setAddon('condo',v==='yes');else if(k==='pre78')setAddon('lead',v==='yes');else if(k==='cofo')setAddon('cofo',v==='yes');else if(k==='sale')setAddon('sale',v==='yes');
+  else if(k==='poss'){setAddon('occupancy',v==='stay');setAddon('early',v==='early');if(v==='close')setTerm('Possession','At closing')}
+  else if(k==='insp'){st.data.inspDays=Number(v);applyData();moved=redate()}
+  else if(k==='close'){st.data.close=v;applyData();moved=redate()}
+  else if(k==='title'&&v!=='other'){setTerm('Title company',v)}
+  else if(k==='repairs')setAddon('repairs',v==='yes');else if(k==='warranty')setAddon('warranty',v==='yes');else if(k==='survey')setAddon('survey',v==='yes');
+  changed();toast('Saved ✓'+(moved.length?' Dates moved: '+moved.slice(0,3).join('; ')+(moved.length>3?' and '+(moved.length-3)+' more':''):''))}
+function renderQs(){const Q=QS();let h='<h3>Answer a few questions</h3><p class="small">Tap an answer and the tracker builds itself: the right steps switch on, dates follow the contract, and it saves right away. Change any answer later the same way.</p>';
+  h+=Q.map(q=>{const c=cur(q.k);return '<div class="qrow"><b>'+esc(q.q)+'</b><div class="chips">'+(q.date?'<label class="chip on">'+'<input type="date" data-qdate="'+q.k+'" value="'+esc(c)+'"></label>':q.o.map(o=>'<button type="button" class="chip'+(o[0]===c?' on':'')+'" data-q="'+q.k+'" data-a="'+esc(o[0])+'">'+esc(o[1])+'</button>').join(''))+'</div></div>'}).join('');
+  const O=D.addons||{};
+  h+='<div class="qrow"><b>Add-ons on this deal</b><span class="small">The questions above switch these on for you; you can also flip any one here. Turning one off hides its steps but keeps your notes.</span>'+(LIB.addons||[]).map(a=>'<label class="addon"><input type="checkbox" data-addon="'+a.key+'"'+(O[a.key]?' checked':'')+'><span><b>'+esc(a.label)+'</b><span class="small">'+esc(a.desc)+'</span></span></label>').join('')+'<div class="chips" style="margin-top:8px"><button type="button" class="chip" data-custom="1">+ Custom item</button></div></div>';
+  $('qsec').innerHTML=h}
+/* What changed? the next open steps with one-tap answers */
+function renderWc(){const open=D.steps.filter(s=>packOn(s)).filter(s=>!['Done','N/A'].includes(stepOf(s).status)).slice(0,8);
+  let h='<h3>What changed?</h3><p class="small">The next open steps. Tap what happened; it saves right away. Pick a new date if one moved.</p>';
+  h+=open.length?open.map(s=>{const o=stepOf(s);return '<div class="qrow"><b>'+esc(s.t)+(s.agent?' <span class="agentonly">only you</span>':'')+'</b><span class="small">'+(o.d?'Due '+esc(fmt(o.d))+' · ':'')+esc(o.status)+'</span><div class="chips" style="margin-top:6px">'+[['Done','Done ✓'],['Scheduled','Scheduled'],['Waiting','Waiting'],['N/A','Not needed']].map(x=>'<button type="button" class="chip'+(o.status===x[0]?' on':'')+'" data-wc="'+s.id+'" data-st="'+x[0]+'">'+x[1]+'</button>').join('')+'<label class="chip">New date <input type="date" data-k="d" data-id="'+s.id+'" value="'+esc(o.d)+'"></label></div></div>'}).join(''):'<p><b>Everything is done.</b></p>';
+  $('wcsec').innerHTML=h}
+document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('button');if(!t||MODE!=='agent')return;
+  if(t.id==='mQs'){qOpen=!qOpen;wcOpen=false;render();if(qOpen)$('qsec').scrollIntoView({behavior:'smooth',block:'start'})}
+  else if(t.id==='mWc'){wcOpen=!wcOpen;qOpen=false;render();if(wcOpen)$('wcsec').scrollIntoView({behavior:'smooth',block:'start'})}
+  else if(t.dataset.q){answer(t.dataset.q,t.dataset.a)}
+  else if(t.dataset.wc){const o=st.steps[t.dataset.wc]=Object.assign({},st.steps[t.dataset.wc]||{});o.status=t.dataset.st;render();save();toast('Saved ✓')}
+  else if(t.dataset.custom){M('steps').push({id:'x'+Date.now().toString(36),t:'New item',who:'Frank',what:'',d:''});qOpen=false;changed();toast('Added at the end of the steps. Type its name and details right in the list.');const l=$('steps').lastElementChild;if(l)l.scrollIntoView({behavior:'smooth',block:'center'})}},false);
+document.addEventListener('change',e=>{const t=e.target;if(MODE!=='agent'||!t.dataset)return;
+  if(t.dataset.addon){setAddon(t.dataset.addon,t.checked);changed();toast(t.checked?'Add-on on: its steps are in the list ✓':'Add-on off: its steps are hidden ✓')}
+  else if(t.dataset.qdate&&t.value&&+t.value.slice(0,4)>=2020){answer(t.dataset.qdate,t.value)}},true);
+
+if(D0.preview&&MODE==='agent'){const pb=document.createElement('div');pb.className='savebar wait';pb.style.cssText='background:#fff3c4;border:2px solid #a4560c;color:#5a3300';pb.innerHTML='<b>PREVIEW of the new deal template.</b> Try the buttons freely: changes here stay on this preview and never touch your live tracker or the buyers’ page.';$('modebar').after(pb);$('mPush').style.display='none'}
+render();
+/* Saving: nothing can be changed until the saved copy has loaded, so a late load can never wipe out an edit; every change is also kept on this device until the save is confirmed */
+let lastKey='',pendingSnap=null;
+function applySnap(v){st=Object.assign({steps:{},inc:{},notes:'',sentlog:[],data:{}},v);applyData();render();$('sync').textContent='Up to date';$('sync').className='sync'}
+document.addEventListener('focusout',()=>{setTimeout(()=>{const ae=document.activeElement;if(pendingSnap&&!(ae&&/^(INPUT|SELECT|TEXTAREA)$/.test(ae.tagName))){const v=pendingSnap;pendingSnap=null;if(Date.now()-lastLocal>3000)applySnap(v)}},400)});
+const BK='deal-'+(D0.short||'x').replace(/\W+/g,'-')+'-unsaved';let ready=false;
+if(MODE==='agent'){document.body.classList.add('locked');bar('wait','Loading your saved copy… you can make changes in a moment.')}
+const fail=msg=>{if(ready)return;document.body.classList.add('locked');bar('bad',msg);$('sync').textContent='Not saving'};
+const tmo=setTimeout(()=>fail('Changes can’t be saved on this screen right now, so editing is turned off. Open this page in the Claude app (signed in) to make changes.'),12000);
+if(MODE==='agent'&&window.claude&&window.claude.use){window.claude.use('db').then(d=>{if(!d){clearTimeout(tmo);fail('Changes can’t be saved here: you’re not signed in to Claude on this screen, so editing is turned off. Open this page in the Claude app to make changes.');return}db=d;ref=d.doc('deal/state');
+  /* only redraw when the saved copy really changed, and never while a box or dropdown is open, so nothing you're in the middle of gets thrown away */
+  ref.onSnapshot(s=>{if(saving||Date.now()-lastLocal<3000)return;const v=JSON.parse(JSON.stringify(s.exists?(s.data()||{}):{}));/* the app hands the saved copy over locked; work on our own copy so edits can be made */
+    if(!ready){ready=true;clearTimeout(tmo);document.body.classList.remove('locked');bar();
+      let bk=null;try{bk=JSON.parse(localStorage.getItem(BK)||'null')}catch(_){}
+      if(bk&&bk.st&&(!v.updated||bk.at>v.updated)){st=Object.assign({steps:{},inc:{},notes:'',sentlog:[],data:{}},bk.st);applyData();render();save();$('sync').textContent='Recovered your unsaved changes';return}}
+    const key=JSON.stringify(Object.assign({},v,{updated:0}));if(key===lastKey){return}lastKey=key;
+    const ae=document.activeElement;if(ae&&ae!==document.body&&/^(INPUT|SELECT|TEXTAREA)$/.test(ae.tagName)){pendingSnap=v;return}
+    applySnap(v)},()=>{clearTimeout(tmo);fail('Couldn’t load your saved copy, so editing is turned off to protect your work. Reload the page, or tell me in chat.')})}).catch(()=>{clearTimeout(tmo);fail('Changes can’t be saved on this screen. Open this page in the Claude app to make changes.')})}
+else if(MODE==='agent'){clearTimeout(tmo);fail('Changes can’t be saved on this screen. Open this page in the Claude app (signed in) to make changes.')}
+})();
+</script>
+<a id="hq-back" href="https://claude.ai/artifact/WzBfvowPV3Rcij89G1ghZ6" target="_blank" rel="noopener" style="position:fixed;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:2147483000;display:inline-flex;align-items:center;gap:6px;background:#12305a;color:#fff;font:600 14px/1 Inter,'Segoe UI',system-ui,sans-serif;text-decoration:none;padding:10px 14px;border-radius:999px;box-shadow:0 2px 10px rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.35)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home<style>@media print{#hq-back,#hq-back+div{display:none!important}}</style></a><div aria-hidden="true" style="height:64px"></div>
+
+</body></html>
